@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import { getPostBySlug, getPostSlugs } from "@/lib/blog";
 
 export const revalidate = 3600;
@@ -46,7 +47,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 {post.author.icon && (
                   <div className="relative w-8 h-8 rounded-full overflow-hidden bg-white/10">
                     <Image
-                      src={`/${post.author.icon}`}
+                      src={post.author.icon}
                       alt={post.author.name}
                       fill
                       className="object-cover"
@@ -75,7 +76,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {post.banner && (
           <div className="relative w-full aspect-video rounded-3xl overflow-hidden mb-16 border border-white/10 shadow-2xl">
             <Image
-              src={`/${post.banner}`}
+              src={post.banner}
               alt={post.title}
               fill
               className="object-cover"
@@ -85,7 +86,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         )}
 
         <article className="prose prose-invert prose-lg max-w-none prose-headings:text-white prose-a:text-[var(--color-axion-accent-secondary)] hover:prose-a:text-[var(--color-axion-accent)] prose-a:transition-colors prose-img:rounded-2xl prose-img:border prose-img:border-white/10">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
             {post.content}
           </ReactMarkdown>
         </article>

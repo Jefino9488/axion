@@ -64,3 +64,16 @@ html.lenis, html.lenis body {
     background-clip: text;
   }
 }
+
+/* Blog Markdown Utilities */
+.side-by-side {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.side-by-side img {
+  flex: 1;
+  width: 100%;
+  object-fit: cover;
+}

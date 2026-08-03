@@ -30,7 +30,7 @@ export default function BlogPage() {
               <div className="flex flex-col lg:flex-row">
                 <div className="relative w-full lg:w-3/5 aspect-video lg:aspect-auto min-h-[300px]">
                   <Image
-                    src={`/${featuredPost.banner}`}
+                    src={featuredPost.banner}
                     alt={featuredPost.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -74,7 +74,7 @@ export default function BlogPage() {
               <article className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-300 h-full flex flex-col">
                 <div className="relative w-full aspect-video">
                   <Image
-                    src={`/${post.banner}`}
+                    src={post.banner}
                     alt={post.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
