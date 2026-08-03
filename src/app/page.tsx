@@ -1,11 +1,7 @@
 import HeroScene from "@/components/HeroScene";
 import HomeScreenScene from "@/components/HomeScreenScene";
-import QuickSettingsScene from "@/components/QuickSettingsScene";
-import CustomizationScene from "@/components/CustomizationScene";
-import ThemingShowcase from "@/components/ThemingShowcase";
 import FeatureShowcase from "@/components/FeatureShowcase";
-import PerformanceScene from "@/components/PerformanceScene";
-import InteractiveComparison from "@/components/InteractiveComparison";
+import ResearchShowcase from "@/components/ResearchShowcase";
 import ParticleBackground from "@/components/ParticleBackground";
 import Footer from "@/components/Footer";
 
@@ -21,23 +17,11 @@ export default function Home() {
         {/* Scene 3: Home Screen — Launcher, App Drawer, Volume, Folders */}
         <HomeScreenScene />
 
-        {/* Scene 4: Quick Settings — Dual themes, customizable grid */}
-        <QuickSettingsScene />
-
-        {/* Scene 5: Theming — Multiple color themes across UI */}
-        <ThemingShowcase />
-
-        {/* Scene 6: Customization — Clock faces, launcher tuning, recents, routines */}
-        <CustomizationScene />
-
         {/* Scene 7: Features — Dynamic Bar, Game Space, Security, Essentials, AxPC */}
         <FeatureShowcase />
 
-        {/* Scene 8: Performance — Stats, pillars */}
-        <PerformanceScene />
-
-        {/* Scene 9: Comparison — Before/After slider */}
-        <InteractiveComparison />
+        {/* Scene 8: Research Showcase */}
+        <ResearchShowcase />
 
         {/* Scene 10: Footer — CTA, GitHub, Telegram */}
         <Footer />
