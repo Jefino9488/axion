@@ -112,6 +112,12 @@ export default function DevicesClient({
               >
                 <article className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:bg-white/10 hover:border-white/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-300 h-full flex flex-col relative group-hover:-translate-y-1">
                   
+                  {device.version && (
+                    <div className="absolute top-4 right-4 z-20 px-3 py-1.5 bg-black/60 backdrop-blur-xl border border-white/10 rounded-xl text-xs font-bold font-mono text-[var(--color-axion-accent)] shadow-lg select-none">
+                      v{device.version}
+                    </div>
+                  )}
+
                   {/* Image Header */}
                   <div className="relative w-full aspect-square bg-gradient-to-b from-white/5 to-transparent flex items-center justify-center p-8 overflow-hidden">
                     <div className="absolute inset-0 bg-[var(--color-axion-accent)]/5 group-hover:bg-[var(--color-axion-accent)]/10 transition-colors duration-500" />
@@ -134,20 +140,13 @@ export default function DevicesClient({
                       <span className="text-[var(--color-axion-accent)] text-xs font-bold uppercase tracking-widest px-3 py-1 bg-[var(--color-axion-accent)]/10 rounded-full">
                         {resolveBrand(device)}
                       </span>
-                      <div className="flex items-center gap-1.5">
-                        <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md border select-none ${
-                          device.status?.toLowerCase() === 'active' 
-                            ? 'bg-green-500/20 text-green-400 border-green-500/10' 
-                            : 'bg-red-500/15 text-red-400 border-red-500/10'
-                        }`}>
-                          {device.status}
-                        </span>
-                        {device.version && (
-                          <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-[var(--color-axion-accent)]/15 text-[var(--color-axion-accent)] rounded-md border border-[var(--color-axion-accent)]/10 select-none animate-fade-in">
-                            v{device.version}
-                          </span>
-                        )}
-                      </div>
+                      <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md border select-none ${
+                        device.status?.toLowerCase() === 'active' 
+                          ? 'bg-green-500/20 text-green-400 border-green-500/10' 
+                          : 'bg-red-500/15 text-red-400 border-red-500/10'
+                      }`}>
+                        {device.status}
+                      </span>
                     </div>
                     
                     <h3 className="text-2xl font-bold text-white tracking-tight mb-1 group-hover:text-[var(--color-axion-accent)] transition-colors">
