@@ -18,6 +18,11 @@ export type Device = {
     fallback: string;
   };
   guide?: string;
+  ota?: {
+    gms?: string;
+    vanilla?: string;
+  };
+  version?: string | null;
 };
 
 export type Maintainer = {
@@ -129,13 +134,20 @@ export default function DevicesClient({
                       <span className="text-[var(--color-axion-accent)] text-xs font-bold uppercase tracking-widest px-3 py-1 bg-[var(--color-axion-accent)]/10 rounded-full">
                         {resolveBrand(device)}
                       </span>
-                      <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md border select-none ${
-                        device.status?.toLowerCase() === 'active' 
-                          ? 'bg-green-500/20 text-green-400 border-green-500/10' 
-                          : 'bg-red-500/15 text-red-400 border-red-500/10'
-                      }`}>
-                        {device.status}
-                      </span>
+                      <div className="flex items-center gap-1.5">
+                        <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md border select-none ${
+                          device.status?.toLowerCase() === 'active' 
+                            ? 'bg-green-500/20 text-green-400 border-green-500/10' 
+                            : 'bg-red-500/15 text-red-400 border-red-500/10'
+                        }`}>
+                          {device.status}
+                        </span>
+                        {device.version && (
+                          <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-[var(--color-axion-accent)]/15 text-[var(--color-axion-accent)] rounded-md border border-[var(--color-axion-accent)]/10 select-none animate-fade-in">
+                            v{device.version}
+                          </span>
+                        )}
+                      </div>
                     </div>
                     
                     <h3 className="text-2xl font-bold text-white tracking-tight mb-1 group-hover:text-[var(--color-axion-accent)] transition-colors">

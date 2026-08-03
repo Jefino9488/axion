@@ -41,12 +41,39 @@ async function getDeviceImages() {
   return imagesMap;
 }
 
+async function fetchLatestVersion(otaUrl: string): Promise<string | null> {
+  try {
+    const res = await fetch(otaUrl, { next: { revalidate: 3600 } });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const builds = data.response || [];
+    if (builds.length === 0) return null;
+    const latestBuild = builds.sort((a: any, b: any) => b.datetime - a.datetime)[0];
+    return latestBuild?.version || null;
+  } catch {
+    return null;
+  }
+}
+
 export default async function DevicesPage() {
-  const [devices, maintainers, deviceImages] = await Promise.all([
+  const [rawDevices, maintainers, deviceImages] = await Promise.all([
     getDevices(),
     getMaintainers(),
     getDeviceImages(),
   ]);
+
+  const devices = await Promise.all(
+    rawDevices.map(async (device) => {
+      if (device.status?.toLowerCase() === "active" && device.ota) {
+        const otaUrl = device.ota.gms || device.ota.vanilla;
+        if (otaUrl) {
+          const version = await fetchLatestVersion(otaUrl);
+          return { ...device, version };
+        }
+      }
+      return { ...device, version: null };
+    })
+  );
 
   return (
     <main className="min-h-screen bg-[var(--color-axion-bg)] pt-32 pb-24 px-6 relative overflow-hidden">
