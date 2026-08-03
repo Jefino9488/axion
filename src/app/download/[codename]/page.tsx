@@ -236,6 +236,7 @@ export default async function DevicePage({
             <div className="relative w-full h-full drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
               <DeviceImage
                 sources={[
+                  `https://raw.githubusercontent.com/AxionAOSP/official_devices/main/OTA/Banners/devices/${device.codename}.webp`,
                   deviceImages[device.codename],
                   device.images?.banner,
                   device.images?.fallback,

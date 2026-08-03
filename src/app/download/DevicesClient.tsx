@@ -113,6 +113,7 @@ export default function DevicesClient({
                     
                     <DeviceImage
                       sources={[
+                        `https://raw.githubusercontent.com/AxionAOSP/official_devices/main/OTA/Banners/devices/${device.codename}.webp`,
                         deviceImages[device.codename],
                         device.images?.banner,
                         device.images?.fallback,
