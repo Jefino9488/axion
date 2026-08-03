@@ -27,24 +27,33 @@ export default function Navbar() {
 
   const isHome = pathname === "/";
 
-  let navClasses = "fixed top-0 inset-x-0 z-50 transition-all duration-300 ";
+  let navContainerClasses = "fixed top-0 inset-x-0 z-50 transition-all duration-300 ";
   if (isHome) {
     if (scrolled) {
-      navClasses += "py-4 -translate-y-full opacity-0 pointer-events-none";
+      navContainerClasses += "py-4 -translate-y-full opacity-0 pointer-events-none";
     } else {
-      navClasses += "bg-transparent py-6 translate-y-0 opacity-100";
+      navContainerClasses += "py-6 translate-y-0 opacity-100";
     }
   } else {
     if (scrolled) {
-      navClasses += "bg-black/80 backdrop-blur-xl border-b border-white/10 py-4 translate-y-0 opacity-100";
+      navContainerClasses += "py-4 translate-y-0 opacity-100";
     } else {
-      navClasses += "bg-transparent py-6 translate-y-0 opacity-100";
+      navContainerClasses += "py-6 translate-y-0 opacity-100";
     }
   }
 
   return (
-    <header className={`${navClasses} px-6`}>
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <header className={navContainerClasses}>
+      {/* Background layer to animate opacity instead of backdrop-filter to prevent browser rendering glitches */}
+      {!isHome && (
+        <div 
+          className={`absolute inset-0 bg-black/80 backdrop-blur-xl border-b border-white/10 transition-opacity duration-300 -z-10 ${
+            scrolled ? "opacity-100" : "opacity-0"
+          }`} 
+        />
+      )}
+      
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-full">
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <span className="text-white font-bold text-xl tracking-tight">Axion OS</span>

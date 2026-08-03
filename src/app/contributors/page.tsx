@@ -94,61 +94,39 @@ export default async function ContributorsPage() {
   );
 
   const renderGrid = (maintainersList: Maintainer[]) => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {maintainersList.map((m) => (
-        <div
-          key={m.id}
-          className="group bg-white/5 border border-white/10 rounded-3xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col items-center text-center relative overflow-hidden"
-        >
-          {/* Avatar */}
-          <div className="relative w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-white/10 group-hover:border-[var(--color-axion-accent-secondary)] transition-colors">
-            <Image
-              src={`https://github.com/${m.github_username}.png`}
-              alt={m.name}
-              fill
-              className="object-cover"
-              unoptimized
-            />
-          </div>
-
-          {/* Info */}
-          <h3 className="text-xl font-bold text-white mb-1">{m.name}</h3>
-          <p className="text-sm text-white/40 mb-6">@{m.github_username}</p>
-
-          {/* Devices count */}
-          {m.devices.length > 0 && (
-            <div className="flex items-center gap-2 text-sm text-white/60 mb-6 bg-black/40 px-3 py-1.5 rounded-full">
-              <Smartphone className="w-4 h-4 text-[var(--color-axion-accent-secondary)]" />
-              <span>{m.devices.length} {m.devices.length === 1 ? "Device" : "Devices"}</span>
-            </div>
-          )}
-
-          {/* Device Codenames */}
-          <div className="flex flex-wrap justify-center gap-1.5 mt-auto">
-            {m.devices.slice(0, 4).map(device => (
-              <span key={device} className="text-[10px] uppercase tracking-wider bg-white/10 text-white/70 px-2 py-1 rounded-md">
-                {device}
-              </span>
-            ))}
-            {m.devices.length > 4 && (
-              <span className="text-[10px] uppercase tracking-wider bg-white/5 text-white/40 px-2 py-1 rounded-md">
-                +{m.devices.length - 4} more
-              </span>
-            )}
-          </div>
-
-          {/* Hover GitHub link */}
+    <div className="flex flex-wrap justify-center gap-x-6 gap-y-10 md:gap-x-8 md:gap-y-12 max-w-5xl mx-auto">
+      {maintainersList.map((m) => {
+        const github = m.github_username || m.id;
+        const name = m.name || github;
+        
+        return (
           <a
-            href={`https://github.com/${m.github_username}`}
+            key={m.id}
+            href={`https://github.com/${github}`}
             target="_blank"
-            rel="noreferrer"
-            className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm"
+            rel="noopener noreferrer"
+            className="relative group cursor-pointer block"
           >
-            <Code className="w-8 h-8 text-white mb-2" />
-            <span className="text-white font-medium">View Profile</span>
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border border-white/10 group-hover:border-white/30 group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-300 shadow-xl bg-black/50">
+              <Image
+                src={`https://github.com/${github}.png?size=150`}
+                alt={name}
+                width={80}
+                height={80}
+                className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                unoptimized
+              />
+            </div>
+            
+            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 z-50">
+              <div className="bg-[#111] border border-white/10 px-4 py-2 rounded-xl shadow-2xl text-center whitespace-nowrap">
+                <div className="text-white font-bold text-sm">{name}</div>
+                <div className="text-white/40 font-mono text-[10px] mt-0.5">@{github}</div>
+              </div>
+            </div>
           </a>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 

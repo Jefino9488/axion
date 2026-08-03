@@ -27,10 +27,26 @@ async function getMaintainers() {
   return maintainersMap;
 }
 
+async function getDeviceImages() {
+  const res = await fetch(
+    "https://raw.githubusercontent.com/AxionAOSP/AxionAOSP.github.io/main_bk/device_images.json"
+  );
+  if (!res.ok) return {};
+  const data = await res.json();
+  
+  const imagesMap: Record<string, string> = {};
+  data.devices.forEach((d: { codename: string; imageUrl: string }) => {
+    imagesMap[d.codename] = d.imageUrl;
+  });
+  
+  return imagesMap;
+}
+
 export default async function DevicesPage() {
-  const [devices, maintainers] = await Promise.all([
+  const [devices, maintainers, deviceImages] = await Promise.all([
     getDevices(),
     getMaintainers(),
+    getDeviceImages(),
   ]);
 
   return (
@@ -49,7 +65,7 @@ export default async function DevicesPage() {
           </p>
         </div>
 
-        <DevicesClient devices={devices} maintainers={maintainers} />
+        <DevicesClient devices={devices} maintainers={maintainers} deviceImages={deviceImages} />
       </div>
     </main>
   );

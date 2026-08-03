@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Download, FileText, Smartphone, ExternalLink, Calendar, HardDrive } from "lucide-react";
 import { notFound } from "next/navigation";
+import DeviceImage from "@/components/DeviceImage";
 
 export const revalidate = 3600; // 1 hour cache
 
@@ -75,6 +76,19 @@ export async function generateStaticParams() {
   }
 }
 
+async function getDeviceImages() {
+  const res = await fetch(
+    "https://raw.githubusercontent.com/AxionAOSP/AxionAOSP.github.io/main_bk/device_images.json"
+  );
+  if (!res.ok) return {};
+  const data = await res.json();
+  const imagesMap: Record<string, string> = {};
+  data.devices.forEach((d: { codename: string; imageUrl: string }) => {
+    imagesMap[d.codename] = d.imageUrl;
+  });
+  return imagesMap;
+}
+
 export default async function DevicePage({
   params,
 }: {
@@ -87,11 +101,14 @@ export default async function DevicePage({
     notFound();
   }
 
-  const [gmsBuilds, vanillaBuilds, changelog] = await Promise.all([
+  const [gmsBuilds, vanillaBuilds, changelog, deviceImages] = await Promise.all([
     device.ota?.gms ? fetchBuilds(device.ota.gms) : Promise.resolve([]),
     device.ota?.vanilla ? fetchBuilds(device.ota.vanilla) : Promise.resolve([]),
     device.changelog ? fetchChangelog(device.changelog) : Promise.resolve("No changelog found."),
+    getDeviceImages(),
   ]);
+
+  const imageUrl = deviceImages[device.codename] || device.images?.banner || device.images?.fallback;
 
   return (
     <main className="min-h-screen bg-[var(--color-axion-bg)] pt-24 pb-24 px-6 relative overflow-hidden">
@@ -110,18 +127,19 @@ export default async function DevicePage({
         </Link>
 
         {/* Device Header */}
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-32 mb-12 items-center lg:items-center justify-center lg:justify-start">
-          <div className="max-w-2xl space-y-6">
-            <span className="text-[var(--color-axion-accent)] text-sm font-bold uppercase tracking-[0.2em] block">
-              {device.brand} • {device.status}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-12 mb-16 relative">
+          <div className="flex-1 space-y-4">
+            <span className="px-3 py-1 bg-[var(--color-axion-accent)]/20 text-[var(--color-axion-accent)] text-xs font-bold uppercase tracking-widest rounded-full">
+              {device.brand}
             </span>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white leading-none">
+            <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter">
               {device.name}
             </h1>
-            <p className="text-xl md:text-2xl text-white/40 font-mono tracking-wider">
-              {device.codename}
-            </p>
-            
+            <div className="flex items-center gap-4 text-white/50">
+              <span className="font-mono text-lg">{device.codename}</span>
+              <span className="w-1 h-1 rounded-full bg-white/20" />
+              <span className="uppercase tracking-widest text-sm font-bold text-[var(--color-axion-accent-secondary)]">{device.status}</span>
+            </div>
             <div className="pt-8 flex flex-wrap gap-4">
               {device.guide && (
                 <a href={device.guide} target="_blank" rel="noreferrer" className="px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/5 rounded-2xl flex items-center gap-3 text-white font-medium transition-all group">
@@ -138,18 +156,21 @@ export default async function DevicePage({
             </div>
           </div>
 
-          <div className="relative shrink-0 w-[240px] lg:w-[280px] aspect-[9/19.5] drop-shadow-[0_0_80px_rgba(255,255,255,0.1)] transform -rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
-              {(device.images?.banner || device.images?.fallback) && (
-                <Image
-                  src={device.images.banner || device.images.fallback}
-                  alt={device.name}
-                  fill
-                  className="object-contain text-transparent"
-                  unoptimized
-                />
-              )}
+          <div className="hidden md:block w-48 lg:w-64 aspect-[9/19.5] relative -my-12">
+            <div className="absolute inset-0 bg-[var(--color-axion-accent)]/20 blur-3xl rounded-full" />
+            <div className="relative w-full h-full drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+              <DeviceImage
+                sources={[
+                  deviceImages[device.codename],
+                  device.images?.banner,
+                  device.images?.fallback,
+                ]}
+                alt={device.name}
+                className="object-contain text-transparent"
+              />
             </div>
           </div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Content (Builds) */}
