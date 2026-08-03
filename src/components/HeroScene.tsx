@@ -17,6 +17,23 @@ const clockStyles = [
   { src: `${basePath}/assets/clock5.webp`, name: "Stencil", desc: "Industrial outline font" },
 ];
 
+const floatingClockStyles = [
+  clockStyles[0], clockStyles[1], clockStyles[2], clockStyles[3],
+  clockStyles[4], clockStyles[0], clockStyles[1], clockStyles[2]
+];
+
+const floatingPositions = [
+  { x: "-30vw", y: "-25vh", rotation: -12 },
+  { x: "-42vw", y: "0vh", rotation: -6 },
+  { x: "-22vw", y: "20vh", rotation: -18 },
+  { x: "-40vw", y: "30vh", rotation: -8 },
+  
+  { x: "30vw", y: "-20vh", rotation: 10 },
+  { x: "42vw", y: "5vh", rotation: 15 },
+  { x: "22vw", y: "25vh", rotation: 8 },
+  { x: "40vw", y: "-10vh", rotation: 12 }
+];
+
 const depthWallpapers = [
   { src: `${basePath}/assets/depth1.webp`, title: "Air Jordan 3D", tag: "Sports" },
   { src: `${basePath}/assets/depth2.webp`, title: "London Mist", tag: "Urban" },
@@ -44,6 +61,8 @@ export default function HeroScene() {
   
   // Array of clock refs
   const clocksRef = useRef<(HTMLDivElement | null)[]>([]);
+  const floatingClocksRef = useRef<(HTMLDivElement | null)[]>([]);
+  const burstTextRef = useRef<HTMLDivElement>(null);
   
   // Extra phones refs
   const extraPhone1Ref = useRef<HTMLDivElement>(null);
@@ -58,6 +77,8 @@ export default function HeroScene() {
     gsap.set(clocksRef.current, { opacity: 0, scale: 0.9 });
     gsap.set(clockTextsRef.current, { opacity: 0, y: 20 });
     gsap.set(depthWallpaperRef.current, { opacity: 0 });
+    gsap.set(floatingClocksRef.current, { opacity: 0, scale: 0.2, x: 0, y: "-10vh" });
+    gsap.set(burstTextRef.current, { opacity: 0, scale: 0.9, y: 10 });
     
     // Ensure phones container starts at default y: 0 (which is bottom-[-15vh])
     gsap.set(phonesContainerRef.current, { y: 0, scale: 1 });
@@ -115,12 +136,14 @@ export default function HeroScene() {
           duration: 0.6,
         }, 2);
 
-      // ---- STAGE 2: Sequential Clock Application ----
+      // ---- STAGE 2: Sequential Clock Application (Only first 2) ----
       let currentTime = 2.6; // Start after zoom and lockscreen text fade
       const clockDuration = 0.5;
       const clockHold = 0.4;
 
-      clockStyles.forEach((clock, i) => {
+      const clocksToApply = clockStyles.slice(0, 2);
+
+      clocksToApply.forEach((clock, i) => {
         // Fade in Clock UI and Text
         tl.to(clocksRef.current[i], { opacity: 1, scale: 1, duration: clockDuration }, currentTime);
         tl.to(clockTextsRef.current[i], { opacity: 1, y: 0, duration: clockDuration }, currentTime);
@@ -134,8 +157,43 @@ export default function HeroScene() {
         currentTime += clockDuration;
       });
 
+      // ---- STAGE 2.5: Spawn Floating Clocks ----
+      tl.addLabel("spawnClocks", currentTime);
+      
+      // Bring up the central text on the phone
+      tl.to(burstTextRef.current, { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: "power2.out" }, "spawnClocks");
+
+      floatingClocksRef.current.forEach((el, i) => {
+        tl.to(el, {
+          opacity: 1,
+          scale: 1,
+          x: floatingPositions[i].x,
+          y: floatingPositions[i].y,
+          rotation: floatingPositions[i].rotation,
+          duration: 1.2,
+          ease: "back.out(1.2)"
+        }, "spawnClocks");
+      });
+
+      currentTime += 1.8; // Hold the floating clocks for a bit
+
       // ---- STAGE 3: Zoom Out Before Splitting ----
       tl.addLabel("zoomOut", currentTime);
+      
+      // Fade out the central phone text
+      tl.to(burstTextRef.current, { opacity: 0, scale: 0.9, y: -10, duration: 1.0 }, "zoomOut");
+      
+      // Float them away or fade out
+      floatingClocksRef.current.forEach((el, i) => {
+        tl.to(el, {
+          opacity: 0,
+          scale: 0.8,
+          x: `+=${i % 2 === 0 ? '-10vw' : '10vw'}`, // Drift away slightly
+          duration: 1.0,
+          ease: "power2.inOut"
+        }, "zoomOut");
+      });
+
       tl.to(phonesContainerRef.current, {
         scale: 1.1, // Reset scale slightly above 1 for good presence
         y: "-5vh",  // Rest it comfortably near the bottom
@@ -217,10 +275,26 @@ export default function HeroScene() {
 
       {/* Dynamic Clock Descriptions - Adjusted to bottom-[15vh] */}
       <div className="absolute bottom-[15vh] inset-x-0 z-40 flex justify-center pointer-events-none">
-        {clockStyles.map((clock, i) => (
+        {clockStyles.slice(0, 2).map((clock, i) => (
           <div key={i} ref={(el) => { clockTextsRef.current[i] = el; }} className="absolute flex flex-col items-center text-center">
             <h3 className="text-3xl font-bold text-[var(--color-axion-accent)] mb-2 tracking-wide">{clock.name}</h3>
             <p className="text-lg text-white/80">{clock.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Floating Watch Faces Container */}
+      <div className="absolute inset-0 flex justify-center items-center pointer-events-none z-20">
+        {floatingClockStyles.map((clock, i) => (
+          <div 
+            key={i} 
+            ref={(el) => { floatingClocksRef.current[i] = el; }}
+            className="absolute w-28 h-32 md:w-40 md:h-48 bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 flex flex-col items-center justify-center p-3 shadow-2xl"
+          >
+             <div className="relative w-full h-full mb-2">
+                <Image src={clock.src} alt={clock.name} fill className="object-contain drop-shadow-xl" />
+             </div>
+             <span className="text-[10px] md:text-xs text-white/70 font-semibold uppercase tracking-wider">{clock.name}</span>
           </div>
         ))}
       </div>
@@ -248,7 +322,7 @@ export default function HeroScene() {
           
           {/* Sequential Clock Overlays - strictly contained to top 30% */}
           <div className="absolute top-[8%] inset-x-0 h-[28%] flex items-center justify-center z-10 pointer-events-none">
-            {clockStyles.map((clock, i) => (
+            {clockStyles.slice(0, 2).map((clock, i) => (
               <div 
                 key={i} 
                 ref={(el) => { clocksRef.current[i] = el; }}
@@ -257,6 +331,16 @@ export default function HeroScene() {
                 <Image src={clock.src} alt={clock.name} fill className="object-contain drop-shadow-2xl" />
               </div>
             ))}
+          </div>
+
+          {/* Burst Out Central Text - Fills the phone when clocks fan out */}
+          <div ref={burstTextRef} className="absolute inset-x-0 top-[20%] flex flex-col items-center justify-center z-20 pointer-events-none px-6">
+            <h3 className="text-[2.5rem] font-bold text-white text-center leading-[1.1] tracking-tight">
+              Match <br /> Your Vibe.
+            </h3>
+            <p className="text-sm text-white/70 mt-3 text-center font-medium">
+              Dozens of handcrafted styles to choose from.
+            </p>
           </div>
 
           {/* Depth Wallpaper (fades in on top of everything at Stage 4) */}
