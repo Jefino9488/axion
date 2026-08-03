@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { getAssetUrl } from './utils';
 
 const postsDirectory = path.join(process.cwd(), 'src/content/blog');
 
@@ -47,7 +48,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
       readTime: data.readTime || '',
       summary: data.summary || '',
       banner: data.banner ? (data.banner.startsWith('/') ? data.banner : `/${data.banner}`) : '',
-      content: content,
+      content: content.replaceAll('/blog/res/img', getAssetUrl('/blog/res/img')),
     };
   } catch (error) {
     return null;
