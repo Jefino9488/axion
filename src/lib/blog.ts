@@ -42,12 +42,12 @@ export function getPostBySlug(slug: string): BlogPost | null {
       author: {
         name: data.author?.name || 'Unknown',
         username: data.author?.username || 'unknown',
-        icon: data.author?.icon ? (data.author.icon.startsWith('/') ? data.author.icon : `/${data.author.icon}`) : '',
+        icon: data.author?.icon ? getAssetUrl(data.author.icon) : '',
       },
       date: data.date ? new Date(data.date).toISOString().split('T')[0] : '',
       readTime: data.readTime || '',
       summary: data.summary || '',
-      banner: data.banner ? (data.banner.startsWith('/') ? data.banner : `/${data.banner}`) : '',
+      banner: data.banner ? getAssetUrl(data.banner) : '',
       content: content.replaceAll('/blog/res/img', getAssetUrl('/blog/res/img')),
     };
   } catch (error) {
