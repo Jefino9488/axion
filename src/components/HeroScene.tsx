@@ -216,7 +216,7 @@ export default function HeroScene() {
       {/* Dynamic Clock Descriptions - Adjusted to bottom-[15vh] */}
       <div className="absolute bottom-[15vh] inset-x-0 z-40 flex justify-center pointer-events-none">
         {clockStyles.map((clock, i) => (
-          <div key={i} ref={el => clockTextsRef.current[i] = el} className="absolute flex flex-col items-center text-center">
+          <div key={i} ref={(el) => { clockTextsRef.current[i] = el; }} className="absolute flex flex-col items-center text-center">
             <h3 className="text-3xl font-bold text-[var(--color-axion-accent)] mb-2 tracking-wide">{clock.name}</h3>
             <p className="text-lg text-white/80">{clock.desc}</p>
           </div>
@@ -249,7 +249,7 @@ export default function HeroScene() {
             {clockStyles.map((clock, i) => (
               <div 
                 key={i} 
-                ref={el => clocksRef.current[i] = el}
+                ref={(el) => { clocksRef.current[i] = el; }}
                 className="absolute inset-0 flex items-center justify-center px-10"
               >
                 <Image src={clock.src} alt={clock.name} fill className="object-contain drop-shadow-2xl" />
