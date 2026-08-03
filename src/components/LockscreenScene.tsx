@@ -133,7 +133,7 @@ export default function LockscreenScene() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Phone Preview with Blurred Background */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-[280px] md:w-[320px] aspect-[9/19] rounded-[2.8rem] border-2 border-white/15 overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.7)] bg-black">
+              <div className="relative w-[220px] md:w-[260px] aspect-[9/19] rounded-[2.8rem] border-2 border-white/15 overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.7)] bg-black">
                 <Image
                   src="/screenshots/photo_1_2026-08-02_22-34-34.jpg"
                   alt="Lockscreen Wallpaper"

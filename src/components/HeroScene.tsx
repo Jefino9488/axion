@@ -243,8 +243,8 @@ export default function HeroScene() {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-[var(--color-axion-accent)] opacity-[0.08] blur-[160px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[var(--color-axion-accent-secondary)] opacity-[0.06] blur-[130px] rounded-full pointer-events-none" />
 
-      {/* Main Titles - Pushed down to top-[18vh] */}
-      <div className="absolute top-[18vh] inset-x-0 z-40 flex flex-col items-center justify-center pointer-events-none">
+      {/* Main Titles - Pushed down to top-[24vh] */}
+      <div className="absolute top-[24vh] inset-x-0 z-40 flex flex-col items-center justify-center pointer-events-none">
         
         {/* Stage 0 Text (Decoupled refs to fix scroll reverse bug) */}
         <div ref={heroTextContainerRef} className="absolute flex flex-col items-center text-center">
