@@ -89,6 +89,29 @@ async function getDeviceImages() {
   return imagesMap;
 }
 
+export type Maintainer = {
+  id: string;
+  name: string;
+  github_username: string;
+};
+
+async function getMaintainers() {
+  try {
+    const res = await fetch(
+      "https://raw.githubusercontent.com/AxionAOSP/official_devices/main/api/maintainers.json"
+    );
+    if (!res.ok) return {};
+    const data = await res.json();
+    const maintainersMap: Record<string, Maintainer> = {};
+    data.maintainers.forEach((m: Maintainer) => {
+      maintainersMap[m.id.toLowerCase()] = m;
+    });
+    return maintainersMap;
+  } catch {
+    return {};
+  }
+}
+
 export default async function DevicePage({
   params,
 }: {
@@ -101,14 +124,19 @@ export default async function DevicePage({
     notFound();
   }
 
-  const [gmsBuilds, vanillaBuilds, changelog, deviceImages] = await Promise.all([
+  const [gmsBuilds, vanillaBuilds, changelog, deviceImages, maintainersMap] = await Promise.all([
     device.ota?.gms ? fetchBuilds(device.ota.gms) : Promise.resolve([]),
     device.ota?.vanilla ? fetchBuilds(device.ota.vanilla) : Promise.resolve([]),
     device.changelog ? fetchChangelog(device.changelog) : Promise.resolve("No changelog found."),
     getDeviceImages(),
+    getMaintainers(),
   ]);
 
   const imageUrl = deviceImages[device.codename] || device.images?.banner || device.images?.fallback;
+
+  const officialMaintainers = (device.maintainer_ids || [])
+    .map((id: string) => maintainersMap[id.toLowerCase()])
+    .filter((m: any) => m !== undefined);
 
   return (
     <main className="min-h-screen bg-[var(--color-axion-bg)] pt-24 pb-24 px-6 relative overflow-hidden">
@@ -138,8 +166,43 @@ export default async function DevicePage({
             <div className="flex items-center gap-4 text-white/50">
               <span className="font-mono text-lg">{device.codename}</span>
               <span className="w-1 h-1 rounded-full bg-white/20" />
-              <span className="uppercase tracking-widest text-sm font-bold text-[var(--color-axion-accent-secondary)]">{device.status}</span>
+              <span className={`uppercase tracking-widest text-xs font-bold px-3 py-1 rounded-full border select-none ${
+                device.status?.toLowerCase() === 'active'
+                  ? 'bg-green-500/20 text-green-400 border-green-500/10'
+                  : 'bg-red-500/15 text-red-400 border-red-500/10'
+              }`}>
+                {device.status}
+              </span>
             </div>
+
+            {officialMaintainers.length > 0 && (
+              <div className="pt-2 flex flex-wrap items-center gap-2.5 text-sm text-white/60 select-none">
+                <span className="font-medium text-white/40 text-[10px] uppercase tracking-wider">Maintained by:</span>
+                {officialMaintainers.map((m: any) => (
+                  <a
+                    key={m.id}
+                    href={`https://github.com/${m.github_username || m.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-3 py-1 border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 rounded-full transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+                  >
+                    <div className="relative w-4 h-4 rounded-full overflow-hidden border border-white/10 bg-black/40">
+                      <Image
+                        src={`https://github.com/${m.github_username || m.id}.png?size=60`}
+                        alt={m.name}
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                    </div>
+                    <span className="text-white font-semibold text-[11px] leading-none hover:text-[var(--color-axion-accent)] transition-colors">
+                      {m.name || m.id}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            )}
+
             <div className="pt-8 flex flex-wrap gap-4">
               {device.guide && (
                 <a href={device.guide} target="_blank" rel="noreferrer" className="px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/5 rounded-2xl flex items-center gap-3 text-white font-medium transition-all group">
@@ -235,9 +298,9 @@ export default async function DevicePage({
 
           {/* Sidebar (Changelog) */}
           <div className="lg:col-span-1">
-            <div className="bg-black/40 border border-white/10 rounded-[2rem] p-8">
-              <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-widest text-[var(--color-axion-accent)]">Device Changelog</h3>
-              <div className="text-sm text-white/70 whitespace-pre-wrap font-mono leading-relaxed">
+            <div className="bg-black/40 border border-white/10 rounded-[2rem] p-8 flex flex-col max-h-[550px]">
+              <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-widest text-[var(--color-axion-accent)] shrink-0 select-none">Device Changelog</h3>
+              <div className="flex-grow overflow-y-auto pr-2 text-sm text-white/70 whitespace-pre-wrap font-mono leading-relaxed scrollbar-thin">
                 {changelog}
               </div>
             </div>

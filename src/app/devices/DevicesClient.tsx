@@ -98,7 +98,7 @@ export default function DevicesClient({
                 href={`/devices/${device.codename}`}
                 className="group block h-full"
               >
-                <article className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-300 h-full flex flex-col relative group-hover:-translate-y-1">
+                <article className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:bg-white/10 hover:border-white/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-300 h-full flex flex-col relative group-hover:-translate-y-1">
                   
                   {/* Image Header */}
                   <div className="relative w-full aspect-square bg-gradient-to-b from-white/5 to-transparent flex items-center justify-center p-8 overflow-hidden">
@@ -111,7 +111,7 @@ export default function DevicesClient({
                         device.images?.fallback,
                       ]}
                       alt={device.name}
-                      className="object-contain p-8 group-hover:scale-110 transition-transform duration-700 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] w-full h-full absolute inset-0"
+                      className="object-contain p-8 group-hover:scale-110 transition-transform duration-700 w-full h-full absolute inset-0"
                     />
                   </div>
                   
@@ -121,8 +121,10 @@ export default function DevicesClient({
                       <span className="text-[var(--color-axion-accent)] text-xs font-bold uppercase tracking-widest px-3 py-1 bg-[var(--color-axion-accent)]/10 rounded-full">
                         {device.brand}
                       </span>
-                      <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md ${
-                        device.status === 'Active' ? 'bg-green-500/20 text-green-400' : 'bg-white/10 text-white/50'
+                      <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md border select-none ${
+                        device.status?.toLowerCase() === 'active' 
+                          ? 'bg-green-500/20 text-green-400 border-green-500/10' 
+                          : 'bg-red-500/15 text-red-400 border-red-500/10'
                       }`}>
                         {device.status}
                       </span>

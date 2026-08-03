@@ -39,7 +39,7 @@ export default function Footer() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <a
-            href="https://github.com/AX10NOS"
+            href="https://github.com/AxionAOSP"
             target="_blank"
             rel="noopener noreferrer"
             className="px-10 py-4 bg-white text-[var(--color-axion-bg)] rounded-full font-bold text-lg hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-[0_0_60px_rgba(255,255,255,0.3)] inline-flex items-center gap-3"
@@ -48,7 +48,7 @@ export default function Footer() {
             GitHub
           </a>
           <a
-            href="https://t.me/AX10NOS"
+            href="https://t.me/AxionOS_android"
             target="_blank"
             rel="noopener noreferrer"
             className="px-10 py-4 glass-panel rounded-full font-bold text-lg text-white hover:scale-105 transition-all duration-300 hover:border-[var(--color-axion-accent)]/30 inline-flex items-center gap-3"
@@ -78,9 +78,11 @@ export default function Footer() {
         {/* Links */}
         <div className="flex flex-wrap justify-center gap-6 text-sm text-[var(--color-axion-text-secondary)]">
           <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <Link href="/about" className="hover:text-white transition-colors">About</Link>
           <Link href="/devices" className="hover:text-white transition-colors">Devices</Link>
           <Link href="/contributors" className="hover:text-white transition-colors">Contributors</Link>
           <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+          <Link href="/keybox" className="hover:text-white transition-colors">Keybox</Link>
           <a href="https://github.com/AxionAOSP" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Source Code</a>
         </div>
         </div>

@@ -1,13 +1,22 @@
 import Image from "next/image";
-import { Code, Smartphone } from "lucide-react";
+import Link from "next/link";
+import TeamConstellation from "@/components/TeamConstellation";
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 3600;
 
 export type Maintainer = {
   id: string;
   name: string;
   github_username: string;
   devices: string[];
+};
+
+export type Device = {
+  codename: string;
+  name: string;
+  brand: string;
+  status: string;
+  maintainer_ids: string[];
 };
 
 async function getMaintainers() {
@@ -19,78 +28,40 @@ async function getMaintainers() {
   return data.maintainers as Maintainer[];
 }
 
-type SpecialContributor = {
-  name: string;
-  github_username: string;
-  role: string;
-};
-
-const CORE_TEAM: SpecialContributor[] = [
-  { name: "RMP", github_username: "rmp22", role: "Project Founder / Developer" }
-];
-
-const MANAGEMENT_TEAM: SpecialContributor[] = [
-  { name: "Sai Krishna", github_username: "Saikrishna1504", role: "Project Manager / Core Member" },
-  { name: "Manidweep", github_username: "manidweep", role: "Project Administrator" }
-];
-
-const CONTRIBUTORS_TEAM: SpecialContributor[] = [
-  { name: "AlisterGrey", github_username: "AlisterGrey", role: "Lead Designer" },
-  { name: "not-ayan", github_username: "not-ayan", role: "Axion Bot Maintainer" },
-  { name: "Rve27", github_username: "Rve27", role: "Supportive Contributor" }
-];
+async function getDevices() {
+  const res = await fetch(
+    "https://raw.githubusercontent.com/AxionAOSP/official_devices/main/api/downloads.json"
+  );
+  if (!res.ok) throw new Error("Failed to fetch devices");
+  const data = await res.json();
+  return data.devices as Device[];
+}
 
 export default async function ContributorsPage() {
-  const allMaintainers = await getMaintainers();
+  const [allMaintainers, allDevices] = await Promise.all([
+    getMaintainers(),
+    getDevices(),
+  ]);
 
-  // IDs to exclude from device maintainers because they are in the special categories
-  const EXCLUDED_KEYS = ["rmp22", "saikrishna1504", "saikrishna", "manidweep", "alistergrey", "not-ayan", "rve27"];
-  
-  const deviceMaintainers = allMaintainers.filter(m => 
-    !EXCLUDED_KEYS.includes(m.id.toLowerCase()) && 
-    !EXCLUDED_KEYS.includes(m.github_username.toLowerCase())
+  const activeDevicesMap: Record<string, { name: string; brand: string }> = {};
+  allDevices
+    .filter((d) => d.status && d.status.toLowerCase() === "active")
+    .forEach((d) => {
+      activeDevicesMap[d.codename] = { name: d.name, brand: d.brand };
+    });
+
+  const activeMaintainerIds = new Set(
+    allDevices
+      .filter((d) => d.status && d.status.toLowerCase() === "active")
+      .flatMap((d) => d.maintainer_ids)
   );
 
-  const renderSpecialGrid = (members: SpecialContributor[]) => (
-    <div className="flex flex-wrap justify-center gap-6">
-      {members.map((m) => (
-        <div
-          key={m.github_username}
-          className="group w-full sm:w-[280px] bg-white/5 border border-white/10 rounded-3xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col items-center text-center relative overflow-hidden"
-        >
-          {/* Avatar */}
-          <div className="relative w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-white/10 group-hover:border-[var(--color-axion-accent-secondary)] transition-colors">
-            <Image
-              src={`https://github.com/${m.github_username}.png`}
-              alt={m.name}
-              fill
-              className="object-cover"
-              unoptimized
-            />
-          </div>
-
-          {/* Info */}
-          <h3 className="text-xl font-bold text-white mb-1">{m.name}</h3>
-          <p className="text-sm text-white/40 mb-6">@{m.github_username}</p>
-
-          {/* Role */}
-          <div className="text-sm font-medium text-[var(--color-axion-accent)] tracking-wide mt-auto">
-            {m.role}
-          </div>
-
-          {/* Hover GitHub link */}
-          <a
-            href={`https://github.com/${m.github_username}`}
-            target="_blank"
-            rel="noreferrer"
-            className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm"
-          >
-            <Code className="w-8 h-8 text-white mb-2" />
-            <span className="text-white font-medium">View Profile</span>
-          </a>
-        </div>
-      ))}
-    </div>
+  const EXCLUDED_KEYS = ["alistergrey", "not-ayan"];
+  
+  const deviceMaintainers = allMaintainers.filter(m => 
+    activeMaintainerIds.has(m.id) &&
+    !EXCLUDED_KEYS.includes(m.id.toLowerCase()) && 
+    !EXCLUDED_KEYS.includes(m.github_username.toLowerCase())
   );
 
   const renderGrid = (maintainersList: Maintainer[]) => (
@@ -99,15 +70,25 @@ export default async function ContributorsPage() {
         const github = m.github_username || m.id;
         const name = m.name || github;
         
+        const activeDevs = (m.devices || [])
+          .filter((codename) => activeDevicesMap[codename])
+          .map((codename) => ({
+            codename,
+            name: activeDevicesMap[codename].name,
+            brand: activeDevicesMap[codename].brand,
+          }));
+
         return (
-          <a
+          <div
             key={m.id}
-            href={`https://github.com/${github}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative group cursor-pointer block"
+            className="relative group block"
           >
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border border-white/10 group-hover:border-white/30 group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-300 shadow-xl bg-black/50">
+            <a
+              href={`https://github.com/${github}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border border-white/10 group-hover:border-white/30 group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-300 shadow-xl bg-black/50 block cursor-pointer"
+            >
               <Image
                 src={`https://github.com/${github}.png?size=150`}
                 alt={name}
@@ -116,15 +97,46 @@ export default async function ContributorsPage() {
                 className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300"
                 unoptimized
               />
-            </div>
+            </a>
             
-            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 z-50">
-              <div className="bg-[#111] border border-white/10 px-4 py-2 rounded-xl shadow-2xl text-center whitespace-nowrap">
-                <div className="text-white font-bold text-sm">{name}</div>
-                <div className="text-white/40 font-mono text-[10px] mt-0.5">@{github}</div>
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 pb-3 opacity-0 pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 group-hover:translate-y-[-8px] translate-y-0 transition-all duration-300 z-50">
+              <div className="bg-[#0b0c0e]/95 backdrop-blur-xl border border-white/10 px-5 py-4 rounded-2xl shadow-2xl text-center min-w-[220px]">
+                <a
+                  href={`https://github.com/${github}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[var(--color-axion-accent-secondary)] transition-colors block cursor-pointer group/name"
+                >
+                  <div className="text-white font-bold text-sm tracking-tight group-hover/name:text-[var(--color-axion-accent-secondary)] transition-colors">{name}</div>
+                  <div className="text-white/40 font-mono text-[10px] mt-0.5 mb-3">@{github}</div>
+                </a>
+                
+                {activeDevs.length > 0 && (
+                  <div className="pt-3 border-t border-white/5 text-left">
+                    <span className="text-[9px] uppercase tracking-widest text-[var(--color-axion-accent-secondary)] font-bold block mb-2">
+                      Active Devices
+                    </span>
+                    <div className="flex flex-col gap-1.5 max-h-[120px] overflow-y-auto pr-1">
+                      {activeDevs.map((dev) => (
+                        <Link
+                          key={dev.codename}
+                          href={`/devices/${dev.codename}`}
+                          className="flex items-center justify-between gap-3 text-[11px] bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-1.5 hover:bg-white/[0.08] hover:border-white/15 hover:scale-[1.02] transition-all cursor-pointer block"
+                        >
+                          <span className="text-white/70 truncate max-w-[100px] font-medium">
+                            {dev.name}
+                          </span>
+                          <span className="font-mono text-white/30 text-[9px] uppercase bg-white/5 px-1.5 py-0.5 rounded">
+                            {dev.codename}
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
-          </a>
+          </div>
         );
       })}
     </div>
@@ -132,47 +144,30 @@ export default async function ContributorsPage() {
 
   return (
     <main className="min-h-screen bg-[var(--color-axion-bg)] pt-32 pb-24 px-6 relative overflow-hidden">
-      {/* Background glow */}
       <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[var(--color-axion-accent-secondary)]/10 blur-[150px] rounded-full pointer-events-none" />
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-24">
-          <p className="text-sm uppercase tracking-[0.3em] text-[var(--color-axion-accent-secondary)] font-medium mb-4">The Team</p>
+        <div className="text-center mb-12">
+          <p className="text-sm uppercase tracking-[0.3em] text-[var(--color-axion-accent-secondary)] font-medium mb-4">The Architects</p>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
-            Contributors.
+            Meet the Team.
           </h1>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto">
-            The incredible people driving Axion OS forward.
+          <p className="text-lg text-white/60 max-w-2xl mx-auto font-light leading-relaxed">
+            Axion OS is built by a decentralized team of developers, designers, and maintainers dedicated to pushing the boundaries of Android.
           </p>
         </div>
 
-        <div className="space-y-24">
-          {/* Core Team */}
-          <section className="text-center">
-            <h2 className="text-2xl font-medium text-white mb-10">Core</h2>
-            {renderSpecialGrid(CORE_TEAM)}
-          </section>
+        <TeamConstellation />
 
-          {/* Management Team */}
-          <section className="text-center">
-            <h2 className="text-2xl font-medium text-white mb-10">Management</h2>
-            {renderSpecialGrid(MANAGEMENT_TEAM)}
+        {deviceMaintainers.length > 0 && (
+          <section className="text-center mt-24">
+            <div className="mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Device Maintainers.</h2>
+              <p className="text-white/50 font-light max-w-lg mx-auto">The backbone of Axion OS device support.</p>
+            </div>
+            {renderGrid(deviceMaintainers)}
           </section>
-
-          {/* Contributors */}
-          <section className="text-center">
-            <h2 className="text-2xl font-medium text-white mb-10">Contributors</h2>
-            {renderSpecialGrid(CONTRIBUTORS_TEAM)}
-          </section>
-
-          {/* Active Device Maintainers */}
-          {deviceMaintainers.length > 0 && (
-            <section className="text-center">
-              <h2 className="text-2xl font-medium text-white mb-10">Active Device Maintainers</h2>
-              {renderGrid(deviceMaintainers)}
-            </section>
-          )}
-        </div>
+        )}
       </div>
     </main>
   );

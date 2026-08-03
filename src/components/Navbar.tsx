@@ -20,8 +20,8 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Devices", href: "/devices" },
-    { name: "Contributors", href: "/contributors" },
+    { name: "About", href: "/about" },
+    { name: "Team", href: "/contributors" },
     { name: "Blog", href: "/blog" },
   ];
 
@@ -59,22 +59,30 @@ export default function Navbar() {
           <span className="text-white font-bold text-xl tracking-tight">Axion OS</span>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium transition-colors ${
-                pathname === link.href
-                  ? "text-white"
-                  : "text-white/60 hover:text-white"
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
+        <div className="hidden md:flex items-center gap-8">
+          <nav className="flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium transition-colors ${
+                  pathname === link.href
+                    ? "text-white"
+                    : "text-white/60 hover:text-white"
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
+
+          <Link
+            href="/devices"
+            className="px-5 py-2 bg-[var(--color-axion-accent)] hover:bg-[var(--color-axion-accent-hover)] text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-[0_0_15px_rgba(255,100,0,0.2)] hover:shadow-[0_0_25px_rgba(255,100,0,0.4)] transition-all duration-300 hover:scale-[1.03]"
+          >
+            Download
+          </Link>
+        </div>
 
         {/* Mobile Menu Toggle */}
         <button
@@ -87,13 +95,13 @@ export default function Navbar() {
 
       {/* Mobile Nav */}
       {mobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-3xl border-b border-white/10 flex flex-col md:hidden py-4 px-6 gap-4">
+        <div className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-3xl border-b border-white/10 flex flex-col md:hidden py-6 px-6 gap-4">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className={`text-lg font-medium py-2 transition-colors ${
+              className={`text-lg font-medium py-1 transition-colors ${
                 pathname === link.href
                   ? "text-white"
                   : "text-white/60"
@@ -102,6 +110,14 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
+
+          <Link
+            href="/devices"
+            onClick={() => setMobileMenuOpen(false)}
+            className="mt-2 w-full py-3 text-center bg-[var(--color-axion-accent)] text-white font-bold text-sm uppercase tracking-widest rounded-xl shadow-[0_0_20px_rgba(255,100,0,0.15)] block"
+          >
+            Download
+          </Link>
         </div>
       )}
     </header>
