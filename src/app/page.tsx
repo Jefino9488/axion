@@ -1,5 +1,4 @@
 import HeroScene from "@/components/HeroScene";
-import LockscreenScene from "@/components/LockscreenScene";
 import HomeScreenScene from "@/components/HomeScreenScene";
 import QuickSettingsScene from "@/components/QuickSettingsScene";
 import CustomizationScene from "@/components/CustomizationScene";
@@ -19,9 +18,6 @@ export default function Home() {
       <HeroScene />
 
       <div className="w-full relative z-10">
-        {/* Scene 2: Lockscreen — Clock styles + Depth wallpaper */}
-        <LockscreenScene />
-
         {/* Scene 3: Home Screen — Launcher, App Drawer, Volume, Folders */}
         <HomeScreenScene />
 

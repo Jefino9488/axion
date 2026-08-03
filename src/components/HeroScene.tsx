@@ -23,15 +23,17 @@ const floatingClockStyles = [
 ];
 
 const floatingPositions = [
-  { x: "-30vw", y: "-25vh", rotation: -12 },
-  { x: "-42vw", y: "0vh", rotation: -6 },
-  { x: "-22vw", y: "20vh", rotation: -18 },
-  { x: "-40vw", y: "30vh", rotation: -8 },
+  // Left side staggered grid (outer column shifted up, inner column shifted down)
+  { x: "-36vw", y: "-23vh", rotation: 0 },
+  { x: "-21vw", y: "-13vh", rotation: 0 },
+  { x: "-36vw", y: "13vh", rotation: 0 },
+  { x: "-21vw", y: "23vh", rotation: 0 },
   
-  { x: "30vw", y: "-20vh", rotation: 10 },
-  { x: "42vw", y: "5vh", rotation: 15 },
-  { x: "22vw", y: "25vh", rotation: 8 },
-  { x: "40vw", y: "-10vh", rotation: 12 }
+  // Right side staggered grid (inner column shifted down, outer column shifted up)
+  { x: "21vw", y: "-13vh", rotation: 0 },
+  { x: "36vw", y: "-23vh", rotation: 0 },
+  { x: "21vw", y: "23vh", rotation: 0 },
+  { x: "36vw", y: "13vh", rotation: 0 }
 ];
 
 const depthWallpapers = [
@@ -188,7 +190,7 @@ export default function HeroScene() {
         tl.to(el, {
           opacity: 0,
           scale: 0.8,
-          x: `+=${i % 2 === 0 ? '-10vw' : '10vw'}`, // Drift away slightly
+          x: i % 2 === 0 ? "-=10vw" : "+=10vw", // Drift away slightly
           duration: 1.0,
           ease: "power2.inOut"
         }, "zoomOut");
@@ -210,11 +212,11 @@ export default function HeroScene() {
         // Main phone changes wallpaper
         .to(depthWallpaperRef.current, { opacity: 1, duration: 1 }, "stage4")
         
-        // Phones fan out overlapping!
-        .to(extraPhone1Ref.current, { opacity: 1, x: -360, scale: 0.9, rotation: -4, duration: 1.5, ease: "power3.out" }, "stage4")
-        .to(extraPhone2Ref.current, { opacity: 1, x: -180, scale: 0.95, rotation: -2, duration: 1.5, ease: "power3.out" }, "stage4")
-        .to(extraPhone4Ref.current, { opacity: 1, x: 180, scale: 0.95, rotation: 2, duration: 1.5, ease: "power3.out" }, "stage4")
-        .to(extraPhone5Ref.current, { opacity: 1, x: 360, scale: 0.9, rotation: 4, duration: 1.5, ease: "power3.out" }, "stage4");
+        // Phones fan out in an elegant, responsive arc!
+        .to(extraPhone1Ref.current, { opacity: 1, x: "-22vw", y: "30px", scale: 0.88, rotation: -6, duration: 1.5, ease: "power3.out" }, "stage4")
+        .to(extraPhone2Ref.current, { opacity: 1, x: "-11vw", y: "15px", scale: 0.94, rotation: -3, duration: 1.5, ease: "power3.out" }, "stage4")
+        .to(extraPhone4Ref.current, { opacity: 1, x: "11vw", y: "15px", scale: 0.94, rotation: 3, duration: 1.5, ease: "power3.out" }, "stage4")
+        .to(extraPhone5Ref.current, { opacity: 1, x: "22vw", y: "30px", scale: 0.88, rotation: 6, duration: 1.5, ease: "power3.out" }, "stage4");
         
       // Add a buffer at the end so it doesn't instantly unpin
       tl.to({}, { duration: 1.5 });
@@ -226,7 +228,7 @@ export default function HeroScene() {
 
   // Helper for extra phones (Depth Wallpapers)
   const DepthPhone = ({ wp, innerRef }: { wp: any, innerRef: React.Ref<HTMLDivElement> }) => (
-    <div ref={innerRef} className="absolute w-[280px] md:w-[320px] aspect-[9/19] rounded-[2.8rem] border-[3px] border-white/10 overflow-hidden shadow-2xl bg-black">
+    <div ref={innerRef} className="absolute bottom-0 w-[280px] md:w-[320px] aspect-[9/19] rounded-[2.8rem] border-[3px] border-white/10 overflow-hidden shadow-2xl bg-black">
       <Image src={wp.src} alt={wp.title} fill className="object-cover" />
       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent z-10 flex flex-col justify-end p-4">
         <span className="text-[10px] uppercase tracking-widest text-[var(--color-axion-accent)] font-semibold truncate">{wp.tag}</span>
@@ -289,12 +291,12 @@ export default function HeroScene() {
           <div 
             key={i} 
             ref={(el) => { floatingClocksRef.current[i] = el; }}
-            className="absolute w-28 h-32 md:w-40 md:h-48 bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 flex flex-col items-center justify-center p-3 shadow-2xl"
+            className="absolute w-28 h-32 md:w-36 md:h-44 bg-black/40 backdrop-blur-2xl rounded-2xl border border-white/15 flex flex-col items-center justify-between p-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-colors duration-300"
           >
-             <div className="relative w-full h-full mb-2">
-                <Image src={clock.src} alt={clock.name} fill className="object-contain drop-shadow-xl" />
+             <div className="relative w-full h-full my-1">
+                <Image src={clock.src} alt={clock.name} fill className="object-contain drop-shadow-lg" />
              </div>
-             <span className="text-[10px] md:text-xs text-white/70 font-semibold uppercase tracking-wider">{clock.name}</span>
+             <span className="font-mono text-[9px] md:text-[11px] text-white/80 font-medium uppercase tracking-[0.2em]">{clock.name}</span>
           </div>
         ))}
       </div>
