@@ -120,7 +120,7 @@ export default async function ContributorsPage() {
                       {activeDevs.map((dev) => (
                         <Link
                           key={dev.codename}
-                          href={`/devices/${dev.codename}`}
+                          href={`/download/${dev.codename}`}
                           className="flex items-center justify-between gap-3 text-[11px] bg-white/[0.03] border border-white/5 rounded-lg px-2.5 py-1.5 hover:bg-white/[0.08] hover:border-white/15 hover:scale-[1.02] transition-all cursor-pointer block"
                         >
                           <span className="text-white/70 truncate max-w-[100px] font-medium">

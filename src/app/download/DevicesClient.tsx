@@ -65,16 +65,15 @@ export default function DevicesClient({
 
   return (
     <div className="w-full relative min-h-screen">
-      {/* Controls */}
-      <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-12 relative z-10">
-        <div className="relative w-full md:max-w-md hidden">
-          <Search className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 text-white/40" />
+      <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12 relative z-10 w-full">
+        <div className="relative w-full md:max-w-md select-none">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
           <input
             type="text"
-            placeholder="Find your device..."
+            placeholder="Search by name or codename..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-transparent border-b-2 border-white/10 py-4 pl-12 pr-6 text-2xl text-white placeholder-white/30 focus:outline-none focus:border-[var(--color-axion-accent)] transition-colors"
+            className="w-full bg-white/[0.02] border border-white/10 rounded-2xl py-3.5 pl-12 pr-6 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[var(--color-axion-accent)] focus:bg-white/[0.04] focus:shadow-[0_0_20px_rgba(255,100,0,0.05)] transition-all"
           />
         </div>
 
@@ -95,7 +94,6 @@ export default function DevicesClient({
         </div>
       </div>
 
-      {/* Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 relative z-10 pb-32">
         {filteredDevices.length > 0 ? (
           filteredDevices.map((device) => {
@@ -104,7 +102,7 @@ export default function DevicesClient({
             return (
               <Link
                 key={device.codename}
-                href={`/devices/${device.codename}`}
+                href={`/download/${device.codename}`}
                 className="group block h-full"
               >
                 <article className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:bg-white/10 hover:border-white/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-300 h-full flex flex-col relative group-hover:-translate-y-1">

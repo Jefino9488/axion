@@ -60,7 +60,7 @@ export default function Footer() {
 
         {/* Supported devices note */}
         <Link 
-          href="/devices" 
+          href="/download" 
           className="block group glass-panel rounded-2xl p-8 max-w-md mx-auto mb-16 hover:bg-white/5 hover:border-[var(--color-axion-accent)]/30 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,100,0,0.1)] transition-all duration-300 cursor-pointer"
         >
           <p className="text-sm text-[var(--color-axion-accent)] uppercase tracking-widest font-bold mb-2 flex items-center justify-center gap-2">
@@ -79,7 +79,7 @@ export default function Footer() {
         <div className="flex flex-wrap justify-center gap-6 text-sm text-[var(--color-axion-text-secondary)]">
           <Link href="/" className="hover:text-white transition-colors">Home</Link>
           <Link href="/about" className="hover:text-white transition-colors">About</Link>
-          <Link href="/devices" className="hover:text-white transition-colors">Devices</Link>
+          <Link href="/download" className="hover:text-white transition-colors">Downloads</Link>
           <Link href="/contributors" className="hover:text-white transition-colors">Contributors</Link>
           <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
           <Link href="/keybox" className="hover:text-white transition-colors">Keybox</Link>

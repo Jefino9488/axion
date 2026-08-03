@@ -151,11 +151,11 @@ export default async function DevicePage({
         
         {/* Back Button */}
         <Link 
-          href="/devices" 
+          href="/download" 
           className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors mb-8 group uppercase tracking-widest text-xs font-bold"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          Back to Devices
+          Back to Downloads
         </Link>
 
         {/* Device Header */}
