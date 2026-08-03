@@ -142,7 +142,7 @@ export default function LockscreenScene() {
                 />
                 
                 {/* Notch */}
-                <div className="absolute top-4 left-1/2 -translate-x-1/2 w-6 h-6 bg-black rounded-full z-30" />
+                <div className="absolute top-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-black rounded-full z-30" />
 
                 {/* Active Clock Style Overlay */}
                 <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-6">
@@ -256,7 +256,7 @@ export default function LockscreenScene() {
                     />
 
                     {/* Punchy Phone Notch */}
-                    <div className="absolute top-3 left-1/2 -translate-x-1/2 w-3 sm:w-4 md:w-5 h-3 sm:h-4 md:h-5 bg-black rounded-full z-20" />
+                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-2.5 sm:w-3 md:w-4 h-2.5 sm:h-3 md:h-4 bg-black rounded-full z-20" />
 
                     {/* Gradient Overlay for Label */}
                     <div className="absolute inset-x-0 bottom-0 h-20 md:h-24 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-10 flex flex-col justify-end p-2 sm:p-3 md:p-4 opacity-90 group-hover:opacity-100 transition-opacity">

@@ -119,7 +119,7 @@ function PhoneFrame({ src, caption, className = "", style = {} }: { src: string;
       <div className="relative w-[180px] md:w-[220px] aspect-[9/19.5] rounded-[2rem] border-[3px] border-white/10 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] bg-black group transition-transform duration-500 hover:scale-[1.03]">
         <Image src={src} alt={caption} fill className="object-cover" />
         {/* Notch */}
-        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-black rounded-full z-10" />
+        <div className="absolute top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-black rounded-full z-10" />
         {/* Caption overlay */}
         <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/80 to-transparent z-10 flex items-end justify-center pb-3">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-white/80">{caption}</span>
