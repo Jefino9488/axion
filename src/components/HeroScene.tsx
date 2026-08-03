@@ -7,20 +7,22 @@ import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const basePath = process.env.NODE_ENV === 'production' ? '/axion' : '';
+
 const clockStyles = [
-  { src: "/assets/clock1.webp", name: "Analog", desc: "Minimalist precision tick marks" },
-  { src: "/assets/clock2.webp", name: "Modern Flip", desc: "Retro typography display" },
-  { src: "/assets/clock3.webp", name: "Bold Numeric", desc: "Ultra-heavy weight display" },
-  { src: "/assets/clock4.webp", name: "Dot Matrix", desc: "Nothing-inspired dotted aesthetic" },
-  { src: "/assets/clock5.webp", name: "Stencil", desc: "Industrial outline font" },
+  { src: `${basePath}/assets/clock1.webp`, name: "Analog", desc: "Minimalist precision tick marks" },
+  { src: `${basePath}/assets/clock2.webp`, name: "Modern Flip", desc: "Retro typography display" },
+  { src: `${basePath}/assets/clock3.webp`, name: "Bold Numeric", desc: "Ultra-heavy weight display" },
+  { src: `${basePath}/assets/clock4.webp`, name: "Dot Matrix", desc: "Nothing-inspired dotted aesthetic" },
+  { src: `${basePath}/assets/clock5.webp`, name: "Stencil", desc: "Industrial outline font" },
 ];
 
 const depthWallpapers = [
-  { src: "/assets/depth1.webp", title: "Air Jordan 3D", tag: "Sports" },
-  { src: "/assets/depth2.webp", title: "London Mist", tag: "Urban" },
-  { src: "/assets/depth3.webp", title: "Burj Horizon", tag: "Architecture" },
-  { src: "/assets/depth4.webp", title: "Porsche 911", tag: "Automotive" },
-  { src: "/assets/depth5.webp", title: "Tower of Pisa", tag: "Landmark" },
+  { src: `${basePath}/assets/depth1.webp`, title: "Air Jordan 3D", tag: "Sports" },
+  { src: `${basePath}/assets/depth2.webp`, title: "London Mist", tag: "Urban" },
+  { src: `${basePath}/assets/depth3.webp`, title: "Burj Horizon", tag: "Architecture" },
+  { src: `${basePath}/assets/depth4.webp`, title: "Porsche 911", tag: "Automotive" },
+  { src: `${basePath}/assets/depth5.webp`, title: "Tower of Pisa", tag: "Landmark" },
 ];
 
 export default function HeroScene() {
@@ -237,7 +239,7 @@ export default function HeroScene() {
           {/* Default Clean Wallpaper */}
           <Image
             ref={mainWallpaperRef}
-            src="/screenshots/photo_1_2026-08-02_22-34-34.jpg"
+            src={`${basePath}/screenshots/photo_1_2026-08-02_22-34-34.jpg`}
             alt="Axion OS Lockscreen"
             fill
             className="object-cover filter brightness-[0.95]"
