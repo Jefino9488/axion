@@ -38,8 +38,17 @@ export default function DevicesClient({
   const [search, setSearch] = useState("");
   const [selectedBrand, setSelectedBrand] = useState<string>("All");
 
+  const resolveBrand = (device: Device) => {
+    const brandLower = device.brand?.toLowerCase() || "";
+    const nameLower = device.name?.toLowerCase() || "";
+    if (brandLower === "asus" || nameLower.includes("asus") || device.codename?.toLowerCase() === "x01bd") {
+      return "asus";
+    }
+    return brandLower;
+  };
+
   const brands = useMemo(() => {
-    const b = new Set(devices.map((d) => d.brand.toLowerCase()));
+    const b = new Set(devices.map((d) => resolveBrand(d)));
     return ["All", ...Array.from(b).sort()];
   }, [devices]);
 
@@ -49,7 +58,7 @@ export default function DevicesClient({
         device.name.toLowerCase().includes(search.toLowerCase()) ||
         device.codename.toLowerCase().includes(search.toLowerCase());
       const matchesBrand =
-        selectedBrand === "All" || device.brand.toLowerCase() === selectedBrand;
+        selectedBrand === "All" || resolveBrand(device) === selectedBrand;
       return matchesSearch && matchesBrand;
     });
   }, [devices, search, selectedBrand]);
@@ -119,7 +128,7 @@ export default function DevicesClient({
                   <div className="p-6 flex flex-col flex-grow">
                     <div className="flex justify-between items-start mb-4">
                       <span className="text-[var(--color-axion-accent)] text-xs font-bold uppercase tracking-widest px-3 py-1 bg-[var(--color-axion-accent)]/10 rounded-full">
-                        {device.brand}
+                        {resolveBrand(device)}
                       </span>
                       <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md border select-none ${
                         device.status?.toLowerCase() === 'active' 

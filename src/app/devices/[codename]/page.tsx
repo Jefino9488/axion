@@ -138,6 +138,10 @@ export default async function DevicePage({
     .map((id: string) => maintainersMap[id.toLowerCase()])
     .filter((m: any) => m !== undefined);
 
+  const allBuilds = [...gmsBuilds, ...vanillaBuilds];
+  const latestBuild = allBuilds.sort((a, b) => b.datetime - a.datetime)[0];
+  const latestVersion = latestBuild?.version || null;
+
   return (
     <main className="min-h-screen bg-[var(--color-axion-bg)] pt-24 pb-24 px-6 relative overflow-hidden">
       {/* Background glow */}
@@ -173,6 +177,14 @@ export default async function DevicePage({
               }`}>
                 {device.status}
               </span>
+              {latestVersion && (
+                <>
+                  <span className="w-1 h-1 rounded-full bg-white/20" />
+                  <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 bg-[var(--color-axion-accent)]/15 text-[var(--color-axion-accent)] rounded-full border border-[var(--color-axion-accent)]/10 animate-fade-in select-none">
+                    v{latestVersion}
+                  </span>
+                </>
+              )}
             </div>
 
             {officialMaintainers.length > 0 && (
