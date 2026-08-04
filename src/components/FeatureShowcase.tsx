@@ -8,7 +8,7 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const basePath = process.env.NODE_ENV === 'production' ? '/axion' : '';
-const ss = (name: string) => `${basePath}/screenshots/axion_ss/${name}`;
+const ss = (name: string) => `${basePath}/assets/${name}`;
 
 /* ───────────────────────────── FEATURE GROUPS ───────────────────────────── */
 
@@ -20,11 +20,11 @@ const featureGroups = [
     description: "A smart status bar chip that reacts to live events — music, timers, recording, calls — all without leaving your flow.",
     accent: "rgba(0, 210, 180, 0.3)",
     screens: [
-      { src: ss("music_player.jpg"), caption: "Music Player" },
-      { src: ss("multi_activity.jpg"), caption: "Multi-Activity" },
-      { src: ss("full_player.jpg"), caption: "Full Player" },
-      { src: ss("recorder.jpg"), caption: "Recorder" },
-      { src: ss("settings_feature.jpg"), caption: "Settings" },
+      { src: ss("music_player.webp"), caption: "Music Player" },
+      { src: ss("multi_activity.webp"), caption: "Multi-Activity" },
+      { src: ss("full_player.webp"), caption: "Full Player" },
+      { src: ss("recorder.webp"), caption: "Recorder" },
+      { src: ss("settings_feature.webp"), caption: "Settings" },
     ],
   },
   {
@@ -34,9 +34,9 @@ const featureGroups = [
     description: "Custom fingerprint icons, animations, media waveforms, and icon packs — downloadable from the built-in Theme Store.",
     accent: "rgba(120, 80, 255, 0.3)",
     screens: [
-      { src: ss("theme_store.jpg"), caption: "Theme Manager" },
-      { src: ss("axion_icons.jpg"), caption: "Axion Icons" },
-      { src: ss("axion_fx.jpg"), caption: "AxionFx Audio" },
+      { src: ss("theme_store.webp"), caption: "Theme Manager" },
+      { src: ss("axion_icons.webp"), caption: "Axion Icons" },
+      { src: ss("axion_fx.webp"), caption: "AxionFx Audio" },
     ],
   },
   {
@@ -46,10 +46,10 @@ const featureGroups = [
     description: "Depth effect wallpapers, custom clock faces with graffiti angles, dual-tone styles, widget placement — all from one editor.",
     accent: "rgba(255, 160, 40, 0.3)",
     screens: [
-      { src: ss("clock_editor.jpg"), caption: "Clock Editor" },
-      { src: ss("style_picker.jpg"), caption: "Style Picker" },
-      { src: ss("dual_tone.jpg"), caption: "Dual Tone" },
-      { src: ss("depth_effect.jpg"), caption: "Depth Effect" },
+      { src: ss("clock_editor.webp"), caption: "Clock Editor" },
+      { src: ss("style_picker.webp"), caption: "Style Picker" },
+      { src: ss("dual_tone.webp"), caption: "Dual Tone" },
+      { src: ss("depth_effect.webp"), caption: "Depth Effect" },
     ],
   },
   {
@@ -59,10 +59,10 @@ const featureGroups = [
     description: "Dedicated game dashboard with per-game CPU profiles, bypass charging, danmaku notifications, and FPS unlocking.",
     accent: "rgba(40, 80, 255, 0.3)",
     screens: [
-      { src: ss("game_library.jpg"), caption: "Game Library" },
-      { src: ss("game_settings.jpg"), caption: "Settings" },
-      { src: ss("per_game_profiles.jpg"), caption: "Per-Game Profiles" },
-      { src: ss("axpc_mode.jpg"), caption: "AxPC Mode" },
+      { src: ss("game_library.webp"), caption: "Game Library" },
+      { src: ss("game_settings.webp"), caption: "Settings" },
+      { src: ss("per_game_profiles.webp"), caption: "Per-Game Profiles" },
+      { src: ss("axpc_mode.webp"), caption: "AxPC Mode" },
     ],
   },
   {
@@ -72,10 +72,10 @@ const featureGroups = [
     description: "Create custom automation routines with import/export backup. Set triggers, conditions, and actions — all without root.",
     accent: "rgba(255, 80, 120, 0.3)",
     screens: [
-      { src: ss("routines_1.jpg"), caption: "Routines Manager" },
-      { src: ss("routines_2.jpg"), caption: "Automation Setup" },
-      { src: ss("routines_3.jpg"), caption: "Triggers & Actions" },
-      { src: ss("routines_4.jpg"), caption: "Import & Export" },
+      { src: ss("routines_1.webp"), caption: "Routines Manager" },
+      { src: ss("routines_2.webp"), caption: "Automation Setup" },
+      { src: ss("routines_3.webp"), caption: "Triggers & Actions" },
+      { src: ss("routines_4.webp"), caption: "Import & Export" },
     ],
   },
   {
@@ -85,7 +85,7 @@ const featureGroups = [
     description: "Fine-tune CPU governors, per-core frequencies, and thermal profiles. Full kernel-level control for enthusiasts.",
     accent: "rgba(255, 180, 0, 0.3)",
     screens: [
-      { src: ss("kernel_manager.jpg"), caption: "Kernel Manager" },
+      { src: ss("kernel_manager.webp"), caption: "Kernel Manager" },
     ],
   },
   {
@@ -95,9 +95,9 @@ const featureGroups = [
     description: "A fully isolated environment for apps and files. Separate notifications, locked vault, zero data leakage.",
     accent: "rgba(0, 180, 180, 0.3)",
     screens: [
-      { src: ss("locked_notifications.jpg"), caption: "Locked Notifications" },
-      { src: ss("vault_files.jpg"), caption: "Vault & Files" },
-      { src: ss("sandbox_space.jpg"), caption: "Sandbox Isolation" },
+      { src: ss("locked_notifications.webp"), caption: "Locked Notifications" },
+      { src: ss("vault_files.webp"), caption: "Vault & Files" },
+      { src: ss("sandbox_space.webp"), caption: "Sandbox Isolation" },
     ],
   },
   {
@@ -107,10 +107,10 @@ const featureGroups = [
     description: "Custom recents actions (lock app, freeform, memory info), launcher scaling, blur control, smart app categories, and folder widgets.",
     accent: "rgba(180, 100, 255, 0.3)",
     screens: [
-      { src: ss("recents_settings.jpg"), caption: "Recents Settings" },
-      { src: ss("launcher_scaling.jpg"), caption: "Launcher Scaling" },
-      { src: ss("app_folders.jpg"), caption: "App Folders" },
-      { src: ss("smart_categories.jpg"), caption: "Smart Categories" },
+      { src: ss("recents_settings.webp"), caption: "Recents Settings" },
+      { src: ss("launcher_scaling.webp"), caption: "Launcher Scaling" },
+      { src: ss("app_folders.webp"), caption: "App Folders" },
+      { src: ss("smart_categories.webp"), caption: "Smart Categories" },
     ],
   },
 ];

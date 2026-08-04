@@ -12,8 +12,8 @@ const basePath = process.env.NODE_ENV === 'production' ? '/axion' : '';
 
 
 const appDrawerImages = [
-  `${basePath}/screenshots/app_drawer_1.jpg`,
-  `${basePath}/screenshots/app_drawer_2.jpg`,
+  `${basePath}/assets/app_drawer_1.webp`,
+  `${basePath}/assets/app_drawer_2.webp`,
 ];
 
 export default function HomeScreenScene() {
@@ -103,7 +103,7 @@ export default function HomeScreenScene() {
           <div className="showcase-card relative rounded-[2rem] bg-white/[0.02] border border-white/10 overflow-hidden group">
             <div className="aspect-[4/5] relative w-full overflow-hidden">
               <Image 
-                src={`${basePath}/screenshots/launcher_tuning_4.jpg`}
+                src={`${basePath}/assets/launcher_tuning_4.webp`}
                 alt="Grid & Scaling"
                 fill
                 className="object-cover object-top origin-top group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -143,7 +143,7 @@ export default function HomeScreenScene() {
               {/* Background Phone */}
               <div className="absolute w-[200px] aspect-[9/16] rounded-3xl border border-white/15 overflow-hidden shadow-xl bg-black transform -rotate-6 -translate-x-12 translate-y-4 group-hover:-rotate-12 group-hover:-translate-x-16 transition-all duration-700 ease-out opacity-75">
                 <Image 
-                  src={`${basePath}/screenshots/workspace_back.jpg`}
+                  src={`${basePath}/assets/workspace_back.webp`}
                   alt="Workspace Secondary"
                   fill
                   className="object-cover object-top"
@@ -153,7 +153,7 @@ export default function HomeScreenScene() {
               {/* Foreground Phone */}
               <div className="relative w-[220px] aspect-[9/16] rounded-3xl border border-white/20 overflow-hidden shadow-2xl bg-black transform rotate-3 translate-x-8 group-hover:rotate-6 group-hover:translate-x-12 group-hover:-translate-y-2 transition-all duration-700 ease-out z-10">
                 <Image 
-                  src={`${basePath}/screenshots/workspace_front.jpg`}
+                  src={`${basePath}/assets/workspace_front.webp`}
                   alt="Workspace Overview"
                   fill
                   className="object-cover object-top"
@@ -193,7 +193,7 @@ export default function HomeScreenScene() {
                 {/* Background: Light Theme */}
                 <div className="absolute inset-0 w-full h-full bg-white">
                   <Image 
-                    src={`${basePath}/screenshots/theme_light.jpg`}
+                    src={`${basePath}/assets/theme_light.webp`}
                     alt="Light Theme"
                     fill
                     className="object-cover object-center"
@@ -210,7 +210,7 @@ export default function HomeScreenScene() {
                 >
                   <div className="relative w-[100cqw] h-full">
                     <Image 
-                      src={`${basePath}/screenshots/theme_dark.jpg`}
+                      src={`${basePath}/assets/theme_dark.webp`}
                       alt="Dark Theme"
                       fill
                       className="object-cover object-center"
@@ -271,7 +271,7 @@ export default function HomeScreenScene() {
           <div className="showcase-card relative rounded-[2rem] bg-white/[0.02] border border-white/10 overflow-hidden group">
             <div className="aspect-[4/5] relative w-full overflow-hidden">
               <Image 
-                src={`${basePath}/screenshots/widgets_panel.jpg`}
+                src={`${basePath}/assets/widgets_panel.webp`}
                 alt="Widgets and Panels"
                 fill
                 className="object-cover object-center origin-top group-hover:scale-105 transition-transform duration-700 ease-out opacity-80"

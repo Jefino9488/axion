@@ -45,28 +45,28 @@ export default function ThemingShowcase() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {/* Amber QS */}
           <div className="relative aspect-[9/19] rounded-3xl overflow-hidden glass-panel group">
-            <Image src="/screenshots/qs_expanded_amber.jpg" alt="Amber themed quick settings" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 origin-top" />
+            <Image src="/assets/qs_expanded_amber.webp" alt="Amber themed quick settings" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 origin-top" />
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4">
               <span className="text-xs font-bold text-[var(--color-axion-accent)] uppercase tracking-widest">Amber</span>
             </div>
           </div>
           {/* Green QS */}
           <div className="relative aspect-[9/19] rounded-3xl overflow-hidden glass-panel group">
-            <Image src="/screenshots/qs_green_theme.jpg" alt="Green themed quick settings" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 origin-top" />
+            <Image src="/assets/qs_green_theme.webp" alt="Green themed quick settings" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 origin-top" />
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4">
               <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">Teal</span>
             </div>
           </div>
           {/* Purple QS */}
           <div className="relative aspect-[9/19] rounded-3xl overflow-hidden glass-panel group">
-            <Image src="/screenshots/qs_purple_theme.jpg" alt="Purple themed quick settings" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 origin-top" />
+            <Image src="/assets/qs_purple_theme.webp" alt="Purple themed quick settings" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 origin-top" />
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4">
               <span className="text-xs font-bold text-purple-400 uppercase tracking-widest">Lavender</span>
             </div>
           </div>
           {/* Purple Full */}
           <div className="relative aspect-[9/19] rounded-3xl overflow-hidden glass-panel group">
-            <Image src="/screenshots/qs_purple_full_panel.jpg" alt="Purple themed full quick settings panel" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 origin-top" />
+            <Image src="/assets/qs_purple_full_panel.webp" alt="Purple themed full quick settings panel" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 origin-top" />
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4">
               <span className="text-xs font-bold text-purple-300 uppercase tracking-widest">Violet</span>
             </div>
@@ -77,7 +77,7 @@ export default function ThemingShowcase() {
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="glass-panel rounded-3xl p-6 group">
             <div className="relative aspect-[9/16] rounded-2xl overflow-hidden">
-              <Image src="/screenshots/notification_shade_green.jpg" alt="Green themed notification shade" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105" />
+              <Image src="/assets/notification_shade_green.webp" alt="Green themed notification shade" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105" />
             </div>
             <div className="mt-4">
               <h3 className="text-lg font-bold text-white">Notification Shade</h3>
@@ -86,7 +86,7 @@ export default function ThemingShowcase() {
           </div>
           <div className="glass-panel rounded-3xl p-6 group">
             <div className="relative aspect-[9/16] rounded-2xl overflow-hidden">
-              <Image src="/screenshots/notification_shade_purple.jpg" alt="Purple themed notification shade with media player" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105" />
+              <Image src="/assets/notification_shade_purple.webp" alt="Purple themed notification shade with media player" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105" />
             </div>
             <div className="mt-4">
               <h3 className="text-lg font-bold text-white">Media Integration</h3>

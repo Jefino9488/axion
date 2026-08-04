@@ -135,7 +135,7 @@ export default function LockscreenScene() {
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-[220px] md:w-[260px] aspect-[9/19] rounded-[2.2rem] border-2 border-white/15 overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.7)] bg-black">
                 <Image
-                  src="/screenshots/hero_main.jpg"
+                  src="/assets/hero_main.webp"
                   alt="Default Screen"
                   fill
                   className="object-cover object-top filter blur-[6px] brightness-[0.8]"

@@ -74,7 +74,7 @@ export default function HeroSceneMobile() {
         {/* Hero Phone */}
         <div className="mobile-hero-text relative w-[260px] sm:w-[280px] aspect-[9/20.5] rounded-[2rem] border-[4px] border-[#1a1a1a] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-black shrink-0 translate-y-12">
           <Image
-            src={`${basePath}/screenshots/hero_main.jpg`}
+            src={`${basePath}/assets/hero_main.webp`}
             alt="Axion OS Lockscreen"
             fill
             className="object-cover object-top filter brightness-[0.95]"
@@ -96,7 +96,7 @@ export default function HeroSceneMobile() {
           {clockStyles.map((clock, i) => (
             <div key={i} className="snap-center shrink-0 flex flex-col items-center gap-6">
               <div className="relative w-[240px] sm:w-[260px] aspect-[9/20.5] rounded-[2rem] border-[3px] border-[#1a1a1a] overflow-hidden shadow-2xl bg-black">
-                <Image src={`${basePath}/screenshots/lockscreen_blank.jpg`} alt="bg" fill className="object-cover object-top brightness-[0.6]" />
+                <Image src={`${basePath}/assets/lockscreen_blank.webp`} alt="bg" fill className="object-cover object-top brightness-[0.6]" />
                 <div className="absolute inset-x-0 top-[8%] h-[28%] flex items-center justify-center z-10 px-8">
                   <Image src={clock.src} alt={clock.name} fill className="object-contain drop-shadow-xl" />
                 </div>

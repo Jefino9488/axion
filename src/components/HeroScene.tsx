@@ -324,7 +324,7 @@ export default function HeroScene() {
           
           {/* Default Clean Wallpaper */}
           <Image
-            src={`${basePath}/screenshots/hero_main.jpg`}
+            src={`${basePath}/assets/hero_main.webp`}
             alt="Axion OS Lockscreen"
             fill
             className="object-cover object-top filter brightness-[0.95]"
@@ -334,7 +334,7 @@ export default function HeroScene() {
           {/* Blank Wallpaper for Clocks */}
           <Image
             ref={blankWallpaperRef}
-            src={`${basePath}/screenshots/lockscreen_blank.jpg`}
+            src={`${basePath}/assets/lockscreen_blank.webp`}
             alt="Axion OS Blank Lockscreen"
             fill
             className="object-cover object-top filter brightness-[0.95] opacity-0"
