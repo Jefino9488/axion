@@ -57,9 +57,9 @@ export default function HeroScene() {
   // Phone references
   const phonesContainerRef = useRef<HTMLDivElement>(null);
   const phoneEntryRef = useRef<HTMLDivElement>(null);
-  const blurOverlayRef = useRef<HTMLDivElement>(null);
-  
   const mainWallpaperRef = useRef<HTMLImageElement>(null);
+  const blankWallpaperRef = useRef<HTMLImageElement>(null);
+  const blurOverlayRef = useRef<HTMLDivElement>(null);
   const depthWallpaperRef = useRef<HTMLImageElement>(null);
   
   // Array of clock refs
@@ -126,6 +126,10 @@ export default function HeroScene() {
           duration: 1.5,
           ease: "power2.inOut",
         }, 0)
+        .to(blankWallpaperRef.current, {
+          opacity: 1,
+          duration: 1,
+        }, 0.5)
         .to(blurOverlayRef.current, {
           opacity: 1,
           duration: 1,
@@ -320,11 +324,20 @@ export default function HeroScene() {
           
           {/* Default Clean Wallpaper */}
           <Image
-            ref={mainWallpaperRef}
-            src={`${basePath}/screenshots/photo_1_2026-08-02_22-34-34.jpg`}
+            src={`${basePath}/screenshots/hero_main.jpg`}
             alt="Axion OS Lockscreen"
             fill
             className="object-cover object-top filter brightness-[0.95]"
+            priority
+          />
+          
+          {/* Blank Wallpaper for Clocks */}
+          <Image
+            ref={blankWallpaperRef}
+            src={`${basePath}/screenshots/lockscreen_blank.jpg`}
+            alt="Axion OS Blank Lockscreen"
+            fill
+            className="object-cover object-top filter brightness-[0.95] opacity-0"
             priority
           />
           
