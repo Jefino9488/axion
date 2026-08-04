@@ -116,8 +116,8 @@ const featureGroups = [
 function PhoneFrame({ src, caption, className = "", style = {} }: { src: string; caption: string; className?: string; style?: React.CSSProperties }) {
   return (
     <div className={`relative flex-shrink-0 ${className}`} style={style}>
-      <div className="relative w-[180px] md:w-[220px] aspect-[9/19.5] rounded-[2rem] border-[3px] border-white/10 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] bg-black group transition-transform duration-500 hover:scale-[1.03]">
-        <Image src={src} alt={caption} fill className="object-cover" />
+      <div className="relative w-[180px] md:w-[220px] aspect-[9/19.5] rounded-[1.5rem] border-[3px] border-white/10 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] bg-black group transition-transform duration-500 hover:scale-[1.03]">
+        <Image src={src} alt={caption} fill className="object-cover object-top" />
         {/* Notch */}
         <div className="absolute top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-black rounded-full z-10" />
         {/* Caption overlay */}
@@ -135,7 +135,7 @@ function WideFrame({ src, caption, className = "" }: { src: string; caption: str
   return (
     <div className={`relative flex-shrink-0 ${className}`}>
       <div className="relative w-[340px] md:w-[440px] aspect-[16/9] rounded-[1.2rem] border-[3px] border-white/10 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] bg-black group transition-transform duration-500 hover:scale-[1.03]">
-        <Image src={src} alt={caption} fill className="object-cover" />
+        <Image src={src} alt={caption} fill className="object-cover object-top" />
         <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/80 to-transparent z-10 flex items-end justify-center pb-2">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-white/80">{caption}</span>
         </div>

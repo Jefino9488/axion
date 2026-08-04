@@ -45,28 +45,28 @@ export default function ThemingShowcase() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {/* Amber QS */}
           <div className="relative aspect-[9/19] rounded-3xl overflow-hidden glass-panel group">
-            <Image src="/screenshots/photo_2_2026-08-02_22-34-34.jpg" alt="Amber themed quick settings" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+            <Image src="/screenshots/photo_2_2026-08-02_22-34-34.jpg" alt="Amber themed quick settings" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 origin-top" />
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4">
               <span className="text-xs font-bold text-[var(--color-axion-accent)] uppercase tracking-widest">Amber</span>
             </div>
           </div>
           {/* Green QS */}
           <div className="relative aspect-[9/19] rounded-3xl overflow-hidden glass-panel group">
-            <Image src="/screenshots/photo_18_2026-08-02_22-34-34.jpg" alt="Green themed quick settings" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+            <Image src="/screenshots/photo_18_2026-08-02_22-34-34.jpg" alt="Green themed quick settings" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 origin-top" />
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4">
               <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">Teal</span>
             </div>
           </div>
           {/* Purple QS */}
           <div className="relative aspect-[9/19] rounded-3xl overflow-hidden glass-panel group">
-            <Image src="/screenshots/photo_22_2026-08-02_22-34-34.jpg" alt="Purple themed quick settings" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+            <Image src="/screenshots/photo_22_2026-08-02_22-34-34.jpg" alt="Purple themed quick settings" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 origin-top" />
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4">
               <span className="text-xs font-bold text-purple-400 uppercase tracking-widest">Lavender</span>
             </div>
           </div>
           {/* Purple Full */}
           <div className="relative aspect-[9/19] rounded-3xl overflow-hidden glass-panel group">
-            <Image src="/screenshots/photo_24_2026-08-02_22-34-34.jpg" alt="Purple themed full quick settings panel" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+            <Image src="/screenshots/photo_24_2026-08-02_22-34-34.jpg" alt="Purple themed full quick settings panel" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 origin-top" />
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4">
               <span className="text-xs font-bold text-purple-300 uppercase tracking-widest">Violet</span>
             </div>

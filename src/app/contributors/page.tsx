@@ -87,20 +87,20 @@ export default async function ContributorsPage() {
               href={`https://github.com/${github}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border border-white/10 group-hover:border-white/30 group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-300 shadow-xl bg-black/50 block cursor-pointer"
+              className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-black/50 border border-white/10 group-hover:border-white/30 group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-300 block cursor-pointer"
             >
               <Image
                 src={`https://github.com/${github}.png?size=150`}
                 alt={name}
                 width={80}
                 height={80}
-                className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-300"
                 unoptimized
               />
             </a>
             
             <div className="absolute bottom-full left-1/2 -translate-x-1/2 pb-3 opacity-0 pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 group-hover:translate-y-[-8px] translate-y-0 transition-all duration-300 z-50">
-              <div className="bg-[#0b0c0e]/95 backdrop-blur-xl border border-white/10 px-5 py-4 rounded-2xl shadow-2xl text-center min-w-[220px]">
+              <div className="bg-[#0b0c0e]/95 border border-white/10 px-5 py-4 rounded-2xl shadow-2xl text-center min-w-[220px]">
                 <a
                   href={`https://github.com/${github}`}
                   target="_blank"
@@ -144,7 +144,6 @@ export default async function ContributorsPage() {
 
   return (
     <main className="min-h-screen bg-[var(--color-axion-bg)] pt-32 pb-24 px-6 relative overflow-hidden">
-      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[var(--color-axion-accent-secondary)]/10 blur-[150px] rounded-full pointer-events-none" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-12">

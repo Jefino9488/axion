@@ -70,27 +70,41 @@ export default function DevicesClient({
 
   return (
     <div className="w-full relative min-h-screen">
-      <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12 relative z-10 w-full">
-        <div className="relative w-full md:max-w-md select-none">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
-          <input
-            type="text"
-            placeholder="Search by name or codename..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-white/[0.02] border border-white/10 rounded-2xl py-3.5 pl-12 pr-6 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[var(--color-axion-accent)] focus:bg-white/[0.04] focus:shadow-[0_0_20px_rgba(255,100,0,0.05)] transition-all"
-          />
+      <div className="flex flex-col items-center gap-6 mb-16 relative z-10 w-full">
+        <div className="flex flex-col sm:flex-row gap-3 w-full">
+          <div className="relative flex-1 select-none">
+            <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+            <input
+              type="text"
+              placeholder="Search by name or codename..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full h-full bg-white/[0.02] border border-white/5 rounded-full py-4 pl-14 pr-6 text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/20 focus:bg-white/[0.04] transition-all"
+            />
+          </div>
+          
+          <a
+            href="https://cdn.axionos.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 px-8 py-4 bg-white/[0.02] border border-white/5 hover:bg-white/10 hover:border-white/20 rounded-full text-white text-[11px] font-bold uppercase tracking-widest transition-all duration-300 group shrink-0"
+          >
+            Raw CDN
+            <svg className="w-3.5 h-3.5 text-white/50 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
         </div>
 
-        <div className="flex gap-2 flex-wrap justify-start">
+        <div className="flex gap-2.5 flex-wrap justify-center items-center">
           {brands.map((brand) => (
             <button
               key={brand}
               onClick={() => setSelectedBrand(brand)}
-              className={`px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 ${
+              className={`px-5 py-2 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all duration-300 ${
                 selectedBrand === brand
-                  ? "bg-[var(--color-axion-accent)] text-white shadow-[0_0_20px_rgba(255,100,0,0.3)]"
-                  : "bg-white/5 text-white/50 hover:bg-white/10 hover:text-white"
+                  ? "bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.1)] scale-105"
+                  : "bg-white/[0.03] border border-white/5 text-white/50 hover:bg-white/10 hover:text-white"
               }`}
             >
               {brand}
@@ -99,71 +113,40 @@ export default function DevicesClient({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 relative z-10 pb-32">
+      <div className="flex flex-col w-full relative z-10 pb-32">
         {filteredDevices.length > 0 ? (
           filteredDevices.map((device) => {
-            const imageUrl = deviceImages[device.codename] || device.images?.banner || device.images?.fallback;
-            
             return (
               <Link
                 key={device.codename}
                 href={`/download/${device.codename}`}
-                className="group block h-full"
+                className="group block border-b border-white/5 last:border-0"
               >
-                <article className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:bg-white/10 hover:border-white/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-300 h-full flex flex-col relative group-hover:-translate-y-1">
-                  
+                <article className="py-10 flex flex-col items-start relative overflow-hidden">
                   {device.version && (
-                    <div className="absolute top-4 right-4 z-20 px-3 py-1.5 bg-black/60 backdrop-blur-xl border border-white/10 rounded-xl text-xs font-bold font-mono text-[var(--color-axion-accent)] shadow-lg select-none">
+                    <div className="absolute top-10 right-4 z-20 text-[10px] font-bold font-mono text-white/20 group-hover:text-[var(--color-axion-accent)] transition-colors select-none">
                       v{device.version}
                     </div>
                   )}
 
-                  {/* Image Header */}
-                  <div className="relative w-full aspect-square bg-gradient-to-b from-white/5 to-transparent flex items-center justify-center p-8 overflow-hidden">
-                    <div className="absolute inset-0 bg-[var(--color-axion-accent)]/5 group-hover:bg-[var(--color-axion-accent)]/10 transition-colors duration-500" />
-                    
-                    <DeviceImage
-                      sources={[
-                        `https://raw.githubusercontent.com/AxionAOSP/official_devices/main/OTA/Banners/devices/${device.codename}.webp`,
-                        deviceImages[device.codename],
-                        device.images?.banner,
-                        device.images?.fallback,
-                      ]}
-                      alt={device.name}
-                      className="object-contain p-8 group-hover:scale-110 transition-transform duration-700 w-full h-full absolute inset-0"
-                    />
+                  <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[var(--color-axion-accent)]/70 mb-1">
+                    <span>{device.brand}</span>
+                    <span className="opacity-50">•</span>
+                    <span>ACTIVE</span>
                   </div>
                   
-                  {/* Content */}
-                  <div className="p-6 flex flex-col flex-grow">
-                    <div className="flex justify-between items-start mb-4">
-                      <span className="text-[var(--color-axion-accent)] text-xs font-bold uppercase tracking-widest px-3 py-1 bg-[var(--color-axion-accent)]/10 rounded-full">
-                        {resolveBrand(device)}
-                      </span>
-                      <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md border select-none ${
-                        device.status?.toLowerCase() === 'active' 
-                          ? 'bg-green-500/20 text-green-400 border-green-500/10' 
-                          : 'bg-red-500/15 text-red-400 border-red-500/10'
-                      }`}>
-                        {device.status}
-                      </span>
-                    </div>
-                    
-                    <h3 className="text-2xl font-bold text-white tracking-tight mb-1 group-hover:text-[var(--color-axion-accent)] transition-colors">
-                      {device.name}
-                    </h3>
-                    
-                    <p className="text-white/40 font-mono text-sm mb-4">
-                      {device.codename}
-                    </p>
-                    
-                    <div className="mt-auto pt-4 border-t border-white/5">
-                      <p className="text-white/30 text-xs">
+                  <h3 className="text-4xl md:text-6xl font-black text-white/40 tracking-tighter group-hover:text-white transition-colors duration-500">
+                    {device.name}
+                  </h3>
+                  
+                  <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/20 mt-3 group-hover:text-white/40 transition-colors">
+                    <span>{device.codename}</span>
+                    <span>•</span>
+                    <span>
                         {device.maintainer_ids.length > 0 
-                          ? `Maintained by ${device.maintainer_ids.map(id => maintainers[id]?.name || id).join(", ")}` 
+                          ? `By ${device.maintainer_ids.map(id => maintainers[id]?.name || id).join(", ")}` 
                           : "Unmaintained"}
-                      </p>
-                    </div>
+                    </span>
                   </div>
                 </article>
               </Link>

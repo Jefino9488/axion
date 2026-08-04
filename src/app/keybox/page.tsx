@@ -275,7 +275,7 @@ export default function KeyboxPage() {
               className={`flex-[2] py-4 text-sm font-black uppercase tracking-widest rounded-2xl flex justify-center items-center gap-3 transition-all select-none
                 ${
                   conversionSuccess
-                    ? "bg-[var(--color-axion-accent)] hover:bg-[var(--color-axion-accent-hover)] text-white shadow-[0_0_20px_rgba(255,100,0,0.2)] hover:shadow-[0_0_45px_rgba(255,100,0,0.45)] hover:scale-[1.02] cursor-pointer"
+                    ? "bg-[var(--color-axion-accent)] hover:bg-[var(--color-axion-accent-hover)] text-[#100B09] shadow-[0_0_20px_rgba(255,100,0,0.2)] hover:shadow-[0_0_45px_rgba(255,100,0,0.45)] hover:scale-[1.02] cursor-pointer"
                     : "bg-white/[0.01] border border-white/5 text-white/20 cursor-not-allowed"
                 }
               `}

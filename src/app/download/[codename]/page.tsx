@@ -269,7 +269,7 @@ export default async function DevicePage({
                           <span className="text-[var(--color-axion-accent)] font-bold text-sm tracking-widest uppercase">v{build.version}</span>
                         </div>
                       </div>
-                      <a href={build.url} className="w-full md:w-auto px-8 py-4 bg-[var(--color-axion-accent)] hover:bg-[var(--color-axion-accent-hover)] text-white font-bold rounded-xl flex justify-center items-center gap-2 transition-all shadow-[0_0_20px_rgba(255,100,0,0.2)] hover:shadow-[0_0_40px_rgba(255,100,0,0.4)] hover:scale-105">
+                      <a href={build.url} className="w-full md:w-auto px-8 py-4 bg-[var(--color-axion-accent)] hover:bg-[var(--color-axion-accent-hover)] text-[#100B09] font-bold rounded-xl flex justify-center items-center gap-2 transition-all shadow-[0_0_20px_rgba(255,100,0,0.2)] hover:shadow-[0_0_40px_rgba(255,100,0,0.4)] hover:scale-105">
                         <Download className="w-5 h-5" /> Download
                       </a>
                     </div>

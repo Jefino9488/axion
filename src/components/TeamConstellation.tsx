@@ -119,12 +119,9 @@ export default function TeamConstellation() {
     <section
       ref={containerRef}
       id="team-constellation"
-      className="relative w-full min-h-[130vh] md:min-h-[150vh] bg-black/10 border-t border-b border-white/5 mt-12 mb-20"
+      className="relative w-full min-h-[130vh] md:min-h-[150vh] mt-12 mb-20"
     >
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-900/10 opacity-30 blur-[120px] mix-blend-screen" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-purple-900/10 opacity-30 blur-[150px] mix-blend-screen" />
-      </div>
+
 
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-full pointer-events-none">
         {CORE_MEMBERS.map((m) => {
@@ -140,14 +137,14 @@ export default function TeamConstellation() {
                 href={`https://github.com/${m.github}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`block rounded-full overflow-hidden bg-[#111] border border-white/5 cursor-pointer grayscale hover:grayscale-0 hover:border-white/20 transition-all duration-500 shadow-2xl ${m.sizeClass}`}
+                className={`relative block rounded-full overflow-hidden bg-[#111] border border-white/5 cursor-pointer hover:border-white/20 transition-all duration-500 transform-gpu ${m.sizeClass}`}
               >
                 <Image
                   src={`https://github.com/${m.github}.png?size=400`}
                   alt={m.displayName}
                   fill
                   sizes="(max-width: 768px) 140px, (max-width: 1200px) 240px, 320px"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   unoptimized
                 />
               </a>
@@ -163,7 +160,7 @@ export default function TeamConstellation() {
                   }
                 `}
               >
-                <div className="bg-[#0b0c0e]/90 backdrop-blur-xl border border-white/10 px-6 py-4 rounded-2xl shadow-2xl min-w-[200px]">
+                <div className="bg-[#0b0c0e]/95 border border-white/10 px-6 py-4 rounded-2xl min-w-[200px]">
                   <h3 className="font-bold text-lg text-white mb-1 tracking-tight">
                     {m.displayName}
                   </h3>

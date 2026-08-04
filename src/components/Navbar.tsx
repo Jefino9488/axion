@@ -20,7 +20,6 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Devices", href: "/devices" },
     { name: "Team", href: "/contributors" },
     { name: "Blog", href: "/blog" },
   ];
@@ -78,7 +77,7 @@ export default function Navbar() {
 
           <Link
             href="/download"
-            className="px-5 py-2 bg-[var(--color-axion-accent)] hover:bg-[var(--color-axion-accent-hover)] text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-[0_0_15px_rgba(255,100,0,0.2)] hover:shadow-[0_0_25px_rgba(255,100,0,0.4)] transition-all duration-300 hover:scale-[1.03]"
+            className="px-5 py-2 bg-[var(--color-axion-accent)] hover:bg-[var(--color-axion-accent-hover)] text-[#100B09] text-xs font-bold uppercase tracking-wider rounded-full shadow-[0_0_15px_rgba(255,100,0,0.2)] hover:shadow-[0_0_25px_rgba(255,100,0,0.4)] transition-all duration-300 hover:scale-[1.03]"
           >
             Download
           </Link>
@@ -114,7 +113,7 @@ export default function Navbar() {
           <Link
             href="/download"
             onClick={() => setMobileMenuOpen(false)}
-            className="mt-2 w-full py-3 text-center bg-[var(--color-axion-accent)] text-white font-bold text-sm uppercase tracking-widest rounded-xl shadow-[0_0_20px_rgba(255,100,0,0.15)] block"
+            className="mt-2 w-full py-3 text-center bg-[var(--color-axion-accent)] text-[#100B09] font-bold text-sm uppercase tracking-widest rounded-xl shadow-[0_0_20px_rgba(255,100,0,0.15)] block"
           >
             Download
           </Link>

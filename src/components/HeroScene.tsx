@@ -57,6 +57,7 @@ export default function HeroScene() {
   // Phone references
   const phonesContainerRef = useRef<HTMLDivElement>(null);
   const phoneEntryRef = useRef<HTMLDivElement>(null);
+  const blurOverlayRef = useRef<HTMLDivElement>(null);
   
   const mainWallpaperRef = useRef<HTMLImageElement>(null);
   const depthWallpaperRef = useRef<HTMLImageElement>(null);
@@ -88,8 +89,10 @@ export default function HeroScene() {
     gsap.set([extraPhone1Ref.current, extraPhone2Ref.current, extraPhone4Ref.current, extraPhone5Ref.current], { 
       opacity: 0, 
       x: 0,
-      scale: 0.9 // Keep them slightly scaled down before fanning out
+      scale: 0.9
     });
+    
+    gsap.set(blurOverlayRef.current, { opacity: 0 });
 
     const ctx = gsap.context(() => {
       // 1. Decoupled Entry animations
@@ -122,8 +125,8 @@ export default function HeroScene() {
           duration: 1.5,
           ease: "power2.inOut",
         }, 0)
-        .to(mainWallpaperRef.current, {
-          filter: "blur(8px) brightness(0.6)",
+        .to(blurOverlayRef.current, {
+          opacity: 1,
           duration: 1,
         }, 0.5)
         .to(lockscreenTextRef.current, {
@@ -227,18 +230,20 @@ export default function HeroScene() {
   }, []);
 
   // Helper for extra phones (Depth Wallpapers)
-  const DepthPhone = ({ wp, innerRef }: { wp: any, innerRef: React.Ref<HTMLDivElement> }) => (
-    <div ref={innerRef} className="absolute bottom-0 w-[280px] md:w-[320px] aspect-[9/19] rounded-[2.8rem] border-[3px] border-white/10 overflow-hidden shadow-2xl bg-black">
-      <Image src={wp.src} alt={wp.title} fill className="object-cover" />
+  const DepthPhone = ({ wp, innerRef, className = "" }: { wp: any, innerRef: React.Ref<HTMLDivElement>, className?: string }) => (
+    <div ref={innerRef} className={`absolute bottom-0 w-[280px] md:w-[320px] aspect-[9/19] rounded-[2.2rem] border-[3px] border-white/10 overflow-hidden shadow-2xl bg-black ${className}`}>
+      <Image src={wp.src} alt={wp.title} fill className="object-cover object-top" />
       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent z-10 flex flex-col justify-end p-4">
         <span className="text-[10px] uppercase tracking-widest text-[var(--color-axion-accent)] font-semibold truncate">{wp.tag}</span>
         <h5 className="text-sm font-bold text-white truncate">{wp.title}</h5>
       </div>
+      {/* Notch */}
+      <div className="absolute top-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-black rounded-full z-40" />
     </div>
   );
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-[var(--color-axion-bg)] text-white flex flex-col justify-center items-center">
+    <section ref={containerRef} className="relative h-screen w-full overflow-hidden text-white flex flex-col justify-center items-center">
       {/* Background Ambient Glows */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-[var(--color-axion-accent)] opacity-[0.08] blur-[160px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[var(--color-axion-accent-secondary)] opacity-[0.06] blur-[130px] rounded-full pointer-events-none" />
@@ -304,13 +309,13 @@ export default function HeroScene() {
       {/* The Phones Container - ANCHORED TO BOTTOM */}
       <div ref={phonesContainerRef} className="absolute inset-x-0 bottom-[-15vh] flex justify-center items-end pointer-events-none z-30">
         
-        <DepthPhone wp={depthWallpapers[0]} innerRef={extraPhone1Ref} />
-        <DepthPhone wp={depthWallpapers[1]} innerRef={extraPhone2Ref} />
-        <DepthPhone wp={depthWallpapers[3]} innerRef={extraPhone4Ref} />
-        <DepthPhone wp={depthWallpapers[4]} innerRef={extraPhone5Ref} />
+        <DepthPhone wp={depthWallpapers[0]} innerRef={extraPhone1Ref} className="opacity-0" />
+        <DepthPhone wp={depthWallpapers[1]} innerRef={extraPhone2Ref} className="opacity-0" />
+        <DepthPhone wp={depthWallpapers[3]} innerRef={extraPhone4Ref} className="opacity-0" />
+        <DepthPhone wp={depthWallpapers[4]} innerRef={extraPhone5Ref} className="opacity-0" />
 
         {/* Main Phone */}
-        <div ref={phoneEntryRef} className="relative w-[280px] md:w-[320px] aspect-[9/19] rounded-[2.8rem] border-[4px] border-[#1a1a1a] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.8)] bg-black z-20">
+        <div ref={phoneEntryRef} className="relative w-[280px] md:w-[320px] aspect-[9/19] rounded-[2.2rem] border-[4px] border-[#1a1a1a] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.8)] bg-black z-20">
           
           {/* Default Clean Wallpaper */}
           <Image
@@ -318,9 +323,12 @@ export default function HeroScene() {
             src={`${basePath}/screenshots/photo_1_2026-08-02_22-34-34.jpg`}
             alt="Axion OS Lockscreen"
             fill
-            className="object-cover filter brightness-[0.95]"
+            className="object-cover object-top filter brightness-[0.95]"
             priority
           />
+          
+          {/* Smooth Blur Overlay instead of animating filter */}
+          <div ref={blurOverlayRef} className="absolute inset-0 bg-black/40 backdrop-blur-md z-[5] pointer-events-none opacity-0" />
           
           {/* Sequential Clock Overlays - strictly contained to top 30% */}
           <div className="absolute top-[8%] inset-x-0 h-[28%] flex items-center justify-center z-10 pointer-events-none">
@@ -346,12 +354,12 @@ export default function HeroScene() {
           </div>
 
           {/* Depth Wallpaper (fades in on top of everything at Stage 4) */}
-          <div ref={depthWallpaperRef} className="absolute inset-0 z-30">
+          <div ref={depthWallpaperRef} className="absolute inset-0 z-30 opacity-0">
             <Image
               src={depthWallpapers[2].src} // Burj Horizon
               alt="Depth Center"
               fill
-              className="object-cover"
+              className="object-cover object-top"
             />
             {/* Text label for the center phone to match the others */}
             <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent z-10 flex flex-col justify-end p-4">

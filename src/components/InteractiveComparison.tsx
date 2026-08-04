@@ -61,14 +61,14 @@ export default function InteractiveComparison() {
 
         <div
           ref={containerRef}
-          className="relative w-full max-w-2xl mx-auto aspect-[9/19] rounded-[2.5rem] overflow-hidden cursor-ew-resize border-2 border-white/10"
+          className="relative w-full max-w-2xl mx-auto aspect-[9/19] rounded-[2rem] overflow-hidden cursor-ew-resize border-2 border-white/10"
           style={{ boxShadow: "0 30px 80px rgba(0,0,0,0.5)" }}
           onMouseDown={(e) => { handleMouseDown(); handleMove(e.clientX); }}
           onTouchStart={(e) => { isDragging.current = true; handleMove(e.touches[0].clientX); }}
         >
           {/* Before (Light Theme) */}
           <div className="absolute inset-0">
-            <Image src="/screenshots/photo_25_2026-08-02_22-34-34.jpg" alt="Axion OS light theme quick settings" fill className="object-cover" />
+            <Image src="/screenshots/photo_25_2026-08-02_22-34-34.jpg" alt="Axion OS light theme quick settings" fill className="object-cover object-top" />
             <div className="absolute top-6 left-6 z-10">
               <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-sm text-xs text-white/70 font-medium uppercase tracking-widest">Light</span>
             </div>
@@ -76,7 +76,7 @@ export default function InteractiveComparison() {
 
           {/* After (Dark Theme) */}
           <div className="absolute inset-0 z-20 overflow-hidden" style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}>
-            <Image src="/screenshots/photo_22_2026-08-02_22-34-34.jpg" alt="Axion OS dark theme quick settings" fill className="object-cover" />
+            <Image src="/screenshots/photo_22_2026-08-02_22-34-34.jpg" alt="Axion OS dark theme quick settings" fill className="object-cover object-top" />
             <div className="absolute top-6 right-6 z-10">
               <span className="px-3 py-1 rounded-full bg-[var(--color-axion-accent)]/30 backdrop-blur-sm text-xs text-white font-bold uppercase tracking-widest">Dark</span>
             </div>

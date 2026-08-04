@@ -87,7 +87,7 @@ export default function HomeScreenScene() {
                 src={`${basePath}/screenshots/photo_5_2026-08-02_22-34-34.jpg`}
                 alt="Launcher Tuning"
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="object-cover object-top origin-top group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               {/* Subtle Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
@@ -227,7 +227,7 @@ export default function HomeScreenScene() {
                 src={`${basePath}/screenshots/photo_9_2026-08-02_22-34-34.jpg`}
                 alt="App Drawer"
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-80"
+                className="object-cover object-top origin-top group-hover:scale-105 transition-transform duration-700 ease-out opacity-80"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90" />
               
@@ -252,7 +252,7 @@ export default function HomeScreenScene() {
                 src={`${basePath}/screenshots/photo_10_2026-08-02_22-34-34.jpg`}
                 alt="Widgets and Panels"
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-80"
+                className="object-cover object-top origin-top group-hover:scale-105 transition-transform duration-700 ease-out opacity-80"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90" />
               

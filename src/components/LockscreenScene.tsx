@@ -133,12 +133,12 @@ export default function LockscreenScene() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Phone Preview with Blurred Background */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-[220px] md:w-[260px] aspect-[9/19] rounded-[2.8rem] border-2 border-white/15 overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.7)] bg-black">
+              <div className="relative w-[220px] md:w-[260px] aspect-[9/19] rounded-[2.2rem] border-2 border-white/15 overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.7)] bg-black">
                 <Image
                   src="/screenshots/photo_1_2026-08-02_22-34-34.jpg"
                   alt="Lockscreen Wallpaper"
                   fill
-                  className="object-cover filter blur-[6px] brightness-[0.8]"
+                  className="object-cover object-top filter blur-[6px] brightness-[0.8]"
                 />
                 
                 {/* Notch */}
@@ -247,12 +247,12 @@ export default function LockscreenScene() {
                   key={index}
                   className={`spawn-phone ${flexStyle} ${elevation} transition-all duration-500 hover:-translate-y-6 hover:scale-105`}
                 >
-                  <div className="relative w-full aspect-[9/19] rounded-[1.2rem] sm:rounded-[1.6rem] md:rounded-[2.2rem] border border-white/20 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.7)] bg-black group">
+                  <div className="relative w-full aspect-[9/19] rounded-[1.2rem] sm:rounded-[1.4rem] md:rounded-[1.8rem] border border-white/20 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.7)] bg-black group">
                     <Image
                       src={wp.src}
                       alt={wp.title}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-110 origin-top"
                     />
 
                     {/* Punchy Phone Notch */}
