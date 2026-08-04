@@ -96,7 +96,7 @@ export default function HeroSceneMobile() {
           {clockStyles.map((clock, i) => (
             <div key={i} className="snap-center shrink-0 flex flex-col items-center gap-6">
               <div className="relative w-[240px] sm:w-[260px] aspect-[9/19] rounded-[2rem] border-[3px] border-[#1a1a1a] overflow-hidden shadow-2xl bg-black">
-                <Image src={`${basePath}/screenshots/lockscreen_blank.jpg`} alt="bg" fill className="object-cover object-top brightness-[0.4]" />
+                <Image src={`${basePath}/screenshots/lockscreen_blank.jpg`} alt="bg" fill className="object-cover object-top brightness-[0.6]" />
                 <div className="absolute inset-x-0 top-[8%] h-[28%] flex items-center justify-center z-10 px-8">
                   <Image src={clock.src} alt={clock.name} fill className="object-contain drop-shadow-xl" />
                 </div>

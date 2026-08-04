@@ -342,7 +342,7 @@ export default function HeroScene() {
           />
           
           {/* Smooth Blur Overlay instead of animating filter */}
-          <div ref={blurOverlayRef} className="absolute inset-0 bg-black/40 backdrop-blur-md z-[5] pointer-events-none opacity-0" />
+          <div ref={blurOverlayRef} className="absolute inset-0 bg-black/20 backdrop-blur-sm z-[5] pointer-events-none opacity-0" />
           
           {/* Sequential Clock Overlays - strictly contained to top 30% */}
           <div className="absolute top-[8%] inset-x-0 h-[28%] flex items-center justify-center z-10 pointer-events-none">
