@@ -59,10 +59,10 @@ export default function HeroSceneMobile() {
   return (
     <div ref={containerRef} className="w-full bg-[#0a0706] text-white overflow-hidden">
       {/* 1. Hero Entry */}
-      <section className="relative h-[85vh] w-full flex flex-col items-center justify-start pt-[15vh] px-6">
+      <section className="relative min-h-[90svh] w-full flex flex-col items-center justify-between pt-[15vh] px-6">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[150vw] h-[150vw] bg-[var(--color-axion-accent)]/10 blur-[120px] rounded-full pointer-events-none" />
         
-        <div className="flex flex-col items-center text-center relative z-20">
+        <div className="flex flex-col items-center text-center relative z-20 mb-12">
           <h1 className="mobile-hero-text text-6xl sm:text-7xl font-bold tracking-tighter leading-[0.85] mb-4 text-white">
             AXION <span className="text-gradient">OS</span>
           </h1>
@@ -72,7 +72,7 @@ export default function HeroSceneMobile() {
         </div>
 
         {/* Hero Phone */}
-        <div className="mobile-hero-text absolute bottom-0 w-[260px] sm:w-[280px] aspect-[9/19.5] rounded-[2rem] border-[4px] border-[#1a1a1a] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-black translate-y-16">
+        <div className="mobile-hero-text relative w-[260px] sm:w-[280px] aspect-[9/19.5] rounded-[2rem] border-[4px] border-[#1a1a1a] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-black shrink-0 translate-y-12">
           <Image
             src={`${basePath}/screenshots/photo_1_2026-08-02_22-34-34.jpg`}
             alt="Axion OS Lockscreen"

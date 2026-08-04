@@ -194,7 +194,7 @@ function FeatureRow({ group, index }: { group: typeof featureGroups[0]; index: n
       />
 
       {/* Text Block */}
-      <div ref={textRef} className="flex-shrink-0 md:w-[38%] space-y-5 relative z-10 text-center md:text-left">
+      <div ref={textRef} className="w-full flex-shrink-0 md:w-[38%] space-y-5 relative z-10 text-center md:text-left">
         <p className="text-xs uppercase tracking-[0.35em] text-[var(--color-axion-accent)] font-semibold">{group.label}</p>
         <h3 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.05] whitespace-pre-line">{group.title}</h3>
         <p className="text-base md:text-lg text-[var(--color-axion-text-secondary)] leading-relaxed max-w-md mx-auto md:mx-0">{group.description}</p>
