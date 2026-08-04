@@ -9,6 +9,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 const basePath = process.env.NODE_ENV === 'production' ? '/axion' : '';
 
+const launcherTuningImages = [
+  `${basePath}/screenshots/launcher_tuning_1.jpg`,
+  `${basePath}/screenshots/launcher_tuning_2.jpg`,
+  `${basePath}/screenshots/launcher_tuning_3.jpg`,
+  `${basePath}/screenshots/launcher_tuning_4.jpg`,
+];
+
 export default function HomeScreenScene() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -17,6 +24,16 @@ export default function HomeScreenScene() {
   const [sliderPos, setSliderPos] = useState(50); // percentage 0-100
   const isDragging = useRef(false);
   const sliderRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scrolling slideshow for Card 1
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % launcherTuningImages.length);
+    }, 2500); // Crossfade every 2.5 seconds
+    return () => clearInterval(timer);
+  }, []);
 
   const handleMove = (clientX: number) => {
     if (!sliderRef.current) return;
@@ -83,12 +100,15 @@ export default function HomeScreenScene() {
           {/* Card 1: Launcher Tuning (Large Image Focus) */}
           <div className="showcase-card relative rounded-[2rem] bg-white/[0.02] border border-white/10 overflow-hidden group">
             <div className="aspect-[4/5] relative w-full overflow-hidden">
-              <Image 
-                src={`${basePath}/screenshots/photo_5_2026-08-02_22-34-34.jpg`}
-                alt="Launcher Tuning"
-                fill
-                className="object-cover object-top origin-top group-hover:scale-105 transition-transform duration-700 ease-out"
-              />
+              {launcherTuningImages.map((src, i) => (
+                <Image 
+                  key={i}
+                  src={src}
+                  alt={`Launcher Tuning ${i + 1}`}
+                  fill
+                  className={`object-cover object-top origin-top group-hover:scale-105 transition-all duration-1000 ease-in-out ${i === currentSlide ? "opacity-100 scale-100 z-10" : "opacity-0 scale-105 z-0"}`}
+                />
+              ))}
               {/* Subtle Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
               
