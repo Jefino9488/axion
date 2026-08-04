@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
@@ -89,7 +89,16 @@ const CORE_MEMBERS: CoreMember[] = [
 ];
 
 export default function TeamConstellation() {
+  const [activeId, setActiveId] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = () => {
+      setActiveId(null);
+    };
+    window.addEventListener("click", handleOutsideClick);
+    return () => window.removeEventListener("click", handleOutsideClick);
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -137,6 +146,15 @@ export default function TeamConstellation() {
                 href={`https://github.com/${m.github}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => {
+                  if (activeId !== m.github) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setActiveId(m.github);
+                  } else {
+                    setActiveId(null);
+                  }
+                }}
                 className={`relative block rounded-full overflow-hidden bg-[#111] border border-white/5 cursor-pointer hover:border-white/20 transition-all duration-500 transform-gpu ${m.sizeClass}`}
               >
                 <Image
@@ -150,13 +168,21 @@ export default function TeamConstellation() {
               </a>
 
               <div
-                className={`absolute opacity-0 pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] w-max z-50 group-hover:opacity-100
+                className={`absolute opacity-0 pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] w-max z-50 group-hover:opacity-100 group-hover:pointer-events-auto
                   top-full left-1/2 -translate-x-1/2 translate-y-[10px] text-center pt-4 group-hover:translate-y-[20px]
                   
                   ${
+                    activeId === m.github ? "opacity-100 pointer-events-auto translate-y-[20px]" : ""
+                  }
+                  
+                  ${
                     isRight
-                      ? "lg:top-1/2 lg:left-full lg:right-auto lg:-translate-y-1/2 lg:translate-x-[16px] lg:text-left lg:pt-0 lg:pl-6 lg:group-hover:translate-x-[32px] lg:group-hover:translate-y-0 lg:group-hover:-translate-y-1/2"
-                      : "lg:top-1/2 lg:left-auto lg:right-full lg:-translate-y-1/2 lg:-translate-x-[16px] lg:text-right lg:pt-0 lg:pr-6 lg:group-hover:-translate-x-[32px] lg:group-hover:translate-y-0 lg:group-hover:-translate-y-1/2"
+                      ? `lg:top-1/2 lg:left-full lg:right-auto lg:-translate-y-1/2 lg:translate-x-[16px] lg:text-left lg:pt-0 lg:pl-6 lg:group-hover:translate-x-[32px] lg:group-hover:translate-y-0 lg:group-hover:-translate-y-1/2 ${
+                          activeId === m.github ? "lg:translate-x-[32px] lg:-translate-y-1/2" : ""
+                        }`
+                      : `lg:top-1/2 lg:left-auto lg:right-full lg:-translate-y-1/2 lg:-translate-x-[16px] lg:text-right lg:pt-0 lg:pr-6 lg:group-hover:-translate-x-[32px] lg:group-hover:translate-y-0 lg:group-hover:-translate-y-1/2 ${
+                          activeId === m.github ? "lg:-translate-x-[32px] lg:-translate-y-1/2" : ""
+                        }`
                   }
                 `}
               >
