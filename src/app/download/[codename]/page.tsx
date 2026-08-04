@@ -179,26 +179,26 @@ export default async function DevicePage({
         {/* Device Header */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-12 mb-16 relative">
           <div className="flex-1 space-y-4">
-            <span className="px-3 py-1 bg-[var(--color-axion-accent)]/20 text-[var(--color-axion-accent)] text-xs font-bold uppercase tracking-widest rounded-full">
+            <span className="text-[var(--color-axion-accent)] text-sm font-bold uppercase tracking-[0.2em] mb-1 block">
               {device.brand}
             </span>
-            <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tighter">
               {device.name}
             </h1>
-            <div className="flex items-center gap-4 text-white/50">
+            <div className="flex flex-wrap items-center gap-3 text-white/50 mt-4">
               <span className="font-mono text-lg">{device.codename}</span>
-              <span className="w-1 h-1 rounded-full bg-white/20" />
-              <span className={`uppercase tracking-widest text-xs font-bold px-3 py-1 rounded-full border select-none ${
+              <span className="w-1 h-1 rounded-full bg-white/30" />
+              <span className={`uppercase tracking-widest text-xs font-bold ${
                 device.status?.toLowerCase() === 'active'
-                  ? 'bg-green-500/20 text-green-400 border-green-500/10'
-                  : 'bg-red-500/15 text-red-400 border-red-500/10'
+                  ? 'text-green-400'
+                  : 'text-red-400'
               }`}>
                 {device.status}
               </span>
               {latestVersion && (
                 <>
-                  <span className="w-1 h-1 rounded-full bg-white/20" />
-                  <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 bg-[var(--color-axion-accent)]/15 text-[var(--color-axion-accent)] rounded-full border border-[var(--color-axion-accent)]/10 animate-fade-in select-none">
+                  <span className="w-1 h-1 rounded-full bg-white/30" />
+                  <span className="text-xs font-bold uppercase tracking-widest font-mono text-[var(--color-axion-accent)] animate-fade-in">
                     v{latestVersion}
                   </span>
                 </>
@@ -206,29 +206,33 @@ export default async function DevicePage({
             </div>
 
             {officialMaintainers.length > 0 && (
-              <div className="pt-2 flex flex-wrap items-center gap-2.5 text-sm text-white/60 select-none">
+              <div className="pt-4 flex flex-wrap items-center gap-3 text-sm text-white/60 select-none">
                 <span className="font-medium text-white/40 text-[10px] uppercase tracking-wider">Maintained by:</span>
-                {officialMaintainers.map((m: any) => (
-                  <a
-                    key={m.id}
-                    href={`https://github.com/${m.github_username || m.id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-3 py-1 border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 rounded-full transition-all duration-300 hover:scale-[1.02] cursor-pointer"
-                  >
-                    <div className="relative w-4 h-4 rounded-full overflow-hidden border border-white/10 bg-black/40">
-                      <Image
-                        src={`https://github.com/${m.github_username || m.id}.png?size=60`}
-                        alt={m.name}
-                        fill
-                        className="object-cover"
-                        unoptimized
-                      />
-                    </div>
-                    <span className="text-white font-semibold text-[11px] leading-none hover:text-[var(--color-axion-accent)] transition-colors">
-                      {m.name || m.id}
-                    </span>
-                  </a>
+                {officialMaintainers.map((m: any, idx: number) => (
+                  <div key={m.id} className="flex items-center gap-3">
+                    <a
+                      href={`https://github.com/${m.github_username || m.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity cursor-pointer group/maintainer"
+                    >
+                      <div className="relative w-5 h-5 rounded-full overflow-hidden border border-white/10 bg-black/40">
+                        <Image
+                          src={`https://github.com/${m.github_username || m.id}.png?size=60`}
+                          alt={m.name}
+                          fill
+                          className="object-cover"
+                          unoptimized
+                        />
+                      </div>
+                      <span className="text-white font-semibold text-[13px] leading-none group-hover/maintainer:text-[var(--color-axion-accent)] transition-colors">
+                        {m.name || m.id}
+                      </span>
+                    </a>
+                    {idx < officialMaintainers.length - 1 && (
+                      <span className="text-white/20">•</span>
+                    )}
+                  </div>
                 ))}
               </div>
             )}
@@ -269,8 +273,8 @@ export default async function DevicePage({
                 <div className="space-y-4">
                   {gmsBuilds.map((build) => (
                     <div key={build.id} className="bg-white/5 border border-white/10 rounded-3xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 hover:bg-white/10 transition-colors">
-                      <div className="space-y-2">
-                        <h4 className="text-lg font-bold text-white truncate max-w-sm md:max-w-md" title={build.filename}>{build.filename}</h4>
+                      <div className="space-y-2 w-full overflow-hidden">
+                        <h4 className="text-base md:text-lg font-bold text-white truncate w-full md:max-w-md" title={build.filename}>{build.filename}</h4>
                         <div className="flex flex-wrap items-center gap-4 text-sm text-white/50">
                           <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" /> {formatDate(build.datetime)}</span>
                           <span className="flex items-center gap-1.5"><HardDrive className="w-4 h-4" /> {formatSize(build.size)}</span>
@@ -297,8 +301,8 @@ export default async function DevicePage({
                 <div className="space-y-4">
                   {vanillaBuilds.map((build) => (
                     <div key={build.id} className="bg-white/5 border border-white/10 rounded-3xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 hover:bg-white/10 transition-colors">
-                      <div className="space-y-2">
-                        <h4 className="text-lg font-bold text-white truncate max-w-sm md:max-w-md" title={build.filename}>{build.filename}</h4>
+                      <div className="space-y-2 w-full overflow-hidden">
+                        <h4 className="text-base md:text-lg font-bold text-white truncate w-full md:max-w-md" title={build.filename}>{build.filename}</h4>
                         <div className="flex flex-wrap items-center gap-4 text-sm text-white/50">
                           <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" /> {formatDate(build.datetime)}</span>
                           <span className="flex items-center gap-1.5"><HardDrive className="w-4 h-4" /> {formatSize(build.size)}</span>

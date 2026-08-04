@@ -34,7 +34,7 @@ export default function DeviceHeaderClient({
           >
             <FileText className={`w-5 h-5 transition-transform duration-300 ${isOpen ? "text-black scale-110" : "text-[var(--color-axion-accent)]"}`} />
             <span>Installation Guide</span>
-            {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4 animate-bounce" />}
+            {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
         )}
 

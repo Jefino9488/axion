@@ -114,14 +114,15 @@ export default function HeroScene() {
           scrub: 1,
           pin: true,
           anticipatePin: 1,
+          invalidateOnRefresh: true, // Recalculate vw/vh values correctly on resize to prevent glitchy behavior
         },
       });
 
       // ---- STAGE 1: Zoom to Lockscreen ----
       tl.to(heroTextContainerRef.current, { opacity: 0, y: -80, filter: "blur(20px)", duration: 1 }, 0)
         .to(phonesContainerRef.current, {
-          y: "-26vh", // Pulls it perfectly into view
-          scale: 1.6, // Reduced zoom so the phone fits on screen comfortably
+          y: "-18vh", // Pulls it perfectly into view without cutting off the top
+          scale: 1.35, // Reduced zoom so the phone fits on screen comfortably even on small laptops
           duration: 1.5,
           ease: "power2.inOut",
         }, 0)
@@ -231,7 +232,7 @@ export default function HeroScene() {
 
   // Helper for extra phones (Depth Wallpapers)
   const DepthPhone = ({ wp, innerRef, className = "" }: { wp: any, innerRef: React.Ref<HTMLDivElement>, className?: string }) => (
-    <div ref={innerRef} className={`absolute bottom-0 w-[280px] md:w-[320px] aspect-[9/19] rounded-[2.2rem] border-[3px] border-white/10 overflow-hidden shadow-2xl bg-black ${className}`}>
+    <div ref={innerRef} className={`absolute bottom-0 w-[280px] md:w-[320px] aspect-[9/19] rounded-[2.2rem] border-[3px] border-white/10 overflow-hidden shadow-2xl bg-black will-change-transform ${className}`}>
       <Image src={wp.src} alt={wp.title} fill className="object-cover object-top" />
       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent z-10 flex flex-col justify-end p-4">
         <span className="text-[10px] uppercase tracking-widest text-[var(--color-axion-accent)] font-semibold truncate">{wp.tag}</span>
@@ -245,8 +246,8 @@ export default function HeroScene() {
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden text-white flex flex-col justify-center items-center">
       {/* Background Ambient Glows */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-[var(--color-axion-accent)] opacity-[0.08] blur-[160px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[var(--color-axion-accent-secondary)] opacity-[0.06] blur-[130px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vw] md:w-[900px] md:h-[900px] bg-[var(--color-axion-accent)] opacity-[0.08] blur-[160px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[120vw] h-[80vw] md:w-[600px] md:h-[400px] bg-[var(--color-axion-accent-secondary)] opacity-[0.06] blur-[130px] rounded-full pointer-events-none" />
 
       {/* Main Titles - Pushed down to top-[24vh] */}
       <div className="absolute top-[24vh] inset-x-0 z-40 flex flex-col items-center justify-center pointer-events-none">
@@ -254,7 +255,7 @@ export default function HeroScene() {
         {/* Stage 0 Text (Decoupled refs to fix scroll reverse bug) */}
         <div ref={heroTextContainerRef} className="absolute flex flex-col items-center text-center">
           <div ref={heroTextEntryRef} className="flex flex-col items-center text-center">
-            <h1 className="text-7xl md:text-[8rem] font-bold tracking-[-0.02em] leading-[0.85] mb-6 text-white whitespace-nowrap">
+            <h1 className="text-6xl md:text-7xl lg:text-[8rem] font-bold tracking-[-0.02em] leading-[0.85] mb-4 md:mb-6 text-white whitespace-nowrap">
               AXION <span className="text-gradient">OS</span>
             </h1>
             <p className="text-xl md:text-2xl text-[var(--color-axion-text-secondary)] font-medium text-center">
@@ -264,7 +265,7 @@ export default function HeroScene() {
         </div>
 
         {/* Stage 1 Text */}
-        <div ref={lockscreenTextRef} className="absolute flex flex-col items-center text-center">
+        <div ref={lockscreenTextRef} className="absolute flex flex-col items-center text-center mt-[15vh]">
           <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 whitespace-nowrap">
             LOCKSCREEN CUSTOMIZATION
           </h2>
@@ -315,7 +316,7 @@ export default function HeroScene() {
         <DepthPhone wp={depthWallpapers[4]} innerRef={extraPhone5Ref} className="opacity-0" />
 
         {/* Main Phone */}
-        <div ref={phoneEntryRef} className="relative w-[280px] md:w-[320px] aspect-[9/19] rounded-[2.2rem] border-[4px] border-[#1a1a1a] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.8)] bg-black z-20">
+        <div ref={phoneEntryRef} className="relative w-[280px] md:w-[320px] aspect-[9/19] rounded-[2.2rem] border-[4px] border-[#1a1a1a] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.8)] bg-black z-20 will-change-transform">
           
           {/* Default Clean Wallpaper */}
           <Image

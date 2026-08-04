@@ -125,7 +125,7 @@ export default function ResearchShowcase() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full py-32 bg-[var(--color-axion-bg)] overflow-hidden">
+    <section ref={sectionRef} className="relative w-full py-32 overflow-hidden">
       
       {/* Header */}
       <div className="max-w-7xl mx-auto px-6 mb-24 text-center">

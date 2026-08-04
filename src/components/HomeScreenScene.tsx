@@ -58,14 +58,14 @@ export default function HomeScreenScene() {
   return (
     <section ref={sectionRef} className="relative py-28 md:py-44 px-6 w-full overflow-hidden bg-[var(--color-axion-bg)] text-white">
       {/* Ambient Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-[var(--color-axion-accent)]/5 blur-[200px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vw] md:w-[1000px] md:h-[600px] bg-[var(--color-axion-accent)]/5 blur-[200px] rounded-full pointer-events-none" />
 
       {/* Header */}
       <div className="max-w-5xl mx-auto mb-32 text-center relative z-10">
         <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-[var(--color-axion-accent)] font-semibold mb-4">
           Home Screen
         </p>
-        <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
+        <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-white mb-4 md:mb-6">
           The ultimate canvas.
         </h2>
         <p className="text-lg md:text-2xl text-[var(--color-axion-text-secondary)] max-w-2xl mx-auto font-light leading-relaxed">

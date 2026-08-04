@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScrolling from "@/components/SmoothScrolling";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ParticleBackground from "@/components/ParticleBackground";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
       <body>
+        <ParticleBackground />
         <Navbar />
         <SmoothScrolling>
           {children}

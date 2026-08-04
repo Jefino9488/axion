@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const isDownloadPage = pathname?.startsWith("/download");
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -27,14 +28,18 @@ export default function Footer() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-32 md:py-48 px-6 w-full overflow-hidden">
+    <section ref={sectionRef} className={`relative ${isHomePage ? 'pt-32 md:pt-48' : 'pt-16'} pb-8 md:pb-12 px-6 w-full`}>
       {/* Final ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[var(--color-axion-accent)] opacity-[0.06] blur-[150px] rounded-full pointer-events-none" />
+      {isHomePage && (
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[var(--color-axion-accent)] opacity-[0.06] blur-[150px] rounded-full pointer-events-none" />
+      )}
 
       <div ref={contentRef} className="max-w-4xl mx-auto text-center">
-        <h2 className="text-6xl md:text-9xl font-bold tracking-[-0.04em] text-gradient mb-6">
-          AXION
-        </h2>
+        {isHomePage && (
+          <>
+            <h2 className="text-6xl md:text-9xl font-bold tracking-[-0.04em] text-gradient mb-6">
+              AXION
+            </h2>
         <p className="text-xl md:text-2xl text-[var(--color-axion-text-secondary)] mb-12 max-w-xl mx-auto">
           The Android experience, reimagined. Beautiful. Fast. Yours.
         </p>
@@ -76,17 +81,19 @@ export default function Footer() {
             </p>
           </Link>
         )}
+          </>
+        )}
 
         {/* Bottom bar */}
-        <div className="border-t border-[var(--color-axion-border)] pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[var(--color-axion-text-secondary)]">
+        <div className={`${isHomePage ? "border-t border-[var(--color-axion-border)] pt-8" : "pt-0"} flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[var(--color-axion-text-secondary)]`}>
           <p>© 2025 - 2026 Axion OS. All rights reserved.</p>
           
           {/* Links */}
           <div className="flex flex-wrap justify-center gap-6 text-sm text-[var(--color-axion-text-secondary)]">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <Link href="/download" className="hover:text-white transition-colors">Downloads</Link>
             <Link href="/contributors" className="hover:text-white transition-colors">Contributors</Link>
             <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+            <Link href="/faq" className="hover:text-white transition-colors">FAQ</Link>
             <Link href="/keybox" className="hover:text-white transition-colors">Keybox</Link>
             <a href="https://github.com/AxionAOSP" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Source Code</a>
           </div>
