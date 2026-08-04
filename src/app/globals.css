@@ -65,15 +65,72 @@ html.lenis, html.lenis body {
   }
 }
 
-/* Blog Markdown Utilities */
-.side-by-side {
+/* Blog Markdown Utilities & Prose Overrides */
+.prose .side-by-side {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
   gap: 1rem;
+  flex-wrap: wrap;
   margin: 1.5rem 0;
 }
-.side-by-side img {
-  flex: 1;
-  width: 100%;
-  object-fit: cover;
+
+.prose .side-by-side img {
+  flex: 1 1 320px;
+  max-width: 320px !important;
+  width: 100% !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+  object-fit: contain !important;
+  margin: 0 !important;
+  display: inline-block !important;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-axion-border);
+  margin: 1.5rem auto !important;
+}
+
+.prose p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.85;
+  font-weight: 300;
+  font-size: 1.05rem;
+}
+
+.prose strong {
+  color: var(--color-axion-accent);
+  font-weight: 600;
+}
+
+.prose li {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  color: var(--color-axion-text) !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.prose blockquote {
+  color: rgba(255, 255, 255, 0.75) !important;
+  border-left-color: var(--color-axion-accent) !important;
+  font-style: italic;
+}
+
+.prose code {
+  color: var(--color-axion-text) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  padding: 0.2rem 0.4rem !important;
+  border-radius: 0.25rem !important;
+  font-size: 0.9em !important;
+}
+
+.prose ol > li::marker, .prose ul > li::marker {
+  color: var(--color-axion-text) !important;
 }
