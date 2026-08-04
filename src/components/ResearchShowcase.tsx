@@ -65,7 +65,7 @@ function DualEngineVisual() {
           </div>
           <div className="text-center">
             <h4 className="text-white font-semibold text-sm">Vulkan Primary</h4>
-            <p className="text-white/40 text-[10px] mt-1 uppercase tracking-wider">UI / Glass Blur</p>
+            <p className="text-white/40 text-[10px] mt-1 uppercase tracking-wider">UI / System Blurs</p>
           </div>
         </div>
 
@@ -191,7 +191,7 @@ export default function ResearchShowcase() {
               Vulkan-first.<br />Bulletproof media.
             </h3>
             <p className="text-lg text-[var(--color-axion-text-secondary)] leading-relaxed">
-              We need Vulkan for advanced UI effects like Skia glass blur, but some legacy devices corrupt HDR and media when sampling via Vulkan. 
+              We need Vulkan for advanced UI effects like Skia system blurs, but some legacy devices corrupt HDR and media when sampling via Vulkan. 
               Our solution: a seamless dual-engine RenderEngine wrapper.
             </p>
             <ul className="space-y-4 mt-6">

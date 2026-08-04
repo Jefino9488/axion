@@ -42,12 +42,7 @@ export default function DevicesClient({
   const [selectedBrand, setSelectedBrand] = useState<string>("All");
 
   const resolveBrand = (device: Device) => {
-    const brandLower = device.brand?.toLowerCase() || "";
-    const nameLower = device.name?.toLowerCase() || "";
-    if (brandLower === "asus" || nameLower.includes("asus") || device.codename?.toLowerCase() === "x01bd") {
-      return "asus";
-    }
-    return brandLower;
+    return device.brand?.toLowerCase() || "";
   };
 
   const brands = useMemo(() => {
