@@ -66,7 +66,7 @@ export default function HomeScreenScene() {
           Home Screen
         </p>
         <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
-          Made to be yours.
+          The ultimate canvas.
         </h2>
         <p className="text-lg md:text-2xl text-[var(--color-axion-text-secondary)] max-w-2xl mx-auto font-light leading-relaxed">
           Granular control over every surface of your device. 
