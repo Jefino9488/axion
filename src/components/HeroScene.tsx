@@ -236,7 +236,7 @@ export default function HeroScene() {
 
   // Helper for extra phones (Depth Wallpapers)
   const DepthPhone = ({ wp, innerRef, className = "" }: { wp: any, innerRef: React.Ref<HTMLDivElement>, className?: string }) => (
-    <div ref={innerRef} className={`absolute bottom-0 w-[280px] md:w-[320px] aspect-[9/19] rounded-[2.2rem] border-[3px] border-white/10 overflow-hidden shadow-2xl bg-black will-change-transform ${className}`}>
+    <div ref={innerRef} className={`absolute bottom-0 w-[280px] md:w-[320px] aspect-[9/20.5] rounded-[2.2rem] border-[3px] border-white/10 overflow-hidden shadow-2xl bg-black will-change-transform ${className}`}>
       <Image src={wp.src} alt={wp.title} fill className="object-cover object-top" />
       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent z-10 flex flex-col justify-end p-4">
         <span className="text-[10px] uppercase tracking-widest text-[var(--color-axion-accent)] font-semibold truncate">{wp.tag}</span>
@@ -320,7 +320,7 @@ export default function HeroScene() {
         <DepthPhone wp={depthWallpapers[4]} innerRef={extraPhone5Ref} className="opacity-0" />
 
         {/* Main Phone */}
-        <div ref={phoneEntryRef} className="relative w-[280px] md:w-[320px] aspect-[9/19] rounded-[2.2rem] border-[4px] border-[#1a1a1a] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.8)] bg-black z-20 will-change-transform">
+        <div ref={phoneEntryRef} className="relative w-[280px] md:w-[320px] aspect-[9/20.5] rounded-[2.2rem] border-[4px] border-[#1a1a1a] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.8)] bg-black z-20 will-change-transform">
           
           {/* Default Clean Wallpaper */}
           <Image
