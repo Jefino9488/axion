@@ -34,9 +34,9 @@ const featureGroups = [
     description: "Custom fingerprint icons, animations, media waveforms, and icon packs — downloadable from the built-in Theme Store.",
     accent: "rgba(120, 80, 255, 0.3)",
     screens: [
-      { src: ss("photo_2026-05-04_14-05-29.jpg"), caption: "Theme Store" },
+      { src: ss("theme_store.jpg"), caption: "Theme Manager" },
       { src: ss("photo_2026-08-03_09-06-32.jpg"), caption: "Axion Icons" },
-      { src: ss("photo_2026-03-28_21-02-37.jpg"), caption: "AxionFx Audio" },
+      { src: ss("axion_fx.jpg"), caption: "AxionFx Audio" },
     ],
   },
   {
@@ -72,7 +72,10 @@ const featureGroups = [
     description: "Create custom automation routines with import/export backup. Set triggers, conditions, and actions — all without root.",
     accent: "rgba(255, 80, 120, 0.3)",
     screens: [
-      { src: ss("photo_11_2026-08-02_22-34-34.jpg"), caption: "Routines Manager" },
+      { src: ss("routines_1.jpg"), caption: "Routines Manager" },
+      { src: ss("routines_2.jpg"), caption: "Automation Setup" },
+      { src: ss("routines_3.jpg"), caption: "Triggers & Actions" },
+      { src: ss("routines_4.jpg"), caption: "Import & Export" },
     ],
   },
   {
@@ -94,6 +97,7 @@ const featureGroups = [
     screens: [
       { src: ss("photo_2025-12-25_22-09-55.jpg"), caption: "Locked Notifications" },
       { src: ss("photo_2026-05-01_17-14-54.jpg"), caption: "Vault & Files" },
+      { src: ss("sandbox_space.jpg"), caption: "Sandbox Isolation" },
     ],
   },
   {
@@ -116,7 +120,7 @@ const featureGroups = [
 function PhoneFrame({ src, caption, className = "", style = {} }: { src: string; caption: string; className?: string; style?: React.CSSProperties }) {
   return (
     <div className={`relative flex-shrink-0 snap-center ${className}`} style={style}>
-      <div className="relative w-[180px] md:w-[220px] aspect-[9/19.5] rounded-[1.5rem] border-[3px] border-white/10 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] bg-black group transition-transform duration-500 hover:scale-[1.03]">
+      <div className="relative w-[180px] md:w-[220px] aspect-[9/20.5] rounded-[1.5rem] border-[3px] border-white/10 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] bg-black group transition-transform duration-500 hover:scale-[1.03]">
         <Image src={src} alt={caption} fill className="object-cover object-top" />
         {/* Notch */}
         <div className="absolute top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-black rounded-full z-10" />

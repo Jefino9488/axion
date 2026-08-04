@@ -228,7 +228,7 @@ export default function CustomizationScene() {
             {/* Foreground Card */}
             <div className="relative w-[220px] aspect-[9/16] rounded-2xl border border-white/20 overflow-hidden shadow-2xl bg-black transform rotate-3 translate-x-4 group-hover:rotate-6 transition-transform duration-500 z-10">
               <Image 
-                src={`${basePath}/screenshots/photo_10_2026-08-02_22-34-34.jpg`}
+                src={`${basePath}/screenshots/routines_1.jpg`}
                 alt="Routines automation setup"
                 fill
                 className="object-cover object-top"

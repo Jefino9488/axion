@@ -10,16 +10,16 @@ gsap.registerPlugin(ScrollTrigger);
 /* ───────────────────────── AXBOOSTFWK VISUAL ───────────────────────── */
 function CodeWindow() {
   return (
-    <div className="relative w-full max-w-lg aspect-[4/3] rounded-2xl bg-[#0d1117] border border-white/10 shadow-2xl overflow-hidden font-mono text-xs sm:text-sm text-left flex flex-col group">
+    <div className="relative w-full max-w-lg aspect-square sm:aspect-[4/3] rounded-2xl bg-[#0d1117] border border-white/10 shadow-2xl overflow-hidden font-mono text-[10px] sm:text-sm text-left flex flex-col group">
       {/* Window Header */}
       <div className="flex items-center px-4 py-3 bg-[#161b22] border-b border-white/5 gap-2">
-        <div className="w-3 h-3 rounded-full bg-red-500/80" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-        <div className="w-3 h-3 rounded-full bg-green-500/80" />
-        <span className="ml-4 text-white/40 text-xs font-sans">SfCpuPolicy.cpp</span>
+        <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500/80" />
+        <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500/80" />
+        <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500/80" />
+        <span className="ml-2 sm:ml-4 text-white/40 text-[10px] sm:text-xs font-sans">SfCpuPolicy.cpp</span>
       </div>
       {/* Code Content */}
-      <div className="p-5 overflow-hidden flex-1 relative text-gray-300">
+      <div className="p-4 sm:p-5 overflow-hidden flex-1 relative text-gray-300">
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent to-[#0d1117] z-10" />
         <pre className="leading-relaxed">
           <span className="text-purple-400">unsigned int</span> <span className="text-blue-400">computeUclampMin</span>() {"{"}<br/>
@@ -52,41 +52,41 @@ function CodeWindow() {
 /* ───────────────────────── VULKAN VISUAL ───────────────────────── */
 function DualEngineVisual() {
   return (
-    <div className="relative w-full max-w-lg aspect-[4/3] rounded-2xl bg-black/40 border border-white/10 shadow-2xl p-6 flex flex-col justify-center items-center gap-8 group overflow-hidden">
+    <div className="relative w-full max-w-lg aspect-square sm:aspect-[4/3] rounded-2xl bg-black/40 border border-white/10 shadow-2xl p-4 sm:p-6 flex flex-col justify-center items-center gap-8 group overflow-hidden">
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)]" />
       
       {/* Wrapper Block */}
-      <div className="w-full flex justify-between items-center relative z-10 px-8">
+      <div className="w-full flex justify-between items-center relative z-10 px-2 sm:px-8">
         
         {/* Vulkan Engine */}
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-red-500/20 to-red-900/40 border border-red-500/30 flex items-center justify-center shadow-[0_0_30px_rgba(239,68,68,0.2)] group-hover:scale-105 transition-transform duration-500">
-            <Layers className="text-red-400 w-10 h-10" />
+        <div className="flex flex-col items-center gap-2 sm:gap-3 flex-shrink-0">
+          <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-xl sm:rounded-2xl bg-gradient-to-br from-red-500/20 to-red-900/40 border border-red-500/30 flex items-center justify-center shadow-[0_0_30px_rgba(239,68,68,0.2)] group-hover:scale-105 transition-transform duration-500">
+            <Layers className="text-red-400 w-8 h-8 sm:w-10 sm:h-10" />
           </div>
-          <div className="text-center">
-            <h4 className="text-white font-semibold text-sm">Vulkan Primary</h4>
-            <p className="text-white/40 text-[10px] mt-1 uppercase tracking-wider">UI / System Blurs</p>
+          <div className="text-center w-[80px] sm:w-auto">
+            <h4 className="text-white font-semibold text-xs sm:text-sm">Vulkan Primary</h4>
+            <p className="text-white/40 text-[9px] sm:text-[10px] mt-1 uppercase tracking-wider leading-tight">UI / System Blurs</p>
           </div>
         </div>
 
         {/* Animated Flow Lines */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-2 px-4">
+        <div className="flex-1 flex flex-col items-center justify-center gap-2 px-2 sm:px-4 min-w-[60px]">
           <div className="w-full h-[2px] bg-gradient-to-r from-red-500/50 via-white/20 to-blue-500/50 relative overflow-hidden rounded-full">
              <div className="absolute inset-y-0 left-0 w-1/3 bg-white/50 blur-[2px] animate-[slide_2s_linear_infinite]" />
           </div>
-          <div className="text-[10px] text-white/50 tracking-widest uppercase font-semibold bg-black/40 px-3 py-1 rounded-full border border-white/5">
-            RenderEngine Wrapper
+          <div className="text-[8px] sm:text-[10px] text-white/50 tracking-widest uppercase font-semibold bg-black/40 px-2 sm:px-3 py-1 rounded-full border border-white/5 text-center leading-tight">
+            RenderEngine<br className="sm:hidden"/> Wrapper
           </div>
         </div>
 
         {/* OpenGL Engine */}
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-900/40 border border-blue-500/30 flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.2)] group-hover:scale-105 transition-transform duration-500">
-            <Server className="text-blue-400 w-10 h-10" />
+        <div className="flex flex-col items-center gap-2 sm:gap-3 flex-shrink-0">
+          <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-900/40 border border-blue-500/30 flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.2)] group-hover:scale-105 transition-transform duration-500">
+            <Server className="text-blue-400 w-8 h-8 sm:w-10 sm:h-10" />
           </div>
-          <div className="text-center">
-            <h4 className="text-white font-semibold text-sm">OpenGL Ganesh</h4>
-            <p className="text-white/40 text-[10px] mt-1 uppercase tracking-wider">Media / HDR Fallback</p>
+          <div className="text-center w-[80px] sm:w-auto">
+            <h4 className="text-white font-semibold text-xs sm:text-sm">OpenGL Ganesh</h4>
+            <p className="text-white/40 text-[9px] sm:text-[10px] mt-1 uppercase tracking-wider leading-tight">Media / HDR Fallback</p>
           </div>
         </div>
 

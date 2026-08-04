@@ -9,11 +9,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 const basePath = process.env.NODE_ENV === 'production' ? '/axion' : '';
 
-const launcherTuningImages = [
-  { src: `${basePath}/screenshots/launcher_tuning_1.jpg`, pos: "object-top" },
-  { src: `${basePath}/screenshots/launcher_tuning_2.jpg`, pos: "object-top" },
-  { src: `${basePath}/screenshots/launcher_tuning_3.jpg`, pos: "object-center" },
-  { src: `${basePath}/screenshots/launcher_tuning_4.jpg`, pos: "object-top" },
+
+
+const appDrawerImages = [
+  `${basePath}/screenshots/app_drawer_1.jpg`,
+  `${basePath}/screenshots/app_drawer_2.jpg`,
 ];
 
 export default function HomeScreenScene() {
@@ -25,13 +25,15 @@ export default function HomeScreenScene() {
   const isDragging = useRef(false);
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scrolling slideshow for Card 1
-  const [currentSlide, setCurrentSlide] = useState(0);
+
+
+  // Auto-scrolling slideshow for Card 4 (App Drawer)
+  const [currentAppDrawerSlide, setCurrentAppDrawerSlide] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % launcherTuningImages.length);
-    }, 2500); // Crossfade every 2.5 seconds
+      setCurrentAppDrawerSlide((prev) => (prev + 1) % appDrawerImages.length);
+    }, 3000); // Crossfade every 3 seconds
     return () => clearInterval(timer);
   }, []);
 
@@ -100,15 +102,12 @@ export default function HomeScreenScene() {
           {/* Card 1: Launcher Tuning (Large Image Focus) */}
           <div className="showcase-card relative rounded-[2rem] bg-white/[0.02] border border-white/10 overflow-hidden group">
             <div className="aspect-[4/5] relative w-full overflow-hidden">
-              {launcherTuningImages.map((img, i) => (
-                <Image 
-                  key={i}
-                  src={img.src}
-                  alt={`Launcher Tuning ${i + 1}`}
-                  fill
-                  className={`object-cover ${img.pos} origin-top group-hover:scale-105 transition-all duration-1000 ease-in-out ${i === currentSlide ? "opacity-100 scale-100 z-10" : "opacity-0 scale-105 z-0"}`}
-                />
-              ))}
+              <Image 
+                src={`${basePath}/screenshots/launcher_tuning_4.jpg`}
+                alt="Grid & Scaling"
+                fill
+                className="object-cover object-top origin-top group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
               {/* Subtle Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
               
@@ -142,9 +141,9 @@ export default function HomeScreenScene() {
             </div>
             <div className="relative w-full h-[400px] flex justify-center items-center pb-12">
               {/* Background Phone */}
-              <div className="absolute w-[200px] aspect-[9/16] rounded-3xl border border-white/15 overflow-hidden shadow-xl bg-black transform -rotate-6 -translate-x-12 translate-y-4 group-hover:-rotate-12 group-hover:-translate-x-16 transition-all duration-700 ease-out opacity-70">
+              <div className="absolute w-[200px] aspect-[9/16] rounded-3xl border border-white/15 overflow-hidden shadow-xl bg-black transform -rotate-6 -translate-x-12 translate-y-4 group-hover:-rotate-12 group-hover:-translate-x-16 transition-all duration-700 ease-out opacity-75">
                 <Image 
-                  src={`${basePath}/screenshots/photo_4_2026-08-02_22-34-34.jpg`}
+                  src={`${basePath}/screenshots/workspace_back.jpg`}
                   alt="Workspace Secondary"
                   fill
                   className="object-cover object-top"
@@ -154,7 +153,7 @@ export default function HomeScreenScene() {
               {/* Foreground Phone */}
               <div className="relative w-[220px] aspect-[9/16] rounded-3xl border border-white/20 overflow-hidden shadow-2xl bg-black transform rotate-3 translate-x-8 group-hover:rotate-6 group-hover:translate-x-12 group-hover:-translate-y-2 transition-all duration-700 ease-out z-10">
                 <Image 
-                  src={`${basePath}/screenshots/photo_12_2026-08-02_22-34-34.jpg`}
+                  src={`${basePath}/screenshots/workspace_front.jpg`}
                   alt="Workspace Overview"
                   fill
                   className="object-cover object-top"
@@ -189,35 +188,35 @@ export default function HomeScreenScene() {
                 onMouseLeave={() => { isDragging.current = false; }}
                 onMouseMove={handleMouseMove}
                 onTouchMove={handleTouchMove}
-                className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 cursor-ew-resize select-none group/slider"
+                className="@container relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 cursor-ew-resize select-none group/slider"
               >
                 {/* Background: Light Theme */}
                 <div className="absolute inset-0 w-full h-full bg-white">
                   <Image 
-                    src={`${basePath}/screenshots/photo_25_2026-08-02_22-34-34.jpg`}
+                    src={`${basePath}/screenshots/theme_light.jpg`}
                     alt="Light Theme"
                     fill
-                    className="object-cover object-top"
+                    className="object-cover object-center"
                   />
-                  <span className="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10">
+                  <span className="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10 z-10">
                     Light
                   </span>
                 </div>
 
                 {/* Foreground: Dark Theme */}
                 <div 
-                  className="absolute inset-0 h-full overflow-hidden bg-black"
+                  className="absolute inset-y-0 left-0 overflow-hidden bg-black z-10"
                   style={{ width: `${sliderPos}%` }}
                 >
-                  <div className="absolute top-0 left-0 w-full h-full min-w-[300px] sm:min-w-[400px]">
+                  <div className="relative w-[100cqw] h-full">
                     <Image 
-                      src={`${basePath}/screenshots/photo_22_2026-08-02_22-34-34.jpg`}
+                      src={`${basePath}/screenshots/theme_dark.jpg`}
                       alt="Dark Theme"
                       fill
-                      className="object-cover object-top"
+                      className="object-cover object-center"
                     />
                   </div>
-                  <span className="absolute top-4 left-4 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10">
+                  <span className="absolute top-4 left-4 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10 z-10">
                     Dark
                   </span>
                 </div>
@@ -243,15 +242,18 @@ export default function HomeScreenScene() {
           {/* Card 4: App Drawer */}
           <div className="showcase-card relative rounded-[2rem] bg-white/[0.02] border border-white/10 overflow-hidden group">
             <div className="aspect-[4/3] relative w-full overflow-hidden">
-              <Image 
-                src={`${basePath}/screenshots/photo_9_2026-08-02_22-34-34.jpg`}
-                alt="App Drawer"
-                fill
-                className="object-cover object-top origin-top group-hover:scale-105 transition-transform duration-700 ease-out opacity-80"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90" />
+              {appDrawerImages.map((src, i) => (
+                <Image 
+                  key={i}
+                  src={src}
+                  alt={`App Drawer ${i + 1}`}
+                  fill
+                  className={`object-cover object-top origin-top group-hover:scale-105 transition-all duration-1000 ease-in-out ${i === currentAppDrawerSlide ? "opacity-90 scale-100 z-10" : "opacity-0 scale-105 z-0"}`}
+                />
+              ))}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 z-20 pointer-events-none" />
               
-              <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full">
+              <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full z-30">
                 <span className="text-[10px] uppercase tracking-[0.2em] text-purple-400 font-bold mb-3 block">
                   App Drawer
                 </span>
@@ -269,10 +271,10 @@ export default function HomeScreenScene() {
           <div className="showcase-card relative rounded-[2rem] bg-white/[0.02] border border-white/10 overflow-hidden group">
             <div className="aspect-[4/5] relative w-full overflow-hidden">
               <Image 
-                src={`${basePath}/screenshots/photo_10_2026-08-02_22-34-34.jpg`}
+                src={`${basePath}/screenshots/widgets_panel.jpg`}
                 alt="Widgets and Panels"
                 fill
-                className="object-cover object-top origin-top group-hover:scale-105 transition-transform duration-700 ease-out opacity-80"
+                className="object-cover object-center origin-top group-hover:scale-105 transition-transform duration-700 ease-out opacity-80"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90" />
               
