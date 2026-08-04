@@ -9,6 +9,7 @@ export type Maintainer = {
   name: string;
   github_username: string;
   devices: string[];
+  role?: string;
 };
 
 export type Device = {
@@ -56,13 +57,15 @@ export default async function ContributorsPage() {
       .flatMap((d) => d.maintainer_ids)
   );
 
-  const EXCLUDED_KEYS = ["alistergrey", "not-ayan"];
+  const EXCLUDED_KEYS = ["alistergrey", "not-ayan", "jefino9488"];
   
   const deviceMaintainers = allMaintainers.filter(m => 
     activeMaintainerIds.has(m.id) &&
     !EXCLUDED_KEYS.includes(m.id.toLowerCase()) && 
     !EXCLUDED_KEYS.includes(m.github_username.toLowerCase())
   );
+
+
 
   return (
     <main className="min-h-screen bg-[var(--color-axion-bg)] pt-32 pb-24 px-6 relative overflow-hidden">

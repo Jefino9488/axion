@@ -80,9 +80,14 @@ export default function ContributorsGrid({
                   <div className="text-white font-bold text-sm tracking-tight group-hover/name:text-[var(--color-axion-accent-secondary)] transition-colors">
                     {name}
                   </div>
-                  <div className="text-white/40 font-mono text-[10px] mt-0.5 mb-3">
+                  <div className="text-white/40 font-mono text-[10px] mt-0.5 mb-2">
                     @{github}
                   </div>
+                  {m.role && (
+                    <div className="text-[10px] font-bold text-[var(--color-axion-accent)] uppercase tracking-widest mb-3">
+                      {m.role}
+                    </div>
+                  )}
                 </a>
 
                 {activeDevs.length > 0 && (

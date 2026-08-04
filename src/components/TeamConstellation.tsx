@@ -38,7 +38,7 @@ const CORE_MEMBERS: CoreMember[] = [
     role: "Project Manager / Core Member",
     speed: 1.2,
     sizeClass: "w-[140px] h-[140px] md:w-[240px] md:h-[240px]",
-    posClass: "top-[38%] left-[23%] md:left-[20%]",
+    posClass: "top-[38%] left-[24%] md:left-[22%]",
     cardSide: "left",
     zClass: "z-40",
   },
@@ -49,7 +49,7 @@ const CORE_MEMBERS: CoreMember[] = [
     role: "Project Administrator",
     speed: 1.1,
     sizeClass: "w-[140px] h-[140px] md:w-[240px] md:h-[240px]",
-    posClass: "top-[45%] left-[77%] md:left-[80%]",
+    posClass: "top-[38%] left-[76%] md:left-[78%]",
     cardSide: "right",
     zClass: "z-30",
   },
@@ -60,8 +60,19 @@ const CORE_MEMBERS: CoreMember[] = [
     role: "Lead Designer",
     speed: 0.8,
     sizeClass: "w-[120px] h-[120px] md:w-[200px] md:h-[200px]",
-    posClass: "top-[68%] left-[18%] md:left-[12%]",
-    cardSide: "left",
+    posClass: "top-[68%] left-[10%] md:left-[8%]",
+    cardSide: "right",
+    zClass: "z-20",
+  },
+  {
+    name: "Jefino9488",
+    displayName: "Jefino9488",
+    github: "Jefino9488",
+    role: "Supportive Contributor",
+    speed: 0.95,
+    sizeClass: "w-[110px] h-[110px] md:w-[180px] md:h-[180px]",
+    posClass: "top-[68%] left-[38%] md:left-[36%]",
+    cardSide: "right",
     zClass: "z-20",
   },
   {
@@ -71,8 +82,8 @@ const CORE_MEMBERS: CoreMember[] = [
     role: "Axion Bot Maintainer",
     speed: 1.3,
     sizeClass: "w-[120px] h-[120px] md:w-[200px] md:h-[200px]",
-    posClass: "top-[80%] left-[50%]",
-    cardSide: "right",
+    posClass: "top-[68%] left-[62%] md:left-[64%]",
+    cardSide: "left",
     zClass: "z-40",
   },
   {
@@ -81,8 +92,8 @@ const CORE_MEMBERS: CoreMember[] = [
     github: "Rve27",
     role: "Supportive Contributor",
     speed: 0.9,
-    sizeClass: "w-[110px] h-[110px] md:w-[180px] md:h-[180px] hidden md:block",
-    posClass: "top-[68%] left-[82%] md:left-[85%]",
+    sizeClass: "w-[110px] h-[110px] md:w-[180px] md:h-[180px]",
+    posClass: "top-[68%] left-[90%] md:left-[92%]",
     cardSide: "left",
     zClass: "z-20",
   },
@@ -139,7 +150,7 @@ export default function TeamConstellation() {
           return (
             <div
               key={m.github}
-              className={`absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto group team-circle-wrap ${m.posClass} ${m.zClass}`}
+              className={`absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto group team-circle-wrap hover:z-[60] ${m.posClass} ${m.zClass}`}
               data-speed={m.speed}
             >
               <a
