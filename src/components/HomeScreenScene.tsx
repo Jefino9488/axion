@@ -75,10 +75,10 @@ export default function HomeScreenScene() {
       </div>
 
       {/* Asymmetrical Staggered Layout */}
-      <div ref={gridRef} className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 lg:gap-16 relative z-10 items-start">
+      <div ref={gridRef} className="max-w-6xl mx-auto flex flex-row overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none gap-6 md:gap-8 lg:gap-16 relative z-10 items-start hide-scrollbar px-6 md:px-0 -mx-6 md:mx-auto pb-12 md:pb-0 pt-4 md:pt-0">
         
         {/* Column 1 - Shifted Up Slightly */}
-        <div className="flex-1 flex flex-col gap-8 lg:gap-16 w-full md:-translate-y-16">
+        <div className="flex-none md:flex-1 flex flex-col gap-6 md:gap-8 lg:gap-16 w-[85vw] shrink-0 snap-center md:w-full md:shrink md:snap-align-none md:-translate-y-16">
           
           {/* Card 1: Launcher Tuning (Large Image Focus) */}
           <div className="showcase-card relative rounded-[2rem] bg-white/[0.02] border border-white/10 overflow-hidden group">
@@ -146,7 +146,7 @@ export default function HomeScreenScene() {
         </div>
 
         {/* Column 2 - Shifted Down Slightly */}
-        <div className="flex-1 flex flex-col gap-8 lg:gap-16 w-full md:translate-y-16">
+        <div className="flex-none md:flex-1 flex flex-col gap-6 md:gap-8 lg:gap-16 w-[85vw] shrink-0 snap-center md:w-full md:shrink md:snap-align-none md:translate-y-16">
           
           {/* Card 2: Interactive Dark/Light Slider */}
           <div className="showcase-card relative rounded-[2rem] bg-white/[0.02] border border-white/10 overflow-hidden group">

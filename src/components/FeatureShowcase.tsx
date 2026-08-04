@@ -115,7 +115,7 @@ const featureGroups = [
 
 function PhoneFrame({ src, caption, className = "", style = {} }: { src: string; caption: string; className?: string; style?: React.CSSProperties }) {
   return (
-    <div className={`relative flex-shrink-0 ${className}`} style={style}>
+    <div className={`relative flex-shrink-0 snap-center ${className}`} style={style}>
       <div className="relative w-[180px] md:w-[220px] aspect-[9/19.5] rounded-[1.5rem] border-[3px] border-white/10 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] bg-black group transition-transform duration-500 hover:scale-[1.03]">
         <Image src={src} alt={caption} fill className="object-cover object-top" />
         {/* Notch */}
@@ -133,7 +133,7 @@ function PhoneFrame({ src, caption, className = "", style = {} }: { src: string;
 
 function WideFrame({ src, caption, className = "" }: { src: string; caption: string; className?: string }) {
   return (
-    <div className={`relative flex-shrink-0 ${className}`}>
+    <div className={`relative flex-shrink-0 snap-center ${className}`}>
       <div className="relative w-[340px] md:w-[440px] aspect-[16/9] rounded-[1.2rem] border-[3px] border-white/10 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] bg-black group transition-transform duration-500 hover:scale-[1.03]">
         <Image src={src} alt={caption} fill className="object-cover object-top" />
         <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/80 to-transparent z-10 flex items-end justify-center pb-2">
@@ -201,7 +201,7 @@ function FeatureRow({ group, index }: { group: typeof featureGroups[0]; index: n
       </div>
 
       {/* Screens Block */}
-      <div ref={screensRef} className="flex-1 relative z-10 flex items-end justify-center gap-4 md:gap-6 flex-wrap md:flex-nowrap">
+      <div ref={screensRef} className={`flex-1 w-full md:w-auto relative z-10 flex items-center md:items-end ${group.screens.length === 1 ? "justify-center" : "justify-start"} md:justify-center gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none hide-scrollbar pb-8 md:pb-0 pt-6 md:pt-0 px-6 md:px-0 -mx-6 md:mx-0`}>
         {group.screens.map((screen, i) => {
           // Stagger vertical offset for visual interest
           const yOffset = i % 2 === 0 ? 0 : 24;
