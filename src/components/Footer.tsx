@@ -91,7 +91,7 @@ export default function Footer() {
           {/* Links */}
           <div className="flex flex-wrap justify-center gap-6 text-sm text-[var(--color-axion-text-secondary)]">
             <Link href="/download" className="hover:text-white transition-colors">Downloads</Link>
-            <Link href="/contributors" className="hover:text-white transition-colors">Contributors</Link>
+            <Link href="/contributors" className="hover:text-white transition-colors">Team</Link>
             <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
             <Link href="/faq" className="hover:text-white transition-colors">FAQ</Link>
             <Link href="/keybox" className="hover:text-white transition-colors">Keybox</Link>

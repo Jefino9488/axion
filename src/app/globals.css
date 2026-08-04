@@ -49,6 +49,9 @@ html.lenis, html.lenis body {
     -webkit-backdrop-filter: blur(40px);
     border: 1px solid var(--color-axion-border);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    will-change: transform, backdrop-filter;
   }
 
   .glass-panel-heavy {
@@ -56,6 +59,9 @@ html.lenis, html.lenis body {
     backdrop-filter: blur(60px);
     -webkit-backdrop-filter: blur(60px);
     border: 1px solid var(--color-axion-border);
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    will-change: transform, backdrop-filter;
   }
 
   .text-gradient {

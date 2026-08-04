@@ -20,11 +20,11 @@ const featureGroups = [
     description: "A smart status bar chip that reacts to live events — music, timers, recording, calls — all without leaving your flow.",
     accent: "rgba(0, 210, 180, 0.3)",
     screens: [
-      { src: ss("music_player.webp"), caption: "Music Player" },
-      { src: ss("multi_activity.webp"), caption: "Multi-Activity" },
-      { src: ss("full_player.webp"), caption: "Full Player" },
-      { src: ss("recorder.webp"), caption: "Recorder" },
-      { src: ss("settings_feature.webp"), caption: "Settings" },
+      { src: ss("dynamic_bar_1.webp"), caption: "Music Player" },
+      { src: ss("dynamic_bar_2.webp"), caption: "Multi-Activity" },
+      { src: ss("dynamic_bar_3.webp"), caption: "Full Player" },
+      { src: ss("dynamic_bar_4.webp"), caption: "Recorder" },
+      { src: ss("dynamic_bar_5.webp"), caption: "Settings" },
     ],
   },
   {
@@ -34,9 +34,9 @@ const featureGroups = [
     description: "Custom fingerprint icons, animations, media waveforms, and icon packs — downloadable from the built-in Theme Store.",
     accent: "rgba(120, 80, 255, 0.3)",
     screens: [
-      { src: ss("theme_store.webp"), caption: "Theme Manager" },
-      { src: ss("axion_icons.webp"), caption: "Axion Icons" },
-      { src: ss("axion_fx.webp"), caption: "AxionFx Audio" },
+      { src: ss("theme_store_1.webp"), caption: "Themes Home" },
+      { src: ss("theme_store_2.webp"), caption: "Custom Themes" },
+      { src: ss("theme_store_3.webp"), caption: "Store Details" },
     ],
   },
   {
@@ -80,12 +80,13 @@ const featureGroups = [
   },
   {
     id: "cpu-kernel",
-    label: "CPU & Kernel",
+    label: "Kernel Manager",
     title: "Raw power.\nUnleashed.",
-    description: "Fine-tune CPU governors, per-core frequencies, and thermal profiles. Full kernel-level control for enthusiasts.",
+    description: "Fine-tune CPU governors and per-core frequencies. Full kernel-level control for enthusiasts.",
     accent: "rgba(255, 180, 0, 0.3)",
     screens: [
       { src: ss("kernel_manager.webp"), caption: "Kernel Manager" },
+      { src: ss("kernel_manager_2.webp"), caption: "CPU & Frequencies changeable along with CPU Governors" },
     ],
   },
   {
@@ -111,6 +112,34 @@ const featureGroups = [
       { src: ss("launcher_scaling.webp"), caption: "Launcher Scaling" },
       { src: ss("app_folders.webp"), caption: "App Folders" },
       { src: ss("smart_categories.webp"), caption: "Smart Categories" },
+    ],
+  },
+  {
+    id: "ax-diagnostic",
+    label: "AxDiagnostic",
+    title: "Hardware Health.\nUnder Control.",
+    description: "Built-in hardware diagnostics and system-wide component testing. Displays real-time overview, app status, CPU/GPU/battery/thermal stats, and storage state.",
+    accent: "rgba(0, 180, 255, 0.3)",
+    screens: [
+      { src: ss("ax_diagnostic_1.webp"), caption: "Diagnostics Dashboard" },
+      { src: ss("ax_diagnostic_2.webp"), caption: "Battery Analytics" },
+      { src: ss("ax_diagnostic_3.webp"), caption: "Sensor Auditing" },
+      { src: ss("ax_diagnostic_4.webp"), caption: "Component Testing" },
+      { src: ss("ax_diagnostic_5.webp"), caption: "Hardware Logs" },
+    ],
+  },
+  {
+    id: "extra-gems",
+    label: "Extra Gems",
+    title: "Hidden gems.\nDiscovered.",
+    description: "Discover the extra tools and design refinements that make Axion OS unique—lockscreen visualizers, sidebar shortcuts, and essential controls.",
+    accent: "rgba(255, 40, 120, 0.3)",
+    screens: [
+      { src: ss("extra_gems_1.webp"), caption: "Lockscreen Visualizer" },
+      { src: ss("extra_gems_2.webp"), caption: "AxionFx Audio Mode" },
+      { src: ss("extra_gems_3.webp"), caption: "Sidebar Toolbar" },
+      { src: ss("extra_gems_4.webp"), caption: "AxPC Desktop Mode" },
+      { src: ss("extra_gems_5.webp"), caption: "Essential Settings" },
     ],
   },
 ];
