@@ -239,7 +239,7 @@ export default async function DevicePage({
             />
           </div>
 
-          <div className="hidden md:block w-48 lg:w-64 aspect-[9/19.5] relative -my-12">
+          <div className="w-36 md:w-48 lg:w-64 aspect-[9/19.5] relative -my-6 md:-my-12 mx-auto md:mx-0 flex-shrink-0">
             <div className="absolute inset-0 bg-[var(--color-axion-accent)]/20 blur-3xl rounded-full" />
             <div className="relative w-full h-full drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
               <DeviceImage
