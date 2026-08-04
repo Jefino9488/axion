@@ -10,10 +10,10 @@ gsap.registerPlugin(ScrollTrigger);
 const basePath = process.env.NODE_ENV === 'production' ? '/axion' : '';
 
 const launcherTuningImages = [
-  `${basePath}/screenshots/launcher_tuning_1.jpg`,
-  `${basePath}/screenshots/launcher_tuning_2.jpg`,
-  `${basePath}/screenshots/launcher_tuning_3.jpg`,
-  `${basePath}/screenshots/launcher_tuning_4.jpg`,
+  { src: `${basePath}/screenshots/launcher_tuning_1.jpg`, pos: "object-top" },
+  { src: `${basePath}/screenshots/launcher_tuning_2.jpg`, pos: "object-top" },
+  { src: `${basePath}/screenshots/launcher_tuning_3.jpg`, pos: "object-center" },
+  { src: `${basePath}/screenshots/launcher_tuning_4.jpg`, pos: "object-top" },
 ];
 
 export default function HomeScreenScene() {
@@ -100,13 +100,13 @@ export default function HomeScreenScene() {
           {/* Card 1: Launcher Tuning (Large Image Focus) */}
           <div className="showcase-card relative rounded-[2rem] bg-white/[0.02] border border-white/10 overflow-hidden group">
             <div className="aspect-[4/5] relative w-full overflow-hidden">
-              {launcherTuningImages.map((src, i) => (
+              {launcherTuningImages.map((img, i) => (
                 <Image 
                   key={i}
-                  src={src}
+                  src={img.src}
                   alt={`Launcher Tuning ${i + 1}`}
                   fill
-                  className={`object-cover object-top origin-top group-hover:scale-105 transition-all duration-1000 ease-in-out ${i === currentSlide ? "opacity-100 scale-100 z-10" : "opacity-0 scale-105 z-0"}`}
+                  className={`object-cover ${img.pos} origin-top group-hover:scale-105 transition-all duration-1000 ease-in-out ${i === currentSlide ? "opacity-100 scale-100 z-10" : "opacity-0 scale-105 z-0"}`}
                 />
               ))}
               {/* Subtle Gradient Overlay */}
