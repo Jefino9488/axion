@@ -20,7 +20,7 @@ async function getMaintainers() {
   
   const maintainersMap: Record<string, Maintainer> = {};
   data.maintainers.forEach((m: Maintainer) => {
-    maintainersMap[m.id] = m;
+    maintainersMap[m.id.toLowerCase()] = m;
   });
   
   return maintainersMap;

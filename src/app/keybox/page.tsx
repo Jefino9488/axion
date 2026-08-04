@@ -254,7 +254,7 @@ export default function KeyboxPage() {
             )}
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <button
               disabled={!file}
               onClick={resetState}

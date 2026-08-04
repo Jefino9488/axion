@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Download, FileText, Smartphone, ExternalLink, Calendar, HardDrive } from "lucide-react";
+import { ArrowLeft, Download, Calendar, HardDrive } from "lucide-react";
 import { notFound } from "next/navigation";
 import DeviceImage from "@/components/DeviceImage";
+import DeviceHeaderClient from "./DeviceHeaderClient";
 
 export const revalidate = 3600; // 1 hour cache
 
@@ -44,6 +45,22 @@ async function fetchChangelog(url: string): Promise<string> {
     return await res.text();
   } catch {
     return "No changelog available.";
+  }
+}
+
+async function fetchGuide(url: string): Promise<string | null> {
+  try {
+    let rawUrl = url;
+    if (url.includes("github.com") && !url.includes("raw.githubusercontent.com")) {
+      rawUrl = url
+        .replace("github.com", "raw.githubusercontent.com")
+        .replace("/blob/", "/");
+    }
+    const res = await fetch(rawUrl);
+    if (!res.ok) return null;
+    return await res.text();
+  } catch {
+    return null;
   }
 }
 
@@ -124,10 +141,11 @@ export default async function DevicePage({
     notFound();
   }
 
-  const [gmsBuilds, vanillaBuilds, changelog, deviceImages, maintainersMap] = await Promise.all([
+  const [gmsBuilds, vanillaBuilds, changelog, guideText, deviceImages, maintainersMap] = await Promise.all([
     device.ota?.gms ? fetchBuilds(device.ota.gms) : Promise.resolve([]),
     device.ota?.vanilla ? fetchBuilds(device.ota.vanilla) : Promise.resolve([]),
     device.changelog ? fetchChangelog(device.changelog) : Promise.resolve("No changelog found."),
+    device.guide ? fetchGuide(device.guide) : Promise.resolve(null),
     getDeviceImages(),
     getMaintainers(),
   ]);
@@ -215,20 +233,10 @@ export default async function DevicePage({
               </div>
             )}
 
-            <div className="pt-8 flex flex-wrap gap-4">
-              {device.guide && (
-                <a href={device.guide} target="_blank" rel="noreferrer" className="px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/5 rounded-2xl flex items-center gap-3 text-white font-medium transition-all group">
-                  <FileText className="w-5 h-5 text-[var(--color-axion-accent)] group-hover:scale-110 transition-transform" />
-                  Installation Guide
-                </a>
-              )}
-              {device.support_group && (
-                <a href={device.support_group} target="_blank" rel="noreferrer" className="px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/5 rounded-2xl flex items-center gap-3 text-white font-medium transition-all group">
-                  <ExternalLink className="w-5 h-5 text-blue-400 group-hover:scale-110 transition-transform" />
-                  Support Group
-                </a>
-              )}
-            </div>
+            <DeviceHeaderClient 
+              guideText={guideText} 
+              supportGroupUrl={device.support_group} 
+            />
           </div>
 
           <div className="hidden md:block w-48 lg:w-64 aspect-[9/19.5] relative -my-12">
@@ -313,7 +321,7 @@ export default async function DevicePage({
           <div className="lg:col-span-1">
             <div className="bg-black/40 border border-white/10 rounded-[2rem] p-8 flex flex-col max-h-[550px]">
               <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-widest text-[var(--color-axion-accent)] shrink-0 select-none">Device Changelog</h3>
-              <div className="flex-grow overflow-y-auto pr-2 text-sm text-white/70 whitespace-pre-wrap font-mono leading-relaxed scrollbar-thin">
+              <div className="flex-grow overflow-y-auto pr-2 text-sm text-white/70 whitespace-pre-wrap font-mono leading-relaxed scrollbar-thin" data-lenis-prevent>
                 {changelog}
               </div>
             </div>

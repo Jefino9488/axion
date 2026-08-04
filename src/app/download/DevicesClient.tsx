@@ -1,10 +1,8 @@
 "use client";
 
-import { Search, Smartphone } from "lucide-react";
-import Image from "next/image";
+import { Search } from "lucide-react";
 import Link from "next/link";
 import { useState, useMemo } from "react";
-import DeviceImage from "@/components/DeviceImage";
 
 export type Device = {
   codename: string;
@@ -58,13 +56,21 @@ export default function DevicesClient({
   }, [devices]);
 
   const filteredDevices = useMemo(() => {
-    return devices.filter((device) => {
+    const list = devices.filter((device) => {
       const matchesSearch =
         device.name.toLowerCase().includes(search.toLowerCase()) ||
         device.codename.toLowerCase().includes(search.toLowerCase());
       const matchesBrand =
         selectedBrand === "All" || resolveBrand(device) === selectedBrand;
       return matchesSearch && matchesBrand;
+    });
+
+    return [...list].sort((a, b) => {
+      const aActive = a.status?.toLowerCase() === "active";
+      const bActive = b.status?.toLowerCase() === "active";
+      if (aActive && !bActive) return -1;
+      if (!aActive && bActive) return 1;
+      return 0;
     });
   }, [devices, search, selectedBrand]);
 
@@ -129,22 +135,28 @@ export default function DevicesClient({
                     </div>
                   )}
 
-                  <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[var(--color-axion-accent)]/70 mb-1">
-                    <span>{device.brand}</span>
-                    <span className="opacity-50">•</span>
-                    <span>ACTIVE</span>
+                  <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest mb-1">
+                    <span className="text-[var(--color-axion-accent)]/70">{device.brand}</span>
+                    <span className="opacity-50 text-[var(--color-axion-accent)]/70">•</span>
+                    <span className={
+                      device.status?.toLowerCase() === 'active'
+                        ? 'text-green-400'
+                        : 'text-red-400'
+                    }>
+                      {device.status}
+                    </span>
                   </div>
                   
-                  <h3 className="text-4xl md:text-6xl font-black text-white/40 tracking-tighter group-hover:text-white transition-colors duration-500">
+                  <h3 className="text-4xl md:text-6xl font-black text-white/70 tracking-tighter group-hover:text-white transition-colors duration-500">
                     {device.name}
                   </h3>
                   
-                  <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/20 mt-3 group-hover:text-white/40 transition-colors">
+                  <div className="flex items-center gap-2 text-[10px] font-bold tracking-widest text-white/40 mt-3 group-hover:text-white/75 transition-colors">
                     <span>{device.codename}</span>
                     <span>•</span>
                     <span>
                         {device.maintainer_ids.length > 0 
-                          ? `By ${device.maintainer_ids.map(id => maintainers[id]?.name || id).join(", ")}` 
+                          ? `By ${device.maintainer_ids.map(id => maintainers[id.toLowerCase()]?.name || id).join(", ")}` 
                           : "Unmaintained"}
                     </span>
                   </div>

@@ -1,12 +1,15 @@
 "use client";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isDownloadPage = pathname?.startsWith("/download");
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -59,31 +62,34 @@ export default function Footer() {
         </div>
 
         {/* Supported devices note */}
-        <Link 
-          href="/download" 
-          className="block group glass-panel rounded-2xl p-8 max-w-md mx-auto mb-16 hover:bg-white/5 hover:border-[var(--color-axion-accent)]/30 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,100,0,0.1)] transition-all duration-300 cursor-pointer"
-        >
-          <p className="text-sm text-[var(--color-axion-accent)] uppercase tracking-widest font-bold mb-2 flex items-center justify-center gap-2">
-            Find your device
-            <svg className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </p>
-          <p className="text-[var(--color-axion-text-secondary)] text-sm group-hover:text-white/90 transition-colors">
-            Check out our fully interactive devices portal to see if your phone is officially supported by Axion OS.
-          </p>
-        </Link>
+        {!isDownloadPage && (
+          <Link 
+            href="/download" 
+            className="block group glass-panel rounded-2xl p-8 max-w-md mx-auto mb-16 hover:bg-white/5 hover:border-[var(--color-axion-accent)]/30 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,100,0,0.1)] transition-all duration-300 cursor-pointer"
+          >
+            <p className="text-sm text-[var(--color-axion-accent)] uppercase tracking-widest font-bold mb-2 flex items-center justify-center gap-2">
+              Find your device
+              <svg className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </p>
+            <p className="text-[var(--color-axion-text-secondary)] text-sm group-hover:text-white/90 transition-colors">
+              Check out our fully interactive devices portal to see if your phone is officially supported by Axion OS.
+            </p>
+          </Link>
+        )}
 
         {/* Bottom bar */}
         <div className="border-t border-[var(--color-axion-border)] pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[var(--color-axion-text-secondary)]">
-          <p>© {new Date().getFullYear()} Axion OS. All rights reserved.</p>
-        {/* Links */}
-        <div className="flex flex-wrap justify-center gap-6 text-sm text-[var(--color-axion-text-secondary)]">
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          <Link href="/download" className="hover:text-white transition-colors">Downloads</Link>
-          <Link href="/contributors" className="hover:text-white transition-colors">Contributors</Link>
-          <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
-          <Link href="/keybox" className="hover:text-white transition-colors">Keybox</Link>
-          <a href="https://github.com/AxionAOSP" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Source Code</a>
-        </div>
+          <p>© 2025 - 2026 Axion OS. All rights reserved.</p>
+          
+          {/* Links */}
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-[var(--color-axion-text-secondary)]">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <Link href="/download" className="hover:text-white transition-colors">Downloads</Link>
+            <Link href="/contributors" className="hover:text-white transition-colors">Contributors</Link>
+            <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+            <Link href="/keybox" className="hover:text-white transition-colors">Keybox</Link>
+            <a href="https://github.com/AxionAOSP" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Source Code</a>
+          </div>
         </div>
       </div>
     </section>

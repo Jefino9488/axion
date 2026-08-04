@@ -3,7 +3,6 @@ import HomeScreenScene from "@/components/HomeScreenScene";
 import FeatureShowcase from "@/components/FeatureShowcase";
 import ResearchShowcase from "@/components/ResearchShowcase";
 import ParticleBackground from "@/components/ParticleBackground";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   const faqs = [
@@ -82,8 +81,6 @@ export default function Home() {
             ))}
           </div>
         </section>
-
-        <Footer />
       </div>
     </main>
   );

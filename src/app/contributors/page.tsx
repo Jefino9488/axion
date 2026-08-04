@@ -116,7 +116,7 @@ export default async function ContributorsPage() {
                     <span className="text-[9px] uppercase tracking-widest text-[var(--color-axion-accent-secondary)] font-bold block mb-2">
                       Active Devices
                     </span>
-                    <div className="flex flex-col gap-1.5 max-h-[120px] overflow-y-auto pr-1">
+                    <div className="flex flex-col gap-1.5 max-h-[120px] overflow-y-auto pr-1" data-lenis-prevent>
                       {activeDevs.map((dev) => (
                         <Link
                           key={dev.codename}
