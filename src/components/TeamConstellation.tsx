@@ -144,7 +144,7 @@ export default function TeamConstellation() {
                   alt={m.displayName}
                   fill
                   sizes="(max-width: 768px) 140px, (max-width: 1200px) 240px, 320px"
-                  className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  className="object-cover group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   unoptimized
                 />
               </a>

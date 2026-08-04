@@ -94,7 +94,7 @@ export default async function ContributorsPage() {
                 alt={name}
                 width={80}
                 height={80}
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-300"
+                className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
                 unoptimized
               />
             </a>
