@@ -48,10 +48,10 @@ export default function QuickSettingsScene() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="relative aspect-[9/16] rounded-2xl overflow-hidden">
-                <Image src="/screenshots/photo_2_2026-08-02_22-34-34.jpg" alt="Quick settings expanded amber" fill className="object-cover object-top" />
+                <Image src="/screenshots/qs_expanded_amber.jpg" alt="Quick settings expanded amber" fill className="object-cover object-top" />
               </div>
               <div className="relative aspect-[9/16] rounded-2xl overflow-hidden">
-                <Image src="/screenshots/photo_4_2026-08-02_22-34-34.jpg" alt="Quick settings customization amber" fill className="object-cover object-top" />
+                <Image src="/screenshots/qs_customization_amber.jpg" alt="Quick settings customization amber" fill className="object-cover object-top" />
               </div>
             </div>
           </div>
@@ -64,10 +64,10 @@ export default function QuickSettingsScene() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="relative aspect-[9/16] rounded-2xl overflow-hidden">
-                <Image src="/screenshots/photo_22_2026-08-02_22-34-34.jpg" alt="Quick settings purple theme" fill className="object-cover object-top" />
+                <Image src="/screenshots/qs_purple_theme.jpg" alt="Quick settings purple theme" fill className="object-cover object-top" />
               </div>
               <div className="relative aspect-[9/16] rounded-2xl overflow-hidden">
-                <Image src="/screenshots/photo_27_2026-08-02_22-34-34.jpg" alt="Quick settings purple customization" fill className="object-cover object-top" />
+                <Image src="/screenshots/qs_purple_customization.jpg" alt="Quick settings purple customization" fill className="object-cover object-top" />
               </div>
             </div>
           </div>

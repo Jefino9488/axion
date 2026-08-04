@@ -20,11 +20,11 @@ const featureGroups = [
     description: "A smart status bar chip that reacts to live events — music, timers, recording, calls — all without leaving your flow.",
     accent: "rgba(0, 210, 180, 0.3)",
     screens: [
-      { src: ss("photo_2026-08-03_09-06-46.jpg"), caption: "Music Player" },
-      { src: ss("photo_2026-08-03_09-06-50.jpg"), caption: "Multi-Activity" },
-      { src: ss("photo_2026-08-03_09-06-53.jpg"), caption: "Full Player" },
-      { src: ss("photo_2026-08-03_09-06-57.jpg"), caption: "Recorder" },
-      { src: ss("photo_2026-03-28_20-47-48.jpg"), caption: "Settings" },
+      { src: ss("music_player.jpg"), caption: "Music Player" },
+      { src: ss("multi_activity.jpg"), caption: "Multi-Activity" },
+      { src: ss("full_player.jpg"), caption: "Full Player" },
+      { src: ss("recorder.jpg"), caption: "Recorder" },
+      { src: ss("settings_feature.jpg"), caption: "Settings" },
     ],
   },
   {
@@ -35,7 +35,7 @@ const featureGroups = [
     accent: "rgba(120, 80, 255, 0.3)",
     screens: [
       { src: ss("theme_store.jpg"), caption: "Theme Manager" },
-      { src: ss("photo_2026-08-03_09-06-32.jpg"), caption: "Axion Icons" },
+      { src: ss("axion_icons.jpg"), caption: "Axion Icons" },
       { src: ss("axion_fx.jpg"), caption: "AxionFx Audio" },
     ],
   },
@@ -46,10 +46,10 @@ const featureGroups = [
     description: "Depth effect wallpapers, custom clock faces with graffiti angles, dual-tone styles, widget placement — all from one editor.",
     accent: "rgba(255, 160, 40, 0.3)",
     screens: [
-      { src: ss("photo_14_2026-08-02_22-34-34.jpg"), caption: "Clock Editor" },
-      { src: ss("photo_15_2026-08-02_22-34-34.jpg"), caption: "Style Picker" },
-      { src: ss("photo_16_2026-08-02_22-34-34.jpg"), caption: "Dual Tone" },
-      { src: ss("photo_2026-05-21_12-39-16.jpg"), caption: "Depth Effect" },
+      { src: ss("clock_editor.jpg"), caption: "Clock Editor" },
+      { src: ss("style_picker.jpg"), caption: "Style Picker" },
+      { src: ss("dual_tone.jpg"), caption: "Dual Tone" },
+      { src: ss("depth_effect.jpg"), caption: "Depth Effect" },
     ],
   },
   {
@@ -59,10 +59,10 @@ const featureGroups = [
     description: "Dedicated game dashboard with per-game CPU profiles, bypass charging, danmaku notifications, and FPS unlocking.",
     accent: "rgba(40, 80, 255, 0.3)",
     screens: [
-      { src: ss("photo_2026-08-03_09-07-02.jpg"), caption: "Game Library" },
-      { src: ss("photo_2026-08-03_09-07-06.jpg"), caption: "Settings" },
-      { src: ss("photo_2026-08-03_09-07-10.jpg"), caption: "Per-Game Profiles" },
-      { src: ss("photo_2026-02-18_12-42-43.jpg"), caption: "AxPC Mode" },
+      { src: ss("game_library.jpg"), caption: "Game Library" },
+      { src: ss("game_settings.jpg"), caption: "Settings" },
+      { src: ss("per_game_profiles.jpg"), caption: "Per-Game Profiles" },
+      { src: ss("axpc_mode.jpg"), caption: "AxPC Mode" },
     ],
   },
   {
@@ -85,7 +85,7 @@ const featureGroups = [
     description: "Fine-tune CPU governors, per-core frequencies, and thermal profiles. Full kernel-level control for enthusiasts.",
     accent: "rgba(255, 180, 0, 0.3)",
     screens: [
-      { src: ss("photo_2026-07-21_21-11-59.jpg"), caption: "Kernel Manager" },
+      { src: ss("kernel_manager.jpg"), caption: "Kernel Manager" },
     ],
   },
   {
@@ -95,8 +95,8 @@ const featureGroups = [
     description: "A fully isolated environment for apps and files. Separate notifications, locked vault, zero data leakage.",
     accent: "rgba(0, 180, 180, 0.3)",
     screens: [
-      { src: ss("photo_2025-12-25_22-09-55.jpg"), caption: "Locked Notifications" },
-      { src: ss("photo_2026-05-01_17-14-54.jpg"), caption: "Vault & Files" },
+      { src: ss("locked_notifications.jpg"), caption: "Locked Notifications" },
+      { src: ss("vault_files.jpg"), caption: "Vault & Files" },
       { src: ss("sandbox_space.jpg"), caption: "Sandbox Isolation" },
     ],
   },
@@ -107,10 +107,10 @@ const featureGroups = [
     description: "Custom recents actions (lock app, freeform, memory info), launcher scaling, blur control, smart app categories, and folder widgets.",
     accent: "rgba(180, 100, 255, 0.3)",
     screens: [
-      { src: ss("photo_12_2026-08-02_22-34-34.jpg"), caption: "Recents Settings" },
-      { src: ss("photo_13_2026-08-02_22-34-34.jpg"), caption: "Launcher Scaling" },
-      { src: ss("photo_9_2026-08-02_22-34-34.jpg"), caption: "App Folders" },
-      { src: ss("photo_2026-01-26_23-53-12.jpg"), caption: "Smart Categories" },
+      { src: ss("recents_settings.jpg"), caption: "Recents Settings" },
+      { src: ss("launcher_scaling.jpg"), caption: "Launcher Scaling" },
+      { src: ss("app_folders.jpg"), caption: "App Folders" },
+      { src: ss("smart_categories.jpg"), caption: "Smart Categories" },
     ],
   },
 ];

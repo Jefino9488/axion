@@ -132,7 +132,7 @@ export default function CustomizationScene() {
             {/* Background: Light Theme Image */}
             <div className="absolute inset-0 w-full h-full bg-white">
               <Image 
-                src={`${basePath}/screenshots/photo_25_2026-08-02_22-34-34.jpg`}
+                src={`${basePath}/screenshots/qs_light_theme.jpg`}
                 alt="Light Theme Preview"
                 fill
                 className="object-cover object-top"
@@ -149,7 +149,7 @@ export default function CustomizationScene() {
             >
               <div className="absolute top-0 left-0 w-full h-full min-w-[300px] sm:min-w-[400px] md:min-w-[500px]">
                 <Image 
-                  src={`${basePath}/screenshots/photo_22_2026-08-02_22-34-34.jpg`}
+                  src={`${basePath}/screenshots/qs_purple_theme.jpg`}
                   alt="Dark Theme Preview"
                   fill
                   className="object-cover object-top"
@@ -190,7 +190,7 @@ export default function CustomizationScene() {
           <div className="relative w-full h-[200px] mt-6 flex justify-center items-end">
             <div className="relative w-[220px] md:w-[260px] aspect-[9/16] rounded-t-[2.2rem] border-t-2 border-x-2 border-white/20 overflow-hidden shadow-2xl bg-black transform translate-y-6 group-hover:translate-y-2 transition-transform duration-500">
               <Image 
-                src={`${basePath}/screenshots/photo_13_2026-08-02_22-34-34.jpg`}
+                src={`${basePath}/screenshots/launcher_scaling.jpg`}
                 alt="Launcher Tuning Interface"
                 fill
                 className="object-cover object-top"
@@ -219,7 +219,7 @@ export default function CustomizationScene() {
             {/* Background Card */}
             <div className="absolute w-[200px] aspect-[9/16] rounded-2xl border border-white/15 overflow-hidden shadow-xl bg-black transform -rotate-6 -translate-x-6 translate-y-2 group-hover:-rotate-12 transition-transform duration-500 opacity-75">
               <Image 
-                src={`${basePath}/screenshots/photo_8_2026-08-02_22-34-34.jpg`}
+                src={`${basePath}/screenshots/lockscreen_customization.jpg`}
                 alt="Power menu glass options"
                 fill
                 className="object-cover object-top"

@@ -68,7 +68,7 @@ export default function InteractiveComparison() {
         >
           {/* Before (Light Theme) */}
           <div className="absolute inset-0">
-            <Image src="/screenshots/photo_25_2026-08-02_22-34-34.jpg" alt="Axion OS light theme quick settings" fill className="object-cover object-top" />
+            <Image src="/screenshots/qs_light_theme.jpg" alt="Axion OS light theme quick settings" fill className="object-cover object-top" />
             <div className="absolute top-6 left-6 z-10">
               <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-sm text-xs text-white/70 font-medium uppercase tracking-widest">Light</span>
             </div>
@@ -76,7 +76,7 @@ export default function InteractiveComparison() {
 
           {/* After (Dark Theme) */}
           <div className="absolute inset-0 z-20 overflow-hidden" style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}>
-            <Image src="/screenshots/photo_22_2026-08-02_22-34-34.jpg" alt="Axion OS dark theme quick settings" fill className="object-cover object-top" />
+            <Image src="/screenshots/qs_purple_theme.jpg" alt="Axion OS dark theme quick settings" fill className="object-cover object-top" />
             <div className="absolute top-6 right-6 z-10">
               <span className="px-3 py-1 rounded-full bg-[var(--color-axion-accent)]/30 backdrop-blur-sm text-xs text-white font-bold uppercase tracking-widest">Dark</span>
             </div>
