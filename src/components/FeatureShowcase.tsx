@@ -86,7 +86,8 @@ const featureGroups = [
     accent: "rgba(255, 180, 0, 0.3)",
     screens: [
       { src: ss("kernel_manager.webp"), caption: "Kernel Manager" },
-      { src: ss("kernel_manager_2.webp"), caption: "CPU & Frequencies changeable along with CPU Governors" },
+      { src: ss("kernel_manager_3.webp"), caption: "Tunable CPU & GPU Frequencies" },
+      { src: ss("kernel_manager_2.webp"), caption: "Changable CPU governors" },
     ],
   },
   {
