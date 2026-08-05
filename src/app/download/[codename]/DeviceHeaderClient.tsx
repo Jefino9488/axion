@@ -19,7 +19,6 @@ export default function DeviceHeaderClient({
 
   return (
     <div className="w-full space-y-6">
-      {/* Control Buttons row */}
       <div className="pt-8 flex flex-wrap gap-4 select-none">
         {guideText && (
           <button
@@ -51,7 +50,7 @@ export default function DeviceHeaderClient({
         )}
       </div>
 
-      {/* Framer-Motion Hardware Accelerated Expandable Guide Panel */}
+
       <AnimatePresence initial={false}>
         {isOpen && guideText && (
           <motion.div

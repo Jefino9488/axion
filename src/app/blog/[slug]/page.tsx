@@ -24,6 +24,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     notFound();
   }
 
+  let content = post.content;
+  if (process.env.NODE_ENV === "production") {
+    content = content.replaceAll('="/blog/', '="/axion/blog/');
+    content = content.replaceAll('(/blog/', '(/axion/blog/');
+  }
+
   return (
     <main className="min-h-screen bg-[var(--color-axion-bg)] pt-32 pb-24 px-6 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[var(--color-axion-accent-secondary)]/10 blur-[120px] rounded-full pointer-events-none" />
@@ -87,7 +93,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         <article className="prose prose-invert prose-lg max-w-none prose-headings:text-white prose-a:text-[var(--color-axion-accent-secondary)] hover:prose-a:text-[var(--color-axion-accent)] prose-a:transition-colors prose-img:rounded-2xl prose-img:border prose-img:border-white/10">
           <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
-            {post.content}
+            {content}
           </ReactMarkdown>
         </article>
       </div>

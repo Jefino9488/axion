@@ -44,7 +44,6 @@ export default function Footer() {
           The Android experience, reimagined. Beautiful. Fast. Yours.
         </p>
 
-        {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <a
             href="https://github.com/AxionAOSP"
@@ -66,7 +65,6 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* Supported devices note */}
         {!isDownloadPage && (
           <Link 
             href="/download" 
@@ -84,11 +82,9 @@ export default function Footer() {
           </>
         )}
 
-        {/* Bottom bar */}
         <div className={`${isHomePage ? "border-t border-[var(--color-axion-border)] pt-8" : "pt-0"} flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[var(--color-axion-text-secondary)]`}>
           <p>© 2025 - 2026 Axion OS. All rights reserved.</p>
           
-          {/* Links */}
           <div className="flex flex-wrap justify-center gap-6 text-sm text-[var(--color-axion-text-secondary)]">
             <Link href="/download" className="hover:text-white transition-colors">Downloads</Link>
             <Link href="/contributors" className="hover:text-white transition-colors">Team</Link>
