@@ -1,8 +1,10 @@
 import HeroScene from "@/components/HeroScene";
 import HeroSceneMobile from "@/components/HeroSceneMobile";
-import HomeScreenScene from "@/components/HomeScreenScene";
-import FeatureShowcase from "@/components/FeatureShowcase";
-import ResearchShowcase from "@/components/ResearchShowcase";
+import dynamic from "next/dynamic";
+
+const HomeScreenScene = dynamic(() => import("@/components/HomeScreenScene"));
+const FeatureShowcase = dynamic(() => import("@/components/FeatureShowcase"));
+const ResearchShowcase = dynamic(() => import("@/components/ResearchShowcase"));
 
 export default function Home() {
 

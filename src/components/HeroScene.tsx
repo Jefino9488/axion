@@ -237,7 +237,7 @@ export default function HeroScene() {
   // Helper for extra phones (Depth Wallpapers)
   const DepthPhone = ({ wp, innerRef, className = "" }: { wp: any, innerRef: React.Ref<HTMLDivElement>, className?: string }) => (
     <div ref={innerRef} className={`absolute bottom-0 w-[280px] md:w-[320px] aspect-[9/20.5] rounded-[2.2rem] border-[3px] border-white/10 overflow-hidden shadow-2xl bg-black will-change-transform ${className}`}>
-      <Image src={wp.src} alt={wp.title} fill className="object-cover object-top" />
+      <Image src={wp.src} alt={wp.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover object-top" />
       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent z-10 flex flex-col justify-end p-4">
         <span className="text-[10px] uppercase tracking-widest text-[var(--color-axion-accent)] font-semibold truncate">{wp.tag}</span>
         <h5 className="text-sm font-bold text-white truncate">{wp.title}</h5>
@@ -304,7 +304,7 @@ export default function HeroScene() {
             className="absolute w-28 h-32 md:w-36 md:h-44 bg-black/40 backdrop-blur-2xl rounded-2xl border border-white/15 flex flex-col items-center justify-between p-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-colors duration-300"
           >
              <div className="relative w-full h-full my-1">
-                <Image src={clock.src} alt={clock.name} fill className="object-contain drop-shadow-lg" />
+                <Image src={clock.src} alt={clock.name} fill sizes="(max-width: 768px) 50vw, 20vw" className="object-contain drop-shadow-lg" />
              </div>
              <span className="font-mono text-[9px] md:text-[11px] text-white/80 font-medium uppercase tracking-[0.2em]">{clock.name}</span>
           </div>
@@ -327,6 +327,7 @@ export default function HeroScene() {
             src={`${basePath}/assets/hero_main.webp`}
             alt="Axion OS Lockscreen"
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-top filter brightness-[0.95]"
             priority
           />
@@ -337,6 +338,7 @@ export default function HeroScene() {
             src={`${basePath}/assets/lockscreen_blank.webp`}
             alt="Axion OS Blank Lockscreen"
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-top filter brightness-[0.95] opacity-0"
             priority
           />
@@ -352,7 +354,7 @@ export default function HeroScene() {
                 ref={(el) => { clocksRef.current[i] = el; }}
                 className="absolute inset-0 flex items-center justify-center px-10"
               >
-                <Image src={clock.src} alt={clock.name} fill className="object-contain drop-shadow-2xl" />
+                <Image src={clock.src} alt={clock.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-contain drop-shadow-2xl" />
               </div>
             ))}
           </div>
@@ -373,6 +375,7 @@ export default function HeroScene() {
               src={depthWallpapers[2].src} // Burj Horizon
               alt="Depth Center"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover object-top"
             />
             {/* Text label for the center phone to match the others */}

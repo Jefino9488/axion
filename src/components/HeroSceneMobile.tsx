@@ -77,6 +77,7 @@ export default function HeroSceneMobile() {
             src={`${basePath}/assets/hero_main.webp`}
             alt="Axion OS Lockscreen"
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-top filter brightness-[0.95]"
             priority
           />
@@ -96,9 +97,9 @@ export default function HeroSceneMobile() {
           {clockStyles.map((clock, i) => (
             <div key={i} className="snap-center shrink-0 flex flex-col items-center gap-6">
               <div className="relative w-[240px] sm:w-[260px] aspect-[9/20.5] rounded-[2rem] border-[3px] border-[#1a1a1a] overflow-hidden shadow-2xl bg-black">
-                <Image src={`${basePath}/assets/lockscreen_blank.webp`} alt="bg" fill className="object-cover object-top brightness-[0.6]" />
+                <Image src={`${basePath}/assets/lockscreen_blank.webp`} alt="bg" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-top brightness-[0.6]" />
                 <div className="absolute inset-x-0 top-[8%] h-[28%] flex items-center justify-center z-10 px-8">
-                  <Image src={clock.src} alt={clock.name} fill className="object-contain drop-shadow-xl" />
+                  <Image src={clock.src} alt={clock.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-contain drop-shadow-xl" />
                 </div>
                 <div className="absolute top-3 left-1/2 -translate-x-1/2 w-3 h-3 bg-black rounded-full z-40" />
               </div>
@@ -125,7 +126,7 @@ export default function HeroSceneMobile() {
         <div className="w-full overflow-x-auto pb-8 snap-x snap-mandatory flex gap-6 px-6 hide-scrollbar fade-up relative z-20">
           {depthWallpapers.map((wp, i) => (
             <div key={i} className="snap-center shrink-0 relative w-[240px] sm:w-[260px] aspect-[9/20.5] rounded-[2rem] border-[3px] border-white/10 overflow-hidden shadow-2xl bg-black">
-              <Image src={wp.src} alt={wp.title} fill className="object-cover object-top" />
+              <Image src={wp.src} alt={wp.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-top" />
               <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent z-10 flex flex-col justify-end p-4">
                 <span className="text-[10px] uppercase tracking-widest text-[var(--color-axion-accent)] font-semibold truncate">{wp.tag}</span>
                 <h5 className="text-sm font-bold text-white truncate">{wp.title}</h5>

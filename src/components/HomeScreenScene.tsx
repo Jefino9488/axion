@@ -106,6 +106,7 @@ export default function HomeScreenScene() {
                 src={`${basePath}/assets/launcher_tuning_4.webp`}
                 alt="Grid & Scaling"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover object-top origin-top group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               {/* Subtle Gradient Overlay */}
@@ -146,6 +147,7 @@ export default function HomeScreenScene() {
                   src={`${basePath}/assets/workspace_back.webp`}
                   alt="Workspace Secondary"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover object-top"
                 />
               </div>
@@ -156,6 +158,7 @@ export default function HomeScreenScene() {
                   src={`${basePath}/assets/workspace_front.webp`}
                   alt="Workspace Overview"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover object-top"
                 />
               </div>
@@ -196,6 +199,7 @@ export default function HomeScreenScene() {
                     src={`${basePath}/assets/theme_light.webp`}
                     alt="Light Theme"
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-center"
                   />
                   <span className="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10 z-10">
@@ -213,6 +217,7 @@ export default function HomeScreenScene() {
                       src={`${basePath}/assets/theme_dark.webp`}
                       alt="Dark Theme"
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover object-center"
                     />
                   </div>
@@ -248,6 +253,7 @@ export default function HomeScreenScene() {
                   src={src}
                   alt={`App Drawer ${i + 1}`}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className={`object-cover object-top origin-top group-hover:scale-105 transition-all duration-1000 ease-in-out ${i === currentAppDrawerSlide ? "opacity-90 scale-100 z-10" : "opacity-0 scale-105 z-0"}`}
                 />
               ))}
@@ -274,6 +280,7 @@ export default function HomeScreenScene() {
                 src={`${basePath}/assets/widgets_panel.webp`}
                 alt="Widgets and Panels"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover object-center origin-top group-hover:scale-105 transition-transform duration-700 ease-out opacity-80"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90" />
