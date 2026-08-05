@@ -254,7 +254,7 @@ export default function HomeScreenScene() {
                   alt={`App Drawer ${i + 1}`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className={`object-cover object-top origin-top group-hover:scale-105 transition-all duration-1000 ease-in-out ${i === currentAppDrawerSlide ? "opacity-90 scale-100 z-10" : "opacity-0 scale-105 z-0"}`}
+                  className={`object-cover object-top origin-top group-hover:scale-105 transition-all duration-1000 ease-in-out ${i === currentAppDrawerSlide ? "opacity-90 scale-100" : "opacity-0 scale-105"}`}
                 />
               ))}
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 z-20 pointer-events-none" />

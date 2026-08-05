@@ -129,7 +129,7 @@ export default function HeroSceneMobile() {
               <Image src={wp.src} alt={wp.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-top" />
               <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent z-10 flex flex-col justify-end p-4">
                 <span className="text-[10px] uppercase tracking-widest text-[var(--color-axion-accent)] font-semibold truncate">{wp.tag}</span>
-                <h5 className="text-sm font-bold text-white truncate">{wp.title}</h5>
+                <div className="text-sm font-bold text-white truncate">{wp.title}</div>
               </div>
               <div className="absolute top-3 left-1/2 -translate-x-1/2 w-3 h-3 bg-black rounded-full z-40" />
             </div>
