@@ -56,7 +56,8 @@ export default function Navbar() {
       
       <div className="max-w-7xl mx-auto w-full flex items-center justify-between h-full">
         {/* Logo */}
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center gap-3">
+          <img src={`${process.env.NODE_ENV === 'production' ? '/axion' : ''}/logo.svg`} alt="Axion OS Logo" className="w-8 h-8" />
           <span className="text-white font-bold text-xl tracking-tight">Axion OS</span>
         </Link>
 
